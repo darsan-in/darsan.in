@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ./kinact-package
+          path: kinact-package
 
   deploy:
     needs: build
@@ -71,7 +71,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: github-pages
-          path: ./path/to/download/artifacts
+          path: kinact-package
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
