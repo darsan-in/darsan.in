@@ -1,0 +1,54 @@
+{
+	"name": "kinact",
+	"displayName": "Kinact",
+	"version": "0.0.1a",
+	"description": "Personal portfolio website with track records of your projects published on GitHub.",
+	"main": "./dist/kinact.js",
+	"exports": {
+		"import": "./dist/kinact.js",
+		"require": "./dist/kinact.js",
+		"types": "./dist/types/kinact.d.ts"
+	},
+	"files": [
+		"dist"
+	],
+	"directories": {
+		"lib": "./dist/lib"
+	},
+	"preferGlobal": true,
+	"bin": {
+		"kinact": "./dist/bin/cli.js"
+	},
+	"repository": "https://github.com/iamspdarsan/kinact",
+	"bugs": {
+		"url": "https://github.com/iamspdarsan/kinact/issues"
+	},
+	"author": "DARSAN <darsan@cresteem.com>",
+	"maintainers": [
+		"DARSAN <darsan@cresteem.com>"
+	],
+	"license": "Apache-2.0",
+	"private": false,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build"
+	},
+	"keywords": [],
+	"dependencies": {
+		"autoprefixer": "^10.4.19",
+		"next": "14.2.4",
+		"postcss": "^8.4.39",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-icons": "^5.2.1",
+		"sass": "^1.77.6",
+		"tailwindcss": "^3.4.4"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.8",
+		"@types/react": "^18.3.3",
+		"rimraf": "5.0.5",
+		"ts-node": "10.9.2",
+		"typescript": "5.4.5"
+	}
+}

@@ -1,0 +1,22 @@
+.bannerIcon {
+	transition: all;
+	transition-duration: 700ms;
+}
+
+.bannerIcon:hover {
+	scale: 1.2;
+}
+
+.skillIcon {
+	transition: all;
+	transition-duration: 700ms;
+}
+
+.skillIcon:hover {
+	scale: 5;
+	fill: rgb(140, 21, 224);
+}
+
+body:has(.skillIcon:hover) {
+	background-color: black;
+}
