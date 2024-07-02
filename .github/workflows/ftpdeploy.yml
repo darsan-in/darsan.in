@@ -2,7 +2,6 @@ name: "Deploy Static Files to GH-pages"
 
 on:
   workflow_dispatch:
-
   push:
     branches:
       - main
@@ -24,7 +23,7 @@ jobs:
 
       - name: "Caching yarn"
         uses: actions/cache@v4.0.2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -37,9 +36,7 @@ jobs:
           path: |
             ~/.npm
             ${{ github.workspace }}/.next/cache
-          # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
@@ -54,20 +51,17 @@ jobs:
 
       - name: Generating Static Files
         run: yarn build
-  
+
   deploy:
-   needs: build
-
-   permissions:
-    pages: write
-    id-token: write
-
-   environment:
-	 name: github-pages
-	 url: ${{ steps.deployment.outputs.page_url }}
-
-   runs-on: ubuntu-latest
-	steps:
-	  - name: Deploy to GitHub Pages
-		id: deployment
-		uses: actions/deploy-pages@v4.0.5 # or specific "vX.X.X" version tag for this action
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4.0.5
