@@ -1,6 +1,9 @@
 "use client";
 
 import Skills from "./src/components/skills";
+import style from "./src/styles/style.module.scss";
+import { getRandomColor } from "./src/components/utils";
+import { useEffect } from "react";
 
 export default function HomePage() {
 	const navigation = [
@@ -8,6 +11,17 @@ export default function HomePage() {
 		{ title: "Experience", path: "" },
 		{ title: "Achievments", path: "" },
 	];
+
+	useEffect(() => {
+		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
+		skillIcons.forEach((skillIcon: any) => {
+			skillIcon.addEventListener("mouseover", () => {
+				const randomColor = `${getRandomColor()}`;
+				skillIcon.style.fill = randomColor;
+				skillIcon.style.color = randomColor;
+			});
+		});
+	}, []);
 
 	return (
 		<>

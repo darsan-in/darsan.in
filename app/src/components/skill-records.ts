@@ -12,6 +12,7 @@ import { CiPenpot } from "react-icons/ci";
 import { DiDart } from "react-icons/di";
 import { FaGulp, FaLinux, FaNode } from "react-icons/fa";
 import { FaFreebsd, FaGitAlt } from "react-icons/fa6";
+import { GiDolphin } from "react-icons/gi";
 import {
 	IoLogoCss3,
 	IoLogoElectron,
@@ -33,26 +34,23 @@ import {
 import {
 	SiAdobeillustrator,
 	SiAdobephotoshop,
+	SiCplusplus,
 	SiExpress,
 	SiFoodpanda,
 	SiGooglesearchconsole,
 	SiJest,
 	SiKeystone,
-	SiMysql,
 	SiNumpy,
 	SiPassport,
 	SiPhp,
 	SiPuppeteer,
 	SiSelenium,
+	SiSocketdotio,
 	SiWebassembly,
 	SiWebpack,
+	SiWindowsterminal,
 } from "react-icons/si";
-import {
-	TbBrandCpp,
-	TbBrandOffice,
-	TbBrandSocketIo,
-} from "react-icons/tb";
-import { VscTerminalCmd } from "react-icons/vsc";
+import Office from "../icons/office";
 
 const skills: Record<string, any>[] = [
 	{ text: "TypeScript", icon: BiLogoTypescript },
@@ -65,7 +63,7 @@ const skills: Record<string, any>[] = [
 
 	{ text: "Next JS", icon: RiNextjsFill },
 	{ text: "Mongo DB", icon: BiLogoMongodb },
-	{ text: "Socket.io", icon: TbBrandSocketIo },
+	{ text: "Socket.io", icon: SiSocketdotio },
 	{ text: "Electron JS", icon: IoLogoElectron },
 	{ text: "PHP", icon: SiPhp },
 
@@ -79,9 +77,9 @@ const skills: Record<string, any>[] = [
 	{ text: "Tailwind CSS", icon: RiTailwindCssFill },
 	{ text: "SCSS", icon: BiLogoSass },
 	{ text: "Java", icon: RiJavaFill },
-	{ text: "C & C++", icon: TbBrandCpp },
+	{ text: "C & C++", icon: SiCplusplus },
 	{ text: "Web Assembly", icon: SiWebassembly },
-	{ text: "My SQL", icon: SiMysql },
+	{ text: "My SQL", icon: GiDolphin },
 	{ text: "Linux", icon: FaLinux },
 
 	{ text: "Windows", icon: RiWindowsFill },
@@ -99,12 +97,11 @@ const skills: Record<string, any>[] = [
 	{ text: "Passport JS", icon: SiPassport },
 	{ text: "MatPlotlib", icon: MdScatterPlot },
 	{ text: "Bash", icon: IoTerminal },
-	{ text: "CMD", icon: VscTerminalCmd },
+	{ text: "CMD", icon: SiWindowsterminal },
 	{ text: "Photoshop", icon: SiAdobephotoshop },
 	{ text: "Illustrator", icon: SiAdobeillustrator },
 	{ text: "Penpot", icon: CiPenpot },
-
-	{ text: "MS Office", icon: TbBrandOffice },
+	{ text: "MS Office", icon: Office },
 	{ text: "SEO", icon: SiGooglesearchconsole },
 	{ text: "Puppeteer", icon: SiPuppeteer },
 	{ text: "Jest", icon: SiJest },
