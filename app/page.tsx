@@ -1,17 +1,12 @@
 "use client";
 
-import Skills from "./src/components/skills";
-import style from "./src/styles/style.module.scss";
-import { getRandomColor } from "./src/components/utils";
+import { ShortInto, name, navigation, shortMessage, summary } from "meta";
 import { useEffect } from "react";
+import Skills from "./src/components/skills";
+import { getRandomColor } from "./src/components/utils";
+import style from "./src/styles/style.module.scss";
 
 export default function HomePage() {
-	const navigation = [
-		{ title: "Works", path: "" },
-		{ title: "Experience", path: "" },
-		{ title: "Achievments", path: "" },
-	];
-
 	useEffect(() => {
 		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
 		skillIcons.forEach((skillIcon: any) => {
@@ -29,7 +24,7 @@ export default function HomePage() {
 				<div className="flex justify-between font-jose pr-20">
 					<a href="">
 						<p className="block w-full mt-2 text-center text-indigo-600 font-bold duration-1000 hover:text-blue-700 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm lg:text-8xl">
-							PRIYADARSAN
+							{name}
 						</p>
 					</a>
 				</div>
@@ -51,23 +46,13 @@ export default function HomePage() {
 			<section className="py-20">
 				<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
 					<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
-						<h1 className="text-indigo-600 font-medium">
-							Over 30 projects completed
-						</h1>
+						<h1 className="text-indigo-600 font-medium">{shortMessage}</h1>
 
 						<h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl leading-loose">
-							Founder <span className="text-blue-600">@Cresteem</span> ,
-							Expert in Web, Desktop, Mobile Development & SEO
+							<ShortInto />
 						</h2>
 
-						<p>
-							I specialize in web, desktop, and mobile development,
-							combining innovation with meticulous craftsmanship to deliver
-							impactful software solutions. With a passion for transforming
-							ideas into reality, I lead projects that redefine user
-							experiences and drive business growth. Let's collaborate on
-							building the next generation of digital innovations.
-						</p>
+						<p>{summary}</p>
 
 						<div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
 							<a
