@@ -23,7 +23,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<header className="h-15 rounded-b-lg bg-indigo-100">
+				<header className="h-15 rounded-b-lg border border-indigo-100">
 					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8">
 						<div className="flex gap-x-4 text-sm text-black">
 							<a
