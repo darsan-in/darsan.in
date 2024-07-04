@@ -36,6 +36,7 @@
 	},
 	"keywords": [],
 	"dependencies": {
+		"@radix-ui/react-tabs": "1.1.0",
 		"autoprefixer": "^10.4.19",
 		"next": "14.2.4",
 		"postcss": "^8.4.39",

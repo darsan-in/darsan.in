@@ -1,14 +1,27 @@
 "use client";
 
-import { ShortInto, name, navigation, shortMessage, summary } from "meta";
+import { getMostUsedLanguages, makeRepoGroups } from "lib/github";
+import {
+	ShortInto,
+	githubMetaKey,
+	groupedMetaKey,
+	loadGithubMeta,
+	mostUsedLanguagesKey,
+	name,
+	navigation,
+	shortMessage,
+	summary,
+} from "meta";
 import { useEffect } from "react";
 import Skills from "./src/components/skills";
 import { getRandomColor } from "./src/components/utils";
+import Works from "./src/components/works";
 import style from "./src/styles/style.module.scss";
 
-export default function HomePage() {
+export default async function HomePage() {
 	useEffect(() => {
 		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
+
 		skillIcons.forEach((skillIcon: any) => {
 			skillIcon.addEventListener("mouseover", () => {
 				const randomColor = `${getRandomColor()}`;
@@ -16,6 +29,34 @@ export default function HomePage() {
 				skillIcon.style.color = randomColor;
 			});
 		});
+
+		const hasMeta = localStorage.getItem(githubMetaKey);
+		if (!!hasMeta) return;
+
+		const dumpMeta = async () => {
+			const githubMeta = await loadGithubMeta();
+			localStorage.setItem(githubMetaKey, JSON.stringify(githubMeta));
+		};
+
+		alert("loading again");
+
+		dumpMeta()
+			.then(() => {
+				//dump language
+				localStorage.setItem(
+					mostUsedLanguagesKey,
+					JSON.stringify(getMostUsedLanguages()),
+				);
+
+				//grouping
+				localStorage.setItem(
+					groupedMetaKey,
+					JSON.stringify(makeRepoGroups("language")),
+				);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}, []);
 
 	return (
@@ -107,6 +148,8 @@ export default function HomePage() {
 					</div>
 				</div>
 			</section>
+
+			<Works />
 		</>
 	);
 }
