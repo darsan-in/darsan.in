@@ -11,7 +11,7 @@ export interface GithubRepoMeta {
 	releasesUrl?: string;
 	latestVersion?: string | boolean;
 	languagesUrl?: string;
-	languagesMeta?: Record<string, string>;
+	languagesMeta?: Record<string, number>;
 	contributorsUrl: string;
 	createdAt: string;
 	updatedAt: string;

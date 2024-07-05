@@ -1,71 +1,33 @@
 "use client";
 
-import { GithubRepoMeta } from "action/ds";
-import {
-	ShortInto,
-	communication,
-	groupedMetaKey,
-	name,
-	navigation,
-	summary,
-	totalProjectkey,
-} from "meta";
-import { useDeferredValue, useEffect, useState } from "react";
+import { ShortInto, name, navigation, summary } from "meta";
+import { useEffect } from "react";
 import Skills from "./src/components/skills";
 import { ShortMessage } from "./src/components/ui-utils";
-import { fetchGHMeta, getRandomColor } from "./src/components/utils";
+import { getRandomColor } from "./src/components/utils";
 import Works from "./src/components/works";
 import style from "./src/styles/style.module.scss";
 
 export default async function HomePage() {
-	const [ghMeta, setGHMeta] = useState<Record<string, GithubRepoMeta[]>>(
-		{},
-	);
-
-	const deferredMeta = useDeferredValue(ghMeta);
-
 	useEffect(() => {
 		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
 
+		const handleMouseOver = (event: MouseEvent) => {
+			const skillIcon = event.target as HTMLElement;
+			const randomColor = `${getRandomColor()}`;
+			skillIcon.style.fill = randomColor;
+			skillIcon.style.color = randomColor;
+		};
+
 		skillIcons.forEach((skillIcon: any) => {
-			skillIcon.addEventListener("mouseover", () => {
-				const randomColor = `${getRandomColor()}`;
-				skillIcon.style.fill = randomColor;
-				skillIcon.style.color = randomColor;
-			});
+			skillIcon.addEventListener("mouseover", handleMouseOver);
 		});
 
-		const ghMeta = localStorage.getItem(groupedMetaKey);
-		if (!!ghMeta) {
-			/* Load local available meta */
-			const groupedMeta = JSON.parse(ghMeta);
-			const nonGrouped = Object.values(groupedMeta).flat();
-			setGHMeta({ All: nonGrouped, ...groupedMeta });
-		} else {
-			const dumpMeta = async () => {
-				const groupedMeta = await fetchGHMeta(
-					communication.github,
-					"Kinact",
-				);
-				localStorage.setItem(groupedMetaKey, JSON.stringify(groupedMeta));
-
-				localStorage.setItem(
-					totalProjectkey,
-					String(Object.values(groupedMeta).flat().length),
-				);
-
-				return groupedMeta;
-			};
-
-			dumpMeta()
-				.then((groupedMeta) => {
-					const nonGrouped = Object.values(groupedMeta).flat();
-					setGHMeta({ All: nonGrouped, ...groupedMeta });
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		}
+		return () => {
+			skillIcons.forEach((skillIcon: any) => {
+				skillIcon.removeEventListener("mouseover", handleMouseOver);
+			});
+		};
 	}, []);
 
 	return (
@@ -160,7 +122,7 @@ export default async function HomePage() {
 				</div>
 			</section>
 
-			<Works groupedMeta={deferredMeta} />
+			<Works />
 		</>
 	);
 }

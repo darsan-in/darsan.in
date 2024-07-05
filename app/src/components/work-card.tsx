@@ -3,7 +3,6 @@ import { FaGithub } from "react-icons/fa6";
 import { GoGoal, GoIssueOpened } from "react-icons/go";
 import { RxDownload, RxExternalLink, RxUpdate } from "react-icons/rx";
 import LevelBars from "./levelBar";
-import { LatestVersion } from "./ui-utils";
 import { convertDate } from "./utils";
 
 export default ({ projects }: { projects: GithubRepoMeta[] }) => (
@@ -88,23 +87,18 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 									)}
 								</ul>
 								<ul className="text-right">
-									<LatestVersion
-										userRepo={project.htmlUrl?.slice(18) ?? ""}
-									/>
+									<p>
+										{project.latestVersion
+											? "v" + project.latestVersion
+											: "Unreleased"}
+									</p>
 									<p className="text-blue-500 mt-2">
 										©️ {project.license.spdxId}
 									</p>
 								</ul>
 							</div>
 						</section>
-						<LevelBars
-							languagesMeta={[
-								{ language: "Python", percentage: 40 },
-								{ language: "Java", percentage: 60 },
-								{ language: "Javascript", percentage: 70 },
-								{ language: "Typescript", percentage: 95 },
-							]}
-						/>
+						<LevelBars languagesMeta={project.languagesMeta ?? {}} />
 					</li>
 				))}
 			</ul>

@@ -172,6 +172,16 @@ function makeRepoGroups(uniqueLangs, rawGHMEta) {
     });
     return groupsMeta;
 }
+function calculateLangUtilPercentage(languagesMeta) {
+    var sum = Object.values(languagesMeta).reduce(function (accumulator, currentValue) { return accumulator + currentValue; }, 0);
+    var calculatedLanguageMeta = {};
+    for (var _i = 0, _a = Object.keys(languagesMeta); _i < _a.length; _i++) {
+        var language = _a[_i];
+        var utilPercent = Math.ceil((languagesMeta[language] / sum) * 100);
+        calculatedLanguageMeta[language] = utilPercent;
+    }
+    return calculatedLanguageMeta;
+}
 function getLanguagesMeta(languageURL) {
     return new Promise(function (resolve, reject) {
         var path = new URL(languageURL).pathname;
@@ -184,7 +194,8 @@ function getLanguagesMeta(languageURL) {
             response.on("end", function () {
                 if (response.statusCode === 200) {
                     var languagesMeta = JSON.parse(data);
-                    resolve(languagesMeta);
+                    var calculatedLanguageMeta = calculateLangUtilPercentage(languagesMeta);
+                    resolve(calculatedLanguageMeta);
                 }
                 else {
                     reject(response.statusCode);

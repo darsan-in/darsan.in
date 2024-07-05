@@ -69,7 +69,7 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 					for (const repoMetaRaw of ghResponse) {
 						const repoMeta: GithubRepoMeta = parseRepoMeta(repoMetaRaw);
 
-						let languagesMeta: Record<string, string> = {};
+						let languagesMeta: Record<string, number> = {};
 						let latestVersion: string | boolean = "";
 						try {
 							languagesMeta = await getLanguagesMeta(
@@ -131,9 +131,27 @@ function makeRepoGroups(
 	return groupsMeta;
 }
 
+function calculateLangUtilPercentage(
+	languagesMeta: Record<string, number>,
+): Record<string, number> {
+	const sum = Object.values(languagesMeta).reduce(
+		(accumulator, currentValue) => accumulator + currentValue,
+		0,
+	);
+
+	const calculatedLanguageMeta: Record<string, number> = {};
+
+	for (const language of Object.keys(languagesMeta)) {
+		const utilPercent = Math.ceil((languagesMeta[language] / sum) * 100);
+		calculatedLanguageMeta[language] = utilPercent;
+	}
+
+	return calculatedLanguageMeta;
+}
+
 function getLanguagesMeta(
 	languageURL: string,
-): Promise<Record<string, string>> {
+): Promise<Record<string, number>> {
 	return new Promise((resolve, reject) => {
 		const path = new URL(languageURL).pathname;
 		const options = new RequestOption(path);
@@ -147,8 +165,10 @@ function getLanguagesMeta(
 
 			response.on("end", () => {
 				if (response.statusCode === 200) {
-					const languagesMeta: Record<string, string> = JSON.parse(data);
-					resolve(languagesMeta);
+					const languagesMeta: Record<string, number> = JSON.parse(data);
+					const calculatedLanguageMeta =
+						calculateLangUtilPercentage(languagesMeta);
+					resolve(calculatedLanguageMeta);
 				} else {
 					reject(response.statusCode);
 				}
