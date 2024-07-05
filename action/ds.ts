@@ -8,7 +8,8 @@ export interface GithubRepoMeta {
 	description: string;
 	fork: boolean;
 	url: string;
-	releasesUrl: string;
+	releasesUrl?: string;
+	latestVersion?: string | boolean;
 	languagesUrl?: string;
 	languagesMeta?: Record<string, string>;
 	contributorsUrl: string;

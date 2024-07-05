@@ -105,46 +105,50 @@ function getReposMeta(user) {
                 data += chunk;
             });
             res.on("end", function () { return __awaiter(_this, void 0, void 0, function () {
-                var ghResponse, reposMeta, _i, ghResponse_1, repoMetaRaw, repoMeta, languagesMeta, _a;
-                var _b;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
+                var ghResponse, reposMeta, _i, ghResponse_1, repoMetaRaw, repoMeta, languagesMeta, latestVersion, _a;
+                var _b, _c;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
                         case 0:
-                            if (!(res.statusCode === 200)) return [3 /*break*/, 8];
+                            if (!(res.statusCode === 200)) return [3 /*break*/, 9];
                             ghResponse = JSON.parse(data);
                             reposMeta = [];
                             _i = 0, ghResponse_1 = ghResponse;
-                            _c.label = 1;
+                            _d.label = 1;
                         case 1:
-                            if (!(_i < ghResponse_1.length)) return [3 /*break*/, 7];
+                            if (!(_i < ghResponse_1.length)) return [3 /*break*/, 8];
                             repoMetaRaw = ghResponse_1[_i];
                             repoMeta = parseRepoMeta(repoMetaRaw);
                             languagesMeta = {};
-                            _c.label = 2;
+                            latestVersion = "";
+                            _d.label = 2;
                         case 2:
-                            _c.trys.push([2, 4, , 5]);
+                            _d.trys.push([2, 5, , 6]);
                             return [4 /*yield*/, getLanguagesMeta((_b = repoMeta.languagesUrl) !== null && _b !== void 0 ? _b : "")];
                         case 3:
-                            languagesMeta = _c.sent();
+                            languagesMeta = _d.sent();
                             delete repoMeta.languagesUrl;
-                            return [3 /*break*/, 5];
+                            return [4 /*yield*/, getLatestVersion((_c = repoMeta.releasesUrl) !== null && _c !== void 0 ? _c : "")];
                         case 4:
-                            _a = _c.sent();
-                            console.log("⚠️ Error Getting languages meta");
-                            return [3 /*break*/, 5];
+                            latestVersion = _d.sent();
+                            return [3 /*break*/, 6];
                         case 5:
-                            reposMeta.push(__assign(__assign({}, repoMeta), { languagesMeta: languagesMeta }));
-                            _c.label = 6;
+                            _a = _d.sent();
+                            console.log("⚠️ Error Getting languages meta or latest version");
+                            return [3 /*break*/, 6];
                         case 6:
+                            reposMeta.push(__assign(__assign({}, repoMeta), { languagesMeta: languagesMeta, latestVersion: latestVersion }));
+                            _d.label = 7;
+                        case 7:
                             _i++;
                             return [3 /*break*/, 1];
-                        case 7:
-                            resolve(reposMeta);
-                            return [3 /*break*/, 9];
                         case 8:
+                            resolve(reposMeta);
+                            return [3 /*break*/, 10];
+                        case 9:
                             reject("Error code:" + res.statusCode);
-                            _c.label = 9;
-                        case 9: return [2 /*return*/];
+                            _d.label = 10;
+                        case 10: return [2 /*return*/];
                     }
                 });
             }); });
@@ -216,6 +220,30 @@ var loadGithubMeta = function () { return __awaiter(void 0, void 0, void 0, func
         }
     });
 }); };
+function getLatestVersion(releasesUrl) {
+    return new Promise(function (resolve, reject) {
+        var parsedUrl = new URL("".concat(releasesUrl.slice(0, -5), "/latest"));
+        var options = new RequestOption(parsedUrl.pathname);
+        (0, https_1.get)(options, function (response) {
+            var data = "";
+            response.on("data", function (chunk) {
+                data += chunk;
+            });
+            response.on("end", function () {
+                var _a, _b;
+                if (response.statusCode === 200) {
+                    var latestVersion = (_b = (_a = JSON.parse(data)) === null || _a === void 0 ? void 0 : _a.tag_name) !== null && _b !== void 0 ? _b : false;
+                    resolve(latestVersion);
+                }
+                else {
+                    resolve(false);
+                }
+            });
+        }).on("error", function (err) {
+            reject(err);
+        });
+    });
+}
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var rawGHMEta, err_1, mostUsedLanguages, groupedMeta;
