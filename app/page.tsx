@@ -1,24 +1,29 @@
 "use client";
 
-import { getMostUsedLanguages, makeRepoGroups } from "lib/github";
+import { GithubRepoMeta } from "action/ds";
 import {
 	ShortInto,
-	githubMetaKey,
+	communication,
 	groupedMetaKey,
-	loadGithubMeta,
-	mostUsedLanguagesKey,
 	name,
 	navigation,
-	shortMessage,
 	summary,
+	totalProjectkey,
 } from "meta";
-import { useEffect } from "react";
+import { useDeferredValue, useEffect, useState } from "react";
 import Skills from "./src/components/skills";
-import { getRandomColor } from "./src/components/utils";
+import { ShortMessage } from "./src/components/ui-utils";
+import { fetchGHMeta, getRandomColor } from "./src/components/utils";
 import Works from "./src/components/works";
 import style from "./src/styles/style.module.scss";
 
 export default async function HomePage() {
+	const [ghMeta, setGHMeta] = useState<Record<string, GithubRepoMeta[]>>(
+		{},
+	);
+
+	const deferredMeta = useDeferredValue(ghMeta);
+
 	useEffect(() => {
 		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
 
@@ -30,33 +35,37 @@ export default async function HomePage() {
 			});
 		});
 
-		const hasMeta = localStorage.getItem(githubMetaKey);
-		if (!!hasMeta) return;
+		const ghMeta = localStorage.getItem(groupedMetaKey);
+		if (!!ghMeta) {
+			/* Load local available meta */
+			const groupedMeta = JSON.parse(ghMeta);
+			const nonGrouped = Object.values(groupedMeta).flat();
+			setGHMeta({ All: nonGrouped, ...groupedMeta });
+		} else {
+			const dumpMeta = async () => {
+				const groupedMeta = await fetchGHMeta(
+					communication.github,
+					"Kinact",
+				);
+				localStorage.setItem(groupedMetaKey, JSON.stringify(groupedMeta));
 
-		const dumpMeta = async () => {
-			const githubMeta = await loadGithubMeta();
-			localStorage.setItem(githubMetaKey, JSON.stringify(githubMeta));
-		};
-
-		alert("loading again");
-
-		dumpMeta()
-			.then(() => {
-				//dump language
 				localStorage.setItem(
-					mostUsedLanguagesKey,
-					JSON.stringify(getMostUsedLanguages()),
+					totalProjectkey,
+					String(Object.values(groupedMeta).flat().length),
 				);
 
-				//grouping
-				localStorage.setItem(
-					groupedMetaKey,
-					JSON.stringify(makeRepoGroups("language")),
-				);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+				return groupedMeta;
+			};
+
+			dumpMeta()
+				.then((groupedMeta) => {
+					const nonGrouped = Object.values(groupedMeta).flat();
+					setGHMeta({ All: nonGrouped, ...groupedMeta });
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
 	}, []);
 
 	return (
@@ -87,7 +96,9 @@ export default async function HomePage() {
 			<section className="py-20">
 				<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
 					<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
-						<h1 className="text-indigo-600 font-medium">{shortMessage}</h1>
+						<h1 className="text-indigo-600 font-medium">
+							<ShortMessage />
+						</h1>
 
 						<h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl leading-loose">
 							<ShortInto />
@@ -149,7 +160,7 @@ export default async function HomePage() {
 				</div>
 			</section>
 
-			<Works />
+			<Works groupedMeta={deferredMeta} />
 		</>
 	);
 }

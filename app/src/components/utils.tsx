@@ -1,6 +1,3 @@
-import { get } from "https";
-import { useState } from "react";
-
 export function getRandomColor(): string {
 	let color: string = "";
 	const min: number = 50;
@@ -40,56 +37,10 @@ export function convertDate(dateString: string): string {
 	return `${day} ${month} ${year}`;
 }
 
-export async function getLatestVersion(releasesUrl: string) {
-	await new Promise((resolve, reject) => {
-		if (!releasesUrl) {
-			reject("Error: Unreleased project");
-		}
-
-		const endpoint = releasesUrl.slice(0, -5) + "/latest";
-		const parsedUrl = new URL(endpoint);
-
-		const options = {
-			hostname: parsedUrl.hostname,
-			path: parsedUrl.pathname,
-			headers: {
-				"User-Agent": "node.js",
-				Accept: "application/json",
-			},
-		};
-
-		get(options, (res) => {
-			let data: string = "";
-
-			res.on("data", (chunk) => {
-				data += chunk;
-			});
-
-			if (res.statusCode === 200) {
-				resolve(JSON.parse(data).tag_name ?? false);
-			} else {
-				reject("Error: " + res.statusCode);
-			}
-		}).on("error", (err) => {
-			reject(err);
-		});
-	});
-}
-
-export function LatestVersion({ releasesUrl }: { releasesUrl: string }) {
-	const [state, setState] = useState<string | boolean>(false);
-
-	getLatestVersion(releasesUrl)
-		.then((version: any) => {
-			if (version) setState(version);
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-
-	return (
-		<p className="text-blue-500">
-			{state ? `Version: ${state}` : "Unreleased"}
-		</p>
+export async function fetchGHMeta(user: string, reponame: string) {
+	const response = await fetch(
+		`https://raw.githubusercontent.com/${user}/${reponame}/main/ghmeta.json`,
 	);
+	const repoData = await response.json();
+	return repoData;
 }

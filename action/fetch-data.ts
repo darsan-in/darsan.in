@@ -70,16 +70,27 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 						const repoMeta: GithubRepoMeta = parseRepoMeta(repoMetaRaw);
 
 						let languagesMeta: Record<string, string> = {};
+						let latestVersion: string | boolean = "";
 						try {
 							languagesMeta = await getLanguagesMeta(
 								repoMeta.languagesUrl ?? "",
 							);
 							delete repoMeta.languagesUrl;
+
+							latestVersion = await getLatestVersion(
+								repoMeta.releasesUrl ?? "",
+							);
 						} catch {
-							console.log("⚠️ Error Getting languages meta");
+							console.log(
+								"⚠️ Error Getting languages meta or latest version",
+							);
 						}
 
-						reposMeta.push({ ...repoMeta, languagesMeta: languagesMeta });
+						reposMeta.push({
+							...repoMeta,
+							languagesMeta: languagesMeta,
+							latestVersion: latestVersion,
+						});
 					}
 
 					resolve(reposMeta);
@@ -164,6 +175,33 @@ const loadGithubMeta = async () => {
 	}
 	return reposMeta;
 };
+
+function getLatestVersion(releasesUrl: string): Promise<string | boolean> {
+	return new Promise((resolve, reject) => {
+		const parsedUrl = new URL(`${releasesUrl.slice(0, -5)}/latest`);
+		const options = new RequestOption(parsedUrl.pathname);
+
+		get(options, (response) => {
+			let data = "";
+
+			response.on("data", (chunk) => {
+				data += chunk;
+			});
+
+			response.on("end", () => {
+				if (response.statusCode === 200) {
+					const latestVersion: string | boolean =
+						JSON.parse(data)?.tag_name ?? false;
+					resolve(latestVersion);
+				} else {
+					resolve(false);
+				}
+			});
+		}).on("error", (err) => {
+			reject(err);
+		});
+	});
+}
 
 async function main(): Promise<void> {
 	let rawGHMEta = {};

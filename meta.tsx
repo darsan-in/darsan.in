@@ -1,6 +1,3 @@
-import { getReposMeta } from "lib/github";
-import { GithubRepoMeta } from "lib/options";
-
 export const metainfo = {
 	title:
 		"DARSAN (@iamspdarsan)- Expert in Web, Desktop, Mobile Development & SEO",
@@ -8,8 +5,6 @@ export const metainfo = {
 };
 
 export const name: string = `PRIYADARSAN`;
-
-export const shortMessage: string = `Over 10 projects completed`;
 
 export const ShortInto = (): React.ReactNode => {
 	return (
@@ -40,23 +35,5 @@ export const communication = {
 	phone: "+91-6381866191",
 };
 
-/* GitHub page owners whose projects you have worked on */
-const workedOn: string[] = ["iamspdarsan", "cresteem"];
-
-export const loadGithubMeta = async () => {
-	const reposMeta: GithubRepoMeta[] = [];
-
-	for (const page of workedOn) {
-		const currentPageReposMeta: GithubRepoMeta[] = await getReposMeta(
-			page,
-		);
-		/* filter */
-
-		reposMeta.push(...currentPageReposMeta);
-	}
-	return reposMeta;
-};
-
-export const githubMetaKey: string = "ghmeta";
-export const mostUsedLanguagesKey = "ghlangs";
-export const groupedMetaKey = "gh-grouped";
+export const groupedMetaKey: string = "ghmeta";
+export const totalProjectkey = "work-count";

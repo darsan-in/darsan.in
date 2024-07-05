@@ -1,25 +1,15 @@
 import * as Tabs from "@radix-ui/react-tabs";
 
-import { GithubRepoMeta } from "lib/options";
-import { groupedMetaKey } from "meta";
-import { useEffect, useState } from "react";
+import { GithubRepoMeta } from "action/ds";
+import { useState } from "react";
 import WorkCard from "./work-card";
 
-export default () => {
-	const [tabItems, setTabItems] = useState<
-		Record<string, GithubRepoMeta[]>
-	>({});
-
-	const [selectedTab, setSelectedTab] = useState<string>("Loading");
-
-	useEffect(() => {
-		const groupedMeta = JSON.parse(
-			localStorage.getItem(groupedMetaKey) ?? "{}",
-		);
-
-		setTabItems(groupedMeta);
-		setSelectedTab(Object.keys(groupedMeta)[0]);
-	}, []);
+export default function Works({
+	groupedMeta,
+}: {
+	groupedMeta: Record<string, GithubRepoMeta[]>;
+}) {
+	const [selectedTab, setSelectedTab] = useState<string>("All");
 
 	return (
 		<>
@@ -30,7 +20,7 @@ export default () => {
 				<Tabs.List
 					className="hidden gap-x-3 py-1 overflow-x-auto px-px text-sm sm:flex place-content-center"
 					aria-label="Project Experience">
-					{Object.keys(tabItems).map((language, idx) => (
+					{Object.keys(groupedMeta).map((language, idx) => (
 						<Tabs.Trigger
 							key={idx}
 							className="data-[state=active]:bg-gray-100 data-[state=active]:text-gray-700 data-[state=active]:shadow-sm outline-gray-800 py-1.5 px-3 rounded-lg duration-150 text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-100 font-medium"
@@ -57,7 +47,7 @@ export default () => {
 						value={selectedTab}
 						className="py-2 px-3 w-full bg-transparent appearance-none outline-none border rounded-lg shadow-sm focus:border-gray-800 text-sm"
 						onChange={(e) => setSelectedTab(e.target.value)}>
-						{Object.keys(tabItems).map((language, idx) => (
+						{Object.keys(groupedMeta).map((language, idx) => (
 							<option
 								key={idx}
 								tabIndex={idx}>
@@ -68,15 +58,15 @@ export default () => {
 				</div>
 				{/* mobile area ended */}
 
-				{Object.keys(tabItems).map((language, idx) => (
+				{Object.keys(groupedMeta).map((language, idx) => (
 					<Tabs.Content
 						key={idx}
 						className="py-6"
 						value={language}>
-						<WorkCard projects={tabItems[language]} />
+						<WorkCard projects={groupedMeta[language]} />
 					</Tabs.Content>
 				))}
 			</Tabs.Root>
 		</>
 	);
-};
+}

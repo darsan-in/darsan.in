@@ -1,6 +1,9 @@
-import { GithubRepoMeta } from "lib/options";
+import { GithubRepoMeta } from "action/ds";
 import { FaGithub } from "react-icons/fa6";
-import { RxExternalLink } from "react-icons/rx";
+import { GoGoal, GoIssueOpened } from "react-icons/go";
+import { RxDownload, RxExternalLink, RxUpdate } from "react-icons/rx";
+import LevelBars from "./levelBar";
+import { LatestVersion } from "./ui-utils";
 import { convertDate } from "./utils";
 
 export default ({ projects }: { projects: GithubRepoMeta[] }) => (
@@ -49,22 +52,34 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 						<section className="py-5 px-4 border-t text-sm">
 							<div className="flex gap-x-2 justify-between">
 								<ul>
-									<li className="font-medium">
-										Created:{" "}
-										<span className="font-normal text-gray-500">
+									<li className="flex">
+										<GoGoal className="mr-2 pt-1 text-indigo-600" />
+										Created on{" "}
+										<span className="ml-1 font-normal text-gray-500">
 											{convertDate(project.createdAt)}
 										</span>
 									</li>
-									<li className="font-medium">
-										Updated:{" "}
-										<span className="font-normal text-gray-500">
+									<li className="mt-2 flex">
+										<RxUpdate className="mr-2 pt-1 text-indigo-600" />{" "}
+										Updated on{"  "}
+										<span className="ml-1 font-normal text-gray-500">
 											{convertDate(project.updatedAt)}
 										</span>
 									</li>
+
+									<li className="mt-2 flex">
+										<RxDownload className="mr-2 pt-1 text-indigo-600" />{" "}
+										Downloads:{"  "}
+										<span className="ml-1 font-normal text-gray-500">
+											{1000}
+										</span>
+									</li>
+
 									{project.openIssuesCount ? (
-										<li className="font-medium">
+										<li className="mt-2 flex">
+											<GoIssueOpened className="mr-2 pt-1 text-indigo-600" />
 											Request:{" "}
-											<span className="font-normal text-gray-500">
+											<span className="ml-1 font-normal text-gray-500">
 												{project.openIssuesCount}
 											</span>
 										</li>
@@ -72,14 +87,24 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 										""
 									)}
 								</ul>
-								<ul>
-									<p className="text-blue-500">
+								<ul className="text-right">
+									<LatestVersion
+										userRepo={project.htmlUrl?.slice(18) ?? ""}
+									/>
+									<p className="text-blue-500 mt-2">
 										©️ {project.license.spdxId}
 									</p>
-									{/* <LatestVersion releasesUrl={project.releasesUrl ?? ""} /> */}
 								</ul>
 							</div>
 						</section>
+						<LevelBars
+							languagesMeta={[
+								{ language: "Python", percentage: 40 },
+								{ language: "Java", percentage: 60 },
+								{ language: "Javascript", percentage: 70 },
+								{ language: "Typescript", percentage: 95 },
+							]}
+						/>
 					</li>
 				))}
 			</ul>
