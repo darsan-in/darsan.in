@@ -21,7 +21,7 @@ jobs:
 
       - name: Fetch GitHub Repos
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHTOKEN }}
         run: |
           node ./action/fetch-data.js
 
@@ -32,7 +32,7 @@ jobs:
 
       - name: Commit and push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHTOKEN }}
         run: |
           git add ghmeta.json
           git commit -m 'Update ghmeta.json with latest GitHub data'
