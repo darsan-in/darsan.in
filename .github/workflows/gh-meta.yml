@@ -21,7 +21,7 @@ jobs:
 
       - name: Fetch GitHub Repos
         env:
-          GITHUB_TOKEN: ${{ secrets.GHTOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           node ./action/fetch-data.js
 
