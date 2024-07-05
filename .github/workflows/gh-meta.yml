@@ -32,7 +32,7 @@ jobs:
 
       - name: Commit and push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GHTOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add ghmeta.json
           git commit -m 'Update ghmeta.json with latest GitHub data'
