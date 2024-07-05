@@ -9,7 +9,7 @@ export const name: string = `PRIYADARSAN`;
 export const ShortInto = (): React.ReactNode => {
 	return (
 		<>
-			Founder <span className="text-blue-600">@Cresteem</span> , Expert in
+			Founder <span className="text-primary">@Cresteem</span> , Expert in
 			Web, Desktop, Mobile Development & SEO
 		</>
 	);
@@ -23,7 +23,7 @@ export const summary: string = `I specialize in web, desktop, and mobile develop
 							building the next generation of digital innovations.`;
 
 export const navigation = [
-	{ title: "Works", path: "" },
+	{ title: "Works", path: "#works" },
 	{ title: "Experience", path: "" },
 	{ title: "Achievments", path: "" },
 ];

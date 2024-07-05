@@ -71,7 +71,7 @@ export default function RootLayout({
 
 						<a
 							href="#works"
-							className="inline-block w-full mt-3 py-2 px-3 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-800 active:bg-indigo-800 rounded-lg sm:w-auto sm:mt-0 sm:text-sm border border-indigo-600">
+							className="inline-block w-full mt-3 py-2 px-3 text-center text-white font-medium bg-primary duration-150 hover:bg-indigo-800 active:bg-indigo-800 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
 							Hire me
 						</a>
 					</div>

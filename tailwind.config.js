@@ -7,6 +7,9 @@ module.exports = {
 				michy: ["Mochiy Pop One", "sans-serif"],
 				jose: ["Josefin Sans", "sans-serif"],
 			},
+			colors: {
+				primary: "#9400FF",
+			},
 		},
 	},
 	plugins: [],

@@ -59,6 +59,7 @@ export default function Works() {
 				</div>
 			) : (
 				<Tabs.Root
+					id="works"
 					className="max-w-screen-xl mt-2 mx-auto px-4 md:px-8 flex-col"
 					value={selectedTab}
 					onValueChange={(val) => setSelectedTab(val)}>

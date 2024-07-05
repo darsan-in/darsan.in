@@ -5,28 +5,27 @@ import { RxDownload, RxExternalLink, RxUpdate } from "react-icons/rx";
 import LevelBars from "./levelBar";
 import { convertDate } from "./utils";
 
+import style from "../styles/style.module.scss";
 export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 	<section className="py-5">
 		<div className="max-w-screen-xl mx-auto px-4 md:px-8">
 			<ul className="mt-0 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 				{projects.map((project, idx) => (
 					<li
-						className="border rounded-lg"
+						className={"border rounded-lg " + style.workCard}
 						key={idx}>
-						<div className="flex items-start justify-between p-4">
+						<div className="flex items-start justify-between p-4 rounded-t-lg bg-primary">
 							<div className="space-y-2">
-								<h4 className="text-gray-800 font-bold text-blue-700">
+								<h4 className="text-white font-bold text-blue-700 text-xl">
 									{project.name.toUpperCase()}
 								</h4>
-								<p className="text-gray-600 text-sm">
-									{project.description}
-								</p>
+								<p className="text-white text-sm">{project.description}</p>
 							</div>
 							<div className="flex gap-2">
 								<a
 									href={project.htmlUrl + "#readme"}
 									target="_"
-									className="text-black text-sm border rounded-lg p-1 duration-150 hover:bg-gray-100 hover:text-indigo-600">
+									className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white">
 									<FaGithub
 										size={20}
 										className="fill-current"
@@ -37,7 +36,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 									<a
 										href={project.homepage ?? ""}
 										target="_"
-										className="text-black text-sm border rounded-lg p-1 duration-150 hover:bg-gray-100 hover:text-indigo-600">
+										className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white">
 										<RxExternalLink
 											size={20}
 											className="fill-current"
@@ -98,7 +97,12 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 								</ul>
 							</div>
 						</section>
-						<LevelBars languagesMeta={project.languagesMeta ?? {}} />
+						<div className="border-t border-grey-400">
+							<p className="font-semibold text-start text-md pl-5 pt-4 text-gray-600">
+								LANGUAGE USAGE STATISTICS
+							</p>
+							<LevelBars languagesMeta={project.languagesMeta ?? {}} />
+						</div>
 					</li>
 				))}
 			</ul>

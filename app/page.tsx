@@ -35,7 +35,7 @@ export default async function HomePage() {
 			<nav className="relative mt-9 items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
 				<div className="flex justify-between font-jose pr-20">
 					<a href="">
-						<p className="block w-full mt-2 text-center text-indigo-600 font-bold duration-1000 hover:text-blue-700 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm lg:text-8xl">
+						<p className="block w-full mt-2 text-center text-primary font-bold duration-1000 hover:text-blue-700 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm lg:text-8xl">
 							{name}
 						</p>
 					</a>
@@ -46,7 +46,7 @@ export default async function HomePage() {
 					<div className="items-center space-y-5 md:flex md:space-x-6 md:space-y-0 md:ml-12">
 						{navigation.map((item, idx) => (
 							<li
-								className="ml-5 text-black hover:text-indigo-600 uppercase hover:underline hover:font-900"
+								className="ml-5 text-black hover:text-primary uppercase hover:underline hover:font-900"
 								key={idx}>
 								<a href={item.path}>{item.title}</a>
 							</li>
@@ -58,7 +58,7 @@ export default async function HomePage() {
 			<section className="py-20">
 				<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
 					<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
-						<h1 className="text-indigo-600 font-medium">
+						<h1 className="text-primary font-medium">
 							<ShortMessage />
 						</h1>
 
@@ -70,12 +70,12 @@ export default async function HomePage() {
 
 						<div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
 							<a
-								href=""
-								className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
+								href="#skills"
+								className="block py-2 px-4 text-center text-white font-medium bg-primary duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
 								Explore more
 							</a>
 							<a
-								href=""
+								href="#works"
 								className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex">
 								Works
 								<svg
@@ -102,9 +102,11 @@ export default async function HomePage() {
 					</div>
 				</div>
 
-				<div className="mt-14 px-4 md:px-8">
+				<div
+					className="mt-14 px-4 md:px-8"
+					id="skills">
 					<p className="text-center text-2xl text-gray-700 font-semibold">
-						<span className="text-indigo-600 text-2xl font-bold">
+						<span className="text-primary text-2xl font-bold">
 							Technical Skills:
 						</span>{" "}
 						Have Been Worked with numerous technolgies

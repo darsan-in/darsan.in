@@ -19,3 +19,7 @@
 body:has(.skillIcon:hover) {
 	background-color: black;
 }
+
+.workCard:hover {
+	box-shadow: 4px 4px 10px 3px #b9b9b9;
+}

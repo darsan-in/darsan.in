@@ -8,6 +8,10 @@
 	/* Safari and Chrome */
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	/* Optional: Hide scrollbar for Firefox */
 	scrollbar-width: none;

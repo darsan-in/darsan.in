@@ -11,7 +11,7 @@ import {
 import { CiPenpot } from "react-icons/ci";
 import { DiDart } from "react-icons/di";
 import { FaGulp, FaLinux, FaNode } from "react-icons/fa";
-import { FaFreebsd, FaGitAlt } from "react-icons/fa6";
+import { FaFreebsd, FaGitAlt, FaJenkins } from "react-icons/fa6";
 import { GiDolphin } from "react-icons/gi";
 import {
 	IoLogoCss3,
@@ -106,6 +106,7 @@ const skills: Record<string, any>[] = [
 	{ text: "Puppeteer", icon: SiPuppeteer },
 	{ text: "Jest", icon: SiJest },
 	{ text: "Selenium", icon: SiSelenium },
+	{ text: "Jenkins", icon: FaJenkins },
 ];
 
 export default skills;

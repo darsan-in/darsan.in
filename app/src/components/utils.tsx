@@ -44,3 +44,23 @@ export async function fetchGHMeta(user: string, reponame: string) {
 	const repoData = await response.json();
 	return repoData;
 }
+
+export function getBarColours(percentages: number[]): string[] {
+	const colors: string[] = [
+		"#0E46A3",
+		"#90D26D",
+		"#80BCBD",
+		"#7077A1",
+		"#AC87C5",
+	];
+
+	const sortedPercentage = percentages.sort();
+
+	const sortedColours: string[] = [];
+
+	percentages.forEach((percentage: number) => {
+		sortedColours.push(colors[sortedPercentage.indexOf(percentage)]);
+	});
+
+	return sortedColours;
+}
