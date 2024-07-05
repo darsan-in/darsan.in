@@ -47,7 +47,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadGithubMeta = void 0;
 var fs_1 = require("fs");
 var https_1 = require("https");
 var path_1 = require("path");
@@ -55,8 +54,9 @@ var RequestOption = /** @class */ (function () {
     function RequestOption(path) {
         this.hostname = "api.github.com";
         this.headers = {
-            Authorization: "token ".concat(process.env.GITHUB_TOKEN),
-            Accept: "application/vnd.github.v3+json",
+            "user-agent": "Node.js",
+            Authorization: "Bearer ".concat(process.env.GITHUB_TOKEN),
+            Accept: "application/json",
         };
         this.path = "";
         this.path = path;
@@ -216,15 +216,26 @@ var loadGithubMeta = function () { return __awaiter(void 0, void 0, void 0, func
         }
     });
 }); };
-exports.loadGithubMeta = loadGithubMeta;
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var rawGHMEta, mostUsedLanguages, groupedMeta;
+        var rawGHMEta, err_1, mostUsedLanguages, groupedMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, exports.loadGithubMeta)()];
+                case 0:
+                    rawGHMEta = {};
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, loadGithubMeta()];
+                case 2:
                     rawGHMEta = _a.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    err_1 = _a.sent();
+                    console.log(err_1);
+                    process.exit(1);
+                    return [3 /*break*/, 4];
+                case 4:
                     mostUsedLanguages = getMostUsedLanguages(rawGHMEta);
                     groupedMeta = makeRepoGroups(mostUsedLanguages, rawGHMEta);
                     (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(groupedMeta));
@@ -233,4 +244,6 @@ function main() {
         });
     });
 }
-main();
+main().catch(function (err) {
+    console.log(err);
+});

@@ -6,8 +6,9 @@ import { GithubRepoMeta } from "./ds";
 class RequestOption {
 	hostname: string = "api.github.com";
 	headers: Record<string, string> = {
-		Authorization: `token ${process.env.GITHUB_TOKEN}`,
-		Accept: "application/vnd.github.v3+json",
+		"user-agent": "Node.js",
+		Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+		Accept: "application/json",
 	};
 	path: string = ``;
 
@@ -147,7 +148,7 @@ function getLanguagesMeta(
 	});
 }
 
-export const loadGithubMeta = async () => {
+const loadGithubMeta = async () => {
 	/* GitHub page owners whose projects you have worked on */
 	const workedOn: string[] = ["iamspdarsan", "cresteem"];
 
@@ -165,7 +166,13 @@ export const loadGithubMeta = async () => {
 };
 
 async function main(): Promise<void> {
-	let rawGHMEta = await loadGithubMeta();
+	let rawGHMEta = {};
+	try {
+		rawGHMEta = await loadGithubMeta();
+	} catch (err) {
+		console.log(err);
+		process.exit(1);
+	}
 	const mostUsedLanguages = getMostUsedLanguages(rawGHMEta);
 	const groupedMeta = makeRepoGroups(mostUsedLanguages, rawGHMEta);
 
@@ -175,4 +182,6 @@ async function main(): Promise<void> {
 	);
 }
 
-main();
+main().catch((err) => {
+	console.log(err);
+});
