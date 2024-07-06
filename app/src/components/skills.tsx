@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import style from "../styles/style.module.scss";
 import skills from "./skill-records";
+import { getRandomColor } from "./utils";
 
 export default function Skills({
 	iconSize,
@@ -8,6 +10,31 @@ export default function Skills({
 	iconSize: number;
 	color: string;
 }) {
+	useEffect(() => {
+		/* Skill hover animation */
+		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
+
+		const handleMouseOver = (event: MouseEvent) => {
+			const skillIcon = event.target as HTMLElement;
+			const randomColor = `${getRandomColor()}`;
+			skillIcon.style.fill = randomColor;
+			skillIcon.style.color = randomColor;
+		};
+
+		skillIcons.forEach((skillIcon: any) => {
+			skillIcon.addEventListener("mouseover", handleMouseOver);
+		});
+		/* Skill hover animation ended*/
+
+		/* Remove all skill animation event when ui unmounts */
+		return () => {
+			skillIcons.forEach((skillIcon: any) => {
+				skillIcon.removeEventListener("mouseover", handleMouseOver);
+			});
+		};
+		/* ------- */
+	}, []);
+
 	return (
 		<>
 			{skills.map((skill: any, index: number) => {

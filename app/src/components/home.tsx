@@ -2,11 +2,10 @@
 
 import { ShortInto, communication, name, navigation, summary } from "meta";
 import { useEffect, useState } from "react";
-import style from "../styles/style.module.scss";
 import Loading from "./loading";
 import Skills from "./skills";
 import { ShortMessage } from "./ui-utils";
-import { fetchGHMeta, getRandomColor, localMetaStructure } from "./utils";
+import { fetchGHMeta, localMetaStructure } from "./utils";
 import Works from "./works";
 
 export default function HomePage() {
@@ -15,21 +14,6 @@ export default function HomePage() {
 	);
 
 	useEffect(() => {
-		/* Skill hover animation */
-		const skillIcons = document.querySelectorAll(`.${style.skillIcon}`);
-
-		const handleMouseOver = (event: MouseEvent) => {
-			const skillIcon = event.target as HTMLElement;
-			const randomColor = `${getRandomColor()}`;
-			skillIcon.style.fill = randomColor;
-			skillIcon.style.color = randomColor;
-		};
-
-		skillIcons.forEach((skillIcon: any) => {
-			skillIcon.addEventListener("mouseover", handleMouseOver);
-		});
-		/* Skill hover animation ended*/
-
 		const getSetMeta = async () => {
 			const expiryInHours = 1;
 
@@ -45,14 +29,6 @@ export default function HomePage() {
 		getSetMeta().catch((err) => {
 			console.error(err);
 		});
-
-		/* Remove all skill animation event when ui unmounts */
-		return () => {
-			skillIcons.forEach((skillIcon: any) => {
-				skillIcon.removeEventListener("mouseover", handleMouseOver);
-			});
-		};
-		/* ------- */
 	}, []);
 
 	return (
