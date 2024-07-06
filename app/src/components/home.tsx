@@ -109,10 +109,10 @@ export default function HomePage() {
 						</div>
 
 						<div
-							className="mt-14 px-4 md:px-8"
+							className="mt-20 px-4 py-10 md:px-8"
 							id="skills">
-							<p className="text-center text-2xl text-gray-700 font-semibold">
-								<span className="text-primary text-2xl font-bold">
+							<p className="text-center text-4xl text-gray-700 font-semibold">
+								<span className="text-primary font-bold uppercase">
 									Technical Skills:
 								</span>{" "}
 								Have Been Worked with numerous technolgies
