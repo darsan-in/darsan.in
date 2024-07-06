@@ -2,6 +2,9 @@
 
 import { ShortInto, communication, name, navigation, summary } from "meta";
 import { useEffect, useState } from "react";
+import Achievments from "./achievments";
+import Education from "./education";
+import Experience from "./experience";
 import Loading from "./loading";
 import Skills from "./skills";
 import { ShortMessage } from "./ui-utils";
@@ -130,6 +133,12 @@ export default function HomePage() {
 						</div>
 					</section>
 					<Works projectsMeta={localMeta.projects ?? {}} />
+
+					<Experience />
+
+					<Achievments />
+
+					<Education />
 				</>
 			)}
 		</>

@@ -24,8 +24,8 @@ export const summary: string = `I specialize in web, desktop, and mobile develop
 
 export const navigation = [
 	{ title: "Works", path: "#works" },
-	{ title: "Experience", path: "" },
-	{ title: "Achievments", path: "" },
+	{ title: "Experiences", path: "#experience" },
+	{ title: "Achievments", path: "#achievments" },
 ];
 
 export const communication = {
