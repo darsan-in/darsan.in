@@ -99,13 +99,17 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 										) : (
 											""
 										)}
-										<li className="mt-2 flex">
-											<HiOutlineCodeBracket className="mr-2 pt-1 text-indigo-600" />
-											Lines of code:{" "}
-											<span className="ml-1 font-normal text-gray-500">
-												{project.openIssuesCount}
-											</span>
-										</li>
+										{project.loc ? (
+											<li className="mt-2 flex">
+												<HiOutlineCodeBracket className="mr-2 pt-1 text-indigo-600" />
+												Lines of code:{" "}
+												<span className="ml-1 font-normal text-gray-500">
+													{project.loc}
+												</span>
+											</li>
+										) : (
+											""
+										)}
 									</ul>
 									<ul className="text-right">
 										<p>

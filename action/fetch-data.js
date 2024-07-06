@@ -126,7 +126,7 @@ function getReposMeta(user) {
                 data += chunk;
             });
             res.on("end", function () { return __awaiter(_this, void 0, void 0, function () {
-                var ghResponse, reposMeta, _i, ghResponse_1, repoMetaRaw, repoMeta, languagesMeta, latestVersion, downloadCount, err_1;
+                var ghResponse, reposMeta, _i, ghResponse_1, repoMetaRaw, repoMeta, languagesMeta, latestVersion, downloadCount, loc, err_1;
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -143,12 +143,17 @@ function getReposMeta(user) {
                             languagesMeta = {};
                             latestVersion = "";
                             downloadCount = 0;
+                            loc = 0;
                             _c.label = 2;
                         case 2:
                             _c.trys.push([2, 6, , 7]);
                             return [4 /*yield*/, getLanguagesMeta((_a = repoMeta.languagesUrl) !== null && _a !== void 0 ? _a : "")];
                         case 3:
                             languagesMeta = _c.sent();
+                            /* Calculate LOC */
+                            loc = countLOC(languagesMeta);
+                            /* Calculate percentage of the language meta */
+                            languagesMeta = calculateLangUtilPercentage(languagesMeta);
                             delete repoMeta.languagesUrl;
                             return [4 /*yield*/, getLatestVersion((_b = repoMeta.releasesUrl) !== null && _b !== void 0 ? _b : "")];
                         case 4:
@@ -163,7 +168,7 @@ function getReposMeta(user) {
                             console.log("\n⚠️ Error Getting languages meta or latest version or download count");
                             return [3 /*break*/, 7];
                         case 7:
-                            reposMeta.push(__assign(__assign({}, repoMeta), { createdAt: convertDate(repoMeta.createdAt), updatedAt: convertDate(repoMeta.updatedAt), languagesMeta: languagesMeta, latestVersion: latestVersion, downloadCount: downloadCount }));
+                            reposMeta.push(__assign(__assign({}, repoMeta), { createdAt: convertDate(repoMeta.createdAt), updatedAt: convertDate(repoMeta.updatedAt), languagesMeta: languagesMeta, latestVersion: latestVersion, downloadCount: downloadCount, loc: loc }));
                             _c.label = 8;
                         case 8:
                             _i++;
@@ -220,8 +225,7 @@ function getLanguagesMeta(languageURL) {
             response.on("end", function () {
                 if (response.statusCode === 200) {
                     var languagesMeta = JSON.parse(data);
-                    var calculatedLanguageMeta = calculateLangUtilPercentage(languagesMeta);
-                    resolve(calculatedLanguageMeta);
+                    resolve(languagesMeta);
                 }
                 else {
                     reject(response.statusCode);
@@ -356,6 +360,11 @@ function getDownloadCount(htmlUrl) {
             }
         });
     });
+}
+function countLOC(languagesMeta) {
+    var sum = Object.values(languagesMeta).reduce(function (accumulator, currentValue) { return accumulator + currentValue; }, 0);
+    var charPerline = 80;
+    return sum / charPerline;
 }
 function main() {
     return __awaiter(this, void 0, void 0, function () {

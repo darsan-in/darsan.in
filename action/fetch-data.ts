@@ -97,10 +97,17 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 						let languagesMeta: Record<string, number> = {};
 						let latestVersion: string | boolean = "";
 						let downloadCount: number = 0;
+						let loc: number = 0;
 						try {
 							languagesMeta = await getLanguagesMeta(
 								repoMeta.languagesUrl ?? "",
 							);
+							/* Calculate LOC */
+							loc = countLOC(languagesMeta);
+
+							/* Calculate percentage of the language meta */
+							languagesMeta = calculateLangUtilPercentage(languagesMeta);
+
 							delete repoMeta.languagesUrl;
 
 							latestVersion = await getLatestVersion(
@@ -122,6 +129,7 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 							languagesMeta: languagesMeta,
 							latestVersion: latestVersion,
 							downloadCount: downloadCount,
+							loc: loc,
 						});
 					}
 
@@ -198,9 +206,8 @@ function getLanguagesMeta(
 			response.on("end", () => {
 				if (response.statusCode === 200) {
 					const languagesMeta: Record<string, number> = JSON.parse(data);
-					const calculatedLanguageMeta =
-						calculateLangUtilPercentage(languagesMeta);
-					resolve(calculatedLanguageMeta);
+
+					resolve(languagesMeta);
 				} else {
 					reject(response.statusCode);
 				}
@@ -335,6 +342,15 @@ async function getDownloadCount(htmlUrl: string): Promise<number> {
 			reject(err);
 		});
 	});
+}
+
+function countLOC(languagesMeta: Record<string, number>): number {
+	const sum = Object.values(languagesMeta).reduce(
+		(accumulator, currentValue) => accumulator + currentValue,
+		0,
+	);
+	const charPerline = 80;
+	return sum / charPerline;
 }
 
 async function main(): Promise<void> {
