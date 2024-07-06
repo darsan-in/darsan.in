@@ -8,8 +8,8 @@
 }
 
 .skillIcon {
-	transition: all;
-	transition-duration: 700ms;
+	transition: all, fill, color;
+	transition-duration: 1s;
 }
 
 .skillIcon:hover {
@@ -22,4 +22,20 @@ body:has(.skillIcon:hover) {
 
 .workCard:hover {
 	box-shadow: 4px 4px 10px 3px #b9b9b9;
+}
+
+.activeTab {
+	animation: tab-ani 0.3s ease-in 0s 1 forwards;
+}
+
+@keyframes tab-ani {
+	0% {
+		opacity: 0;
+		filter: blur(10px);
+	}
+
+	100% {
+		opacity: 1;
+		filter: blur(0px);
+	}
 }

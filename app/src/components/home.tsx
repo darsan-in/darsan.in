@@ -101,7 +101,7 @@ export default function HomePage() {
 
 							<div className="flex-none mt-6 md:mt-0 md:max-w-xl">
 								<img
-									src="pp-t.png"
+									src="pp.png"
 									className=" md:rounded-tl-[108px] w-85"
 									alt=""
 								/>
