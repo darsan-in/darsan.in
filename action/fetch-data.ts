@@ -71,6 +71,7 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 
 						let languagesMeta: Record<string, number> = {};
 						let latestVersion: string | boolean = "";
+						let downloadCount: number = 0;
 						try {
 							languagesMeta = await getLanguagesMeta(
 								repoMeta.languagesUrl ?? "",
@@ -80,9 +81,12 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 							latestVersion = await getLatestVersion(
 								repoMeta.releasesUrl ?? "",
 							);
-						} catch {
+
+							downloadCount = await getDownloadCount(repoMeta.htmlUrl);
+						} catch (err) {
+							console.log(err);
 							console.log(
-								"⚠️ Error Getting languages meta or latest version",
+								"\n⚠️ Error Getting languages meta or latest version or download count",
 							);
 						}
 
@@ -215,6 +219,88 @@ function getLatestVersion(releasesUrl: string): Promise<string | boolean> {
 					resolve(latestVersion);
 				} else {
 					resolve(false);
+				}
+			});
+		}).on("error", (err) => {
+			reject(err);
+		});
+	});
+}
+
+function isNodejsProject(
+	userName: string,
+	repoName: string,
+): Promise<boolean | string> {
+	const options = {
+		hostname: "raw.githubusercontent.com",
+		headers: {
+			"user-agent": "Node.js",
+			Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+			Accept: "application/json",
+		},
+		path: `/${userName}/${repoName}/main/package.json`,
+	};
+
+	return new Promise((resolve, reject) => {
+		get(options, (response) => {
+			let data: string = "";
+
+			response.on("data", (chunk) => {
+				data += chunk;
+			});
+
+			response.on("end", () => {
+				if (response.statusCode === 200) {
+					const packageName: string = JSON.parse(data).name;
+					resolve(packageName);
+				} else {
+					resolve(false);
+				}
+			});
+		}).on("error", (err) => {
+			reject(err);
+		});
+	});
+}
+
+async function getDownloadCount(htmlUrl: string): Promise<number> {
+	const [userName, repoName] = htmlUrl.slice(19).split("/");
+
+	const nodejsPackageName: string | boolean = await isNodejsProject(
+		userName,
+		repoName,
+	);
+
+	return new Promise((resolve, reject) => {
+		const npmEndpoint: string = `/npm/d18m/${nodejsPackageName}?label=%20&cacheSeconds=60`;
+		const githubEndpoint: string = `/github/downloads-pre/${userName}/${repoName}/latest/total?sort=date&label=%20&cacheSeconds=60`;
+
+		const options = {
+			hostname: "img.shields.io",
+			headers: {
+				"user-agent": "Node.js",
+				Accept: "application/json",
+			},
+			path: nodejsPackageName ? npmEndpoint : githubEndpoint,
+		};
+
+		get(options, (response) => {
+			let data: string = "";
+
+			response.on("data", (chunk) => {
+				data += chunk;
+			});
+
+			response.on("end", () => {
+				if (response.statusCode === 200) {
+					const titleMatch = data.match(/<title>(.*?)<\/title>/);
+					const downloadCount: number = titleMatch
+						? parseInt(titleMatch[1])
+						: 0;
+
+					resolve(downloadCount);
+				} else {
+					resolve(0);
 				}
 			});
 		}).on("error", (err) => {

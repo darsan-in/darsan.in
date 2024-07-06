@@ -105,50 +105,55 @@ function getReposMeta(user) {
                 data += chunk;
             });
             res.on("end", function () { return __awaiter(_this, void 0, void 0, function () {
-                var ghResponse, reposMeta, _i, ghResponse_1, repoMetaRaw, repoMeta, languagesMeta, latestVersion, _a;
-                var _b, _c;
-                return __generator(this, function (_d) {
-                    switch (_d.label) {
+                var ghResponse, reposMeta, _i, ghResponse_1, repoMetaRaw, repoMeta, languagesMeta, latestVersion, downloadCount, err_1;
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
                         case 0:
-                            if (!(res.statusCode === 200)) return [3 /*break*/, 9];
+                            if (!(res.statusCode === 200)) return [3 /*break*/, 10];
                             ghResponse = JSON.parse(data);
                             reposMeta = [];
                             _i = 0, ghResponse_1 = ghResponse;
-                            _d.label = 1;
+                            _c.label = 1;
                         case 1:
-                            if (!(_i < ghResponse_1.length)) return [3 /*break*/, 8];
+                            if (!(_i < ghResponse_1.length)) return [3 /*break*/, 9];
                             repoMetaRaw = ghResponse_1[_i];
                             repoMeta = parseRepoMeta(repoMetaRaw);
                             languagesMeta = {};
                             latestVersion = "";
-                            _d.label = 2;
+                            downloadCount = 0;
+                            _c.label = 2;
                         case 2:
-                            _d.trys.push([2, 5, , 6]);
-                            return [4 /*yield*/, getLanguagesMeta((_b = repoMeta.languagesUrl) !== null && _b !== void 0 ? _b : "")];
+                            _c.trys.push([2, 6, , 7]);
+                            return [4 /*yield*/, getLanguagesMeta((_a = repoMeta.languagesUrl) !== null && _a !== void 0 ? _a : "")];
                         case 3:
-                            languagesMeta = _d.sent();
+                            languagesMeta = _c.sent();
                             delete repoMeta.languagesUrl;
-                            return [4 /*yield*/, getLatestVersion((_c = repoMeta.releasesUrl) !== null && _c !== void 0 ? _c : "")];
+                            return [4 /*yield*/, getLatestVersion((_b = repoMeta.releasesUrl) !== null && _b !== void 0 ? _b : "")];
                         case 4:
-                            latestVersion = _d.sent();
-                            return [3 /*break*/, 6];
+                            latestVersion = _c.sent();
+                            return [4 /*yield*/, getDownloadCount(repoMeta.htmlUrl)];
                         case 5:
-                            _a = _d.sent();
-                            console.log("⚠️ Error Getting languages meta or latest version");
-                            return [3 /*break*/, 6];
+                            downloadCount = _c.sent();
+                            return [3 /*break*/, 7];
                         case 6:
-                            reposMeta.push(__assign(__assign({}, repoMeta), { languagesMeta: languagesMeta, latestVersion: latestVersion }));
-                            _d.label = 7;
+                            err_1 = _c.sent();
+                            console.log(err_1);
+                            console.log("\n⚠️ Error Getting languages meta or latest version or download count");
+                            return [3 /*break*/, 7];
                         case 7:
+                            reposMeta.push(__assign(__assign({}, repoMeta), { languagesMeta: languagesMeta, latestVersion: latestVersion }));
+                            _c.label = 8;
+                        case 8:
                             _i++;
                             return [3 /*break*/, 1];
-                        case 8:
-                            resolve(reposMeta);
-                            return [3 /*break*/, 10];
                         case 9:
+                            resolve(reposMeta);
+                            return [3 /*break*/, 11];
+                        case 10:
                             reject("Error code:" + res.statusCode);
-                            _d.label = 10;
-                        case 10: return [2 /*return*/];
+                            _c.label = 11;
+                        case 11: return [2 /*return*/];
                     }
                 });
             }); });
@@ -255,9 +260,85 @@ function getLatestVersion(releasesUrl) {
         });
     });
 }
+function isNodejsProject(userName, repoName) {
+    var options = {
+        hostname: "raw.githubusercontent.com",
+        headers: {
+            "user-agent": "Node.js",
+            Authorization: "Bearer ".concat(process.env.GITHUB_TOKEN),
+            Accept: "application/json",
+        },
+        path: "/".concat(userName, "/").concat(repoName, "/main/package.json"),
+    };
+    return new Promise(function (resolve, reject) {
+        (0, https_1.get)(options, function (response) {
+            var data = "";
+            response.on("data", function (chunk) {
+                data += chunk;
+            });
+            response.on("end", function () {
+                if (response.statusCode === 200) {
+                    var packageName = JSON.parse(data).name;
+                    resolve(packageName);
+                }
+                else {
+                    resolve(false);
+                }
+            });
+        }).on("error", function (err) {
+            reject(err);
+        });
+    });
+}
+function getDownloadCount(htmlUrl) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, userName, repoName, nodejsPackageName;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = htmlUrl.slice(19).split("/"), userName = _a[0], repoName = _a[1];
+                    return [4 /*yield*/, isNodejsProject(userName, repoName)];
+                case 1:
+                    nodejsPackageName = _b.sent();
+                    return [2 /*return*/, new Promise(function (resolve, reject) {
+                            var npmEndpoint = "/npm/d18m/".concat(nodejsPackageName, "?label=%20&cacheSeconds=60");
+                            var githubEndpoint = "/github/downloads-pre/".concat(userName, "/").concat(repoName, "/latest/total?sort=date&label=%20&cacheSeconds=60");
+                            var options = {
+                                hostname: "img.shields.io",
+                                headers: {
+                                    "user-agent": "Node.js",
+                                    Accept: "application/json",
+                                },
+                                path: nodejsPackageName ? npmEndpoint : githubEndpoint,
+                            };
+                            (0, https_1.get)(options, function (response) {
+                                var data = "";
+                                response.on("data", function (chunk) {
+                                    data += chunk;
+                                });
+                                response.on("end", function () {
+                                    if (response.statusCode === 200) {
+                                        var titleMatch = data.match(/<title>(.*?)<\/title>/);
+                                        var downloadCount = titleMatch
+                                            ? parseInt(titleMatch[1])
+                                            : 0;
+                                        resolve(downloadCount);
+                                    }
+                                    else {
+                                        resolve(0);
+                                    }
+                                });
+                            }).on("error", function (err) {
+                                reject(err);
+                            });
+                        })];
+            }
+        });
+    });
+}
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var rawGHMEta, err_1, mostUsedLanguages, groupedMeta;
+        var rawGHMEta, err_2, mostUsedLanguages, groupedMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -270,8 +351,8 @@ function main() {
                     rawGHMEta = _a.sent();
                     return [3 /*break*/, 4];
                 case 3:
-                    err_1 = _a.sent();
-                    console.log(err_1);
+                    err_2 = _a.sent();
+                    console.log(err_2);
                     process.exit(1);
                     return [3 /*break*/, 4];
                 case 4:

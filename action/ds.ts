@@ -6,6 +6,7 @@ export interface GithubRepoMeta {
 	};
 	htmlUrl: string;
 	description: string;
+	downloadCount?: number;
 	fork: boolean;
 	url: string;
 	releasesUrl?: string;
