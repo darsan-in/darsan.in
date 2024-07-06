@@ -3,7 +3,6 @@ import { FaGithub } from "react-icons/fa6";
 import { GoGoal, GoIssueOpened } from "react-icons/go";
 import { RxDownload, RxExternalLink, RxUpdate } from "react-icons/rx";
 import LevelBars from "./levelBar";
-import { convertDate } from "./utils";
 
 import style from "../styles/style.module.scss";
 export default ({ projects }: { projects: GithubRepoMeta[] }) => (
@@ -54,24 +53,28 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => (
 										<GoGoal className="mr-2 pt-1 text-indigo-600" />
 										Created on{" "}
 										<span className="ml-1 font-normal text-gray-500">
-											{convertDate(project.createdAt)}
+											{project.createdAt}
 										</span>
 									</li>
 									<li className="mt-2 flex">
 										<RxUpdate className="mr-2 pt-1 text-indigo-600" />{" "}
 										Updated on{"  "}
 										<span className="ml-1 font-normal text-gray-500">
-											{convertDate(project.updatedAt)}
+											{project.updatedAt}
 										</span>
 									</li>
 
-									<li className="mt-2 flex">
-										<RxDownload className="mr-2 pt-1 text-indigo-600" />{" "}
-										Downloads:{"  "}
-										<span className="ml-1 font-normal text-gray-500">
-											{1000}
-										</span>
-									</li>
+									{project.downloadCount ? (
+										<li className="mt-2 flex">
+											<RxDownload className="mr-2 pt-1 text-indigo-600" />{" "}
+											Downloads:{"  "}
+											<span className="ml-1 font-normal text-gray-500">
+												{project.downloadCount}
+											</span>
+										</li>
+									) : (
+										""
+									)}
 
 									{project.openIssuesCount ? (
 										<li className="mt-2 flex">

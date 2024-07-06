@@ -17,6 +17,31 @@ class RequestOption {
 	}
 }
 
+function convertDate(dateString: string): string {
+	const date = new Date(dateString);
+
+	let monthAbbreviations = [
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec",
+	];
+
+	const day = date.getUTCDate();
+	const month = monthAbbreviations[date.getUTCMonth()];
+	const year = date.getUTCFullYear();
+
+	return `${day} ${month} ${year}`;
+}
+
 function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 	return {
 		name: ghResponse.name ?? "",
@@ -92,8 +117,11 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 
 						reposMeta.push({
 							...repoMeta,
+							createdAt: convertDate(repoMeta.createdAt),
+							updatedAt: convertDate(repoMeta.updatedAt),
 							languagesMeta: languagesMeta,
 							latestVersion: latestVersion,
+							downloadCount: downloadCount,
 						});
 					}
 

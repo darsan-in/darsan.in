@@ -63,6 +63,27 @@ var RequestOption = /** @class */ (function () {
     }
     return RequestOption;
 }());
+function convertDate(dateString) {
+    var date = new Date(dateString);
+    var monthAbbreviations = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
+    var day = date.getUTCDate();
+    var month = monthAbbreviations[date.getUTCMonth()];
+    var year = date.getUTCFullYear();
+    return "".concat(day, " ").concat(month, " ").concat(year);
+}
 function parseRepoMeta(ghResponse) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1;
     return {
@@ -142,7 +163,7 @@ function getReposMeta(user) {
                             console.log("\n⚠️ Error Getting languages meta or latest version or download count");
                             return [3 /*break*/, 7];
                         case 7:
-                            reposMeta.push(__assign(__assign({}, repoMeta), { languagesMeta: languagesMeta, latestVersion: latestVersion }));
+                            reposMeta.push(__assign(__assign({}, repoMeta), { createdAt: convertDate(repoMeta.createdAt), updatedAt: convertDate(repoMeta.updatedAt), languagesMeta: languagesMeta, latestVersion: latestVersion, downloadCount: downloadCount }));
                             _c.label = 8;
                         case 8:
                             _i++;

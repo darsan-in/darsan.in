@@ -12,31 +12,6 @@ export function getRandomColor(): string {
 	return color;
 }
 
-export function convertDate(dateString: string): string {
-	const date = new Date(dateString);
-
-	let monthAbbreviations = [
-		"Jan",
-		"Feb",
-		"Mar",
-		"Apr",
-		"May",
-		"Jun",
-		"Jul",
-		"Aug",
-		"Sep",
-		"Oct",
-		"Nov",
-		"Dec",
-	];
-
-	const day = date.getUTCDate();
-	const month = monthAbbreviations[date.getUTCMonth()];
-	const year = date.getUTCFullYear();
-
-	return `${day} ${month} ${year}`;
-}
-
 export async function fetchGHMeta(user: string, reponame: string) {
 	const response = await fetch(
 		`https://raw.githubusercontent.com/${user}/${reponame}/main/ghmeta.json`,
