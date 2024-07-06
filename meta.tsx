@@ -35,5 +35,4 @@ export const communication = {
 	phone: "+91-6381866191",
 };
 
-export const groupedMetaKey: string = "ghmeta";
-export const totalProjectkey = "work-count";
+export const localMetaKey: string = "worksmeta";

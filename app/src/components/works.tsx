@@ -1,56 +1,22 @@
 import * as Tabs from "@radix-ui/react-tabs";
 
 import { GithubRepoMeta } from "action/ds";
-import { communication, groupedMetaKey, totalProjectkey } from "meta";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Spinner from "./spinner";
-import { fetchGHMeta } from "./utils";
 import WorkCard from "./work-card";
 
-export default function Works() {
-	const [ghMeta, setGHMeta] = useState<Record<string, GithubRepoMeta[]>>(
-		{},
-	);
+export default function Works({
+	projectsMeta,
+}: {
+	projectsMeta: Record<string, GithubRepoMeta[]>;
+}) {
+	const tabs: string[] = Object.keys(projectsMeta);
 
-	useEffect(() => {
-		const ghMeta = localStorage.getItem(groupedMetaKey);
-		if (ghMeta) {
-			/* Load local available meta */
-			const groupedMeta = JSON.parse(ghMeta);
-			const nonGrouped = Object.values(groupedMeta).flat();
-			const finalData = { All: nonGrouped, ...groupedMeta };
-
-			setGHMeta(finalData);
-		} else {
-			const dumpMeta = async () => {
-				const groupedMeta = await fetchGHMeta(
-					communication.github,
-					"Kinact",
-				);
-				localStorage.setItem(groupedMetaKey, JSON.stringify(groupedMeta));
-
-				localStorage.setItem(
-					totalProjectkey,
-					String(Object.values(groupedMeta).flat().length),
-				);
-
-				const nonGrouped = Object.values(groupedMeta).flat();
-				const finalData = { All: nonGrouped, ...groupedMeta };
-
-				setGHMeta(finalData);
-			};
-
-			dumpMeta().catch((err) => {
-				console.log(err);
-			});
-		}
-	}, []);
-
-	const [selectedTab, setSelectedTab] = useState<string>("All");
+	const [selectedTab, setSelectedTab] = useState<string>(tabs[0]);
 
 	return (
 		<>
-			{Object.keys(ghMeta).length === 0 ? (
+			{tabs.length === 0 ? (
 				<div className="flex justify-center">
 					<Spinner
 						size={100}
@@ -66,7 +32,7 @@ export default function Works() {
 					<Tabs.List
 						className="hidden gap-x-3 py-1 overflow-x-auto px-px text-sm sm:flex place-content-center"
 						aria-label="Project Experience">
-						{Object.keys(ghMeta).map((language, idx) => (
+						{tabs.map((language, idx) => (
 							<Tabs.Trigger
 								key={idx}
 								className="data-[state=active]:bg-gray-100 data-[state=active]:text-gray-700 data-[state=active]:shadow-sm outline-gray-800 py-1.5 px-3 rounded-lg duration-150 text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-100 font-medium"
@@ -93,7 +59,7 @@ export default function Works() {
 							value={selectedTab}
 							className="py-2 px-3 w-full bg-transparent appearance-none outline-none border rounded-lg shadow-sm focus:border-gray-800 text-sm"
 							onChange={(e) => setSelectedTab(e.target.value)}>
-							{Object.keys(ghMeta).map((language, idx) => (
+							{tabs.map((language, idx) => (
 								<option
 									key={idx}
 									tabIndex={idx}>
@@ -104,12 +70,12 @@ export default function Works() {
 					</div>
 					{/* mobile area ended */}
 
-					{Object.keys(ghMeta).map((language, idx) => (
+					{tabs.map((language, idx) => (
 						<Tabs.Content
 							key={idx}
 							className="py-6"
 							value={language}>
-							<WorkCard projects={ghMeta[language]} />
+							<WorkCard projects={projectsMeta[language]} />
 						</Tabs.Content>
 					))}
 				</Tabs.Root>
