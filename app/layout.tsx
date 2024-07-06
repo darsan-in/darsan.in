@@ -2,6 +2,7 @@ import { communication, metainfo } from "meta";
 import { HiDocumentArrowDown } from "react-icons/hi2";
 import { IoCallSharp, IoMail } from "react-icons/io5";
 import { RiGithubFill, RiLinkedinFill } from "react-icons/ri";
+import Hireme from "./src/icons/hireme";
 import "./src/styles/globals.scss";
 import style from "./src/styles/style.module.scss";
 
@@ -71,8 +72,8 @@ export default function RootLayout({
 
 						<a
 							href="#works"
-							className="inline-block w-full mt-3 py-2 px-3 text-center text-white font-medium bg-primary duration-150 hover:bg-indigo-800 active:bg-indigo-800 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
-							Hire me
+							className="inline-block w-full mt-3 py-2 px-3 text-center text-white font-medium duration-150 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
+							<Hireme />
 						</a>
 					</div>
 				</header>

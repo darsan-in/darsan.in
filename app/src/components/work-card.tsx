@@ -104,7 +104,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 												<HiOutlineCodeBracket className="mr-2 pt-1 text-indigo-600" />
 												Lines of code:{" "}
 												<span className="ml-1 font-normal text-gray-500">
-													{project.loc}
+													{Math.ceil(project.loc)}
 												</span>
 											</li>
 										) : (

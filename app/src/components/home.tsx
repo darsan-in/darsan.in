@@ -115,7 +115,7 @@ export default function HomePage() {
 								<span className="text-primary font-bold uppercase">
 									Technical Skills:
 								</span>{" "}
-								Have Been Worked with numerous technolgies
+								Have Experience with Numerous Technologies.
 							</p>
 
 							<div
