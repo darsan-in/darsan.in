@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import Achievments from "./achievments";
 import Education from "./education";
 import Experience from "./experience";
+import Footer from "./footer";
 import Loading from "./loading";
+import Quote from "./quote";
 import Skills from "./skills";
 import { ShortMessage } from "./ui-utils";
 import { fetchGHMeta, localMetaStructure } from "./utils";
@@ -139,6 +141,9 @@ export default function HomePage() {
 					<Achievments />
 
 					<Education />
+
+					<Quote />
+					<Footer />
 				</>
 			)}
 		</>
