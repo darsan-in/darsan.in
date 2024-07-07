@@ -20,6 +20,21 @@ export default function RootLayout({
 
 	return (
 		<html lang="en">
+			<head>
+				<link
+					rel="preconnect"
+					href="https://fonts.googleapis.com"
+				/>
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin=""
+				/>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mochiy+Pop+One&display=swap"
+					rel="stylesheet"
+				/>
+			</head>
 			<body>
 				<header className="h-15 rounded-b-lg border border-indigo-100">
 					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8">
