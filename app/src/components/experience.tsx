@@ -44,8 +44,8 @@ export default () => (
 		className="py-20"
 		id="experience">
 		<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
-			<div className="max-w-xl md:mx-auto">
-				<h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
+			<div className="max-w-1xl md:mx-auto">
+				<h3 className="w-full text-gray-800 text-3xl font-semibold sm:text-4xl">
 					<span className="text-primary uppercase font-bold">
 						Experiences:
 					</span>{" "}
@@ -53,22 +53,22 @@ export default () => (
 				</h3>
 			</div>
 		</div>
-		<div className="max-w-screen-lg mx-auto px-4 md:px-8">
-			<ul className="mt-12 divide-y space-y-3">
+		<div className="max-w-screen-lg mx-auto md:px-8">
+			<ul className="mt-12 space-y-3">
 				{experiences.map((item, idx) => (
 					<li
 						key={idx}
-						className="px-10 py-5 duration-150 hover:border-white hover:rounded-xl hover:bg-gray-50 border border-1 rounded-lg">
+						className="px-10 py-8 duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200">
 						<a
 							href={item.path}
 							target="_"
 							className="space-y-3">
 							<div className="flex items-center gap-x-3">
-								<div className="bg-white w-14 h-14 border rounded-full flex items-center justify-center">
+								<div className="bg-white w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
 									<div className="w-12">{item.company_icon}</div>
 								</div>
 								<div>
-									<span className="block text-sm text-indigo-600 font-medium">
+									<span className="block text-sm text-primary font-medium">
 										{item.company_name}
 									</span>
 									<h3 className="text-base text-gray-800 font-semibold mt-1">

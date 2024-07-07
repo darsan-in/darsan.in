@@ -70,9 +70,7 @@ export default function RootLayout({
 							</a>
 						</div>
 
-						<button className="inline-block w-full mt-3 py-2 px-3 text-center text-white font-medium duration-150 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
-							<Hireme />
-						</button>
+						<Hireme />
 					</div>
 				</header>
 				{children}
