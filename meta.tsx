@@ -33,6 +33,9 @@ export const communication = {
 	linkedin: "iamspdarsan",
 	mail: "hello@darsan.in",
 	phone: "+91-6381866191",
+	npmjs: "iamspdarsan",
+	youtube: "iamspdarsan",
+	huggingface: "darsan",
 };
 
 export const localMetaKey: string = "worksmeta";

@@ -1,7 +1,8 @@
 .container {
-	--uib-size: 45vw;
+	margin-top: 5rem;
+	--uib-size: 30vw;
 	--uib-color: currentColor;
-	--uib-speed: 2s;
+	--uib-speed: 0.7s;
 	--uib-bg-opacity: 0.1;
 	height: calc(var(--uib-size) * (2.1 / 5));
 	width: var(--uib-size);

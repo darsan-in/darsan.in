@@ -1,6 +1,6 @@
 export default () => {
 	return (
-		<section className="py-20">
+		<section className="py-20 border-t">
 			<div className="max-w-screen-xl mx-auto px-4 md:px-8">
 				<div className="max-w-3xl mx-auto">
 					<figure>

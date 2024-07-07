@@ -1,10 +1,10 @@
 import style from "../styles/loading.module.scss";
 
-export default () => {
+export default ({ className }: { className?: string }) => {
 	return (
 		<>
 			<svg
-				className={style.container + " text-primary"}
+				className={style.container + " text-primary " + className}
 				x="0px"
 				y="0px"
 				viewBox="0 0 50 21.1"
