@@ -43,3 +43,34 @@ body:has(.skillIcon:hover) {
 		filter: blur(0px);
 	}
 }
+
+/* layout */
+@media screen and (max-width: 950px) {
+	.innerContainer {
+		margin: auto;
+	}
+	.innerContainer > a > p {
+		display: none;
+	}
+	.innerContainer ~ button {
+		width: 6rem;
+		height: 0.4rem;
+		font-size: 0.7rem;
+	}
+	.innerContainer ~ button > svg {
+		display: none;
+	}
+}
+@media screen and (max-width: 450px) and (min-width: 395px) {
+	.innerContainer ~ button {
+		display: none;
+	}
+}
+@media screen and (max-width: 450px) {
+	.innerContainer ~ button {
+		margin: auto;
+		margin-top: 10px;
+		text-align: center;
+	}
+}
+/* layout ended */

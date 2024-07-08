@@ -35,10 +35,14 @@ export default function RootLayout({
 					rel="stylesheet"
 				/>
 			</head>
+
 			<body>
 				<header className="h-15 rounded-b-lg border border-indigo-100">
-					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8">
-						<div className="flex gap-x-4 text-sm text-black">
+					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8 flex flex-wrap">
+						<div
+							className={
+								"flex gap-x-4 text-sm text-black " + style.innerContainer
+							}>
 							<a
 								href={`https://github.com/${communication.github}`}
 								className="flex gap-x-2">

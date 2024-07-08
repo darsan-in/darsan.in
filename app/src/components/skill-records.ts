@@ -11,7 +11,7 @@ import {
 import { CiPenpot } from "react-icons/ci";
 import { DiDart } from "react-icons/di";
 import { FaGulp, FaLinux, FaNode } from "react-icons/fa";
-import { FaFreebsd, FaGitAlt, FaJenkins } from "react-icons/fa6";
+import { FaAws, FaFreebsd, FaGitAlt, FaJenkins } from "react-icons/fa6";
 import { GiDolphin } from "react-icons/gi";
 import {
 	IoLogoCss3,
@@ -40,6 +40,7 @@ import {
 	SiGooglesearchconsole,
 	SiJest,
 	SiKeystone,
+	SiNextra,
 	SiNumpy,
 	SiPassport,
 	SiPhp,
@@ -107,6 +108,8 @@ const skills: Record<string, any>[] = [
 	{ text: "Jest", icon: SiJest },
 	{ text: "Selenium", icon: SiSelenium },
 	{ text: "Jenkins", icon: FaJenkins },
+	{ text: "Nextra", icon: SiNextra },
+	{ text: "AWS", icon: FaAws },
 ];
 
 export default skills;
