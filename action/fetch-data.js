@@ -46,15 +46,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var https_1 = require("https");
@@ -377,7 +368,7 @@ function countLOC(languagesMeta) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, processedMeta, totalCommits, localMeta;
+        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, processedMeta, localMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -398,13 +389,10 @@ function main() {
                     mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
                     groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
                     processedMeta = __assign({ All: ungroupedMeta }, groupedMeta);
-                    return [4 /*yield*/, commitsCounter(__spreadArray([], ungroupedMeta, true).map(function (meta) { return meta.url; }))];
-                case 5:
-                    totalCommits = _a.sent();
                     localMeta = {
                         projects: processedMeta,
                         totalProjects: ungroupedMeta.length,
-                        totalCommits: totalCommits,
+                        totalCommits: 0,
                     };
                     (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(localMeta));
                     return [2 /*return*/];
@@ -412,6 +400,7 @@ function main() {
         });
     });
 }
+/* @ts-ignore */
 function commitsCounter(urls) {
     return __awaiter(this, void 0, void 0, function () {
         var overallCommits, _loop_1, _i, urls_1, url;

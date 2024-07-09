@@ -366,14 +366,14 @@ async function main(): Promise<void> {
 	const groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
 
 	const processedMeta = { All: ungroupedMeta, ...groupedMeta };
-	const totalCommits = await commitsCounter(
+	/* 	const totalCommits = await commitsCounter(
 		[...ungroupedMeta].map((meta) => meta.url),
-	);
+	); */
 
 	const localMeta = {
 		projects: processedMeta,
 		totalProjects: ungroupedMeta.length,
-		totalCommits: totalCommits,
+		totalCommits: 0,
 	};
 
 	writeFileSync(
@@ -382,6 +382,7 @@ async function main(): Promise<void> {
 	);
 }
 
+/* @ts-ignore */
 async function commitsCounter(urls: string[]): Promise<number> {
 	let overallCommits: number = 0;
 
