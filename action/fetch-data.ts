@@ -407,10 +407,8 @@ async function commitsCounter(urls: string[]): Promise<number> {
 
 							resolve(totalRepoCommits);
 						} else {
-							reject(
-								"Error getting response for commits | code " +
-									response.statusCode,
-							);
+							console.log("⚠️Failed " + commitsUrl);
+							resolve(0);
 						}
 					});
 				}).on("error", (err) => {

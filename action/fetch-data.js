@@ -440,8 +440,8 @@ function commitsCounter(urls) {
                                                         resolve(totalRepoCommits_1);
                                                     }
                                                     else {
-                                                        reject("Error getting response for commits | code " +
-                                                            response.statusCode);
+                                                        console.log("⚠️Failed " + commitsUrl);
+                                                        resolve(0);
                                                     }
                                                 });
                                             }).on("error", function (err) {
