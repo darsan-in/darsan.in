@@ -46,6 +46,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var https_1 = require("https");
@@ -368,17 +377,17 @@ function countLOC(languagesMeta) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var rawGHMEta, err_2, mostUsedLanguages, groupedMeta;
+        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, processedMeta, totalCommits, localMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    rawGHMEta = {};
+                    ungroupedMeta = [];
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, loadGithubMeta()];
                 case 2:
-                    rawGHMEta = _a.sent();
+                    ungroupedMeta = _a.sent();
                     return [3 /*break*/, 4];
                 case 3:
                     err_2 = _a.sent();
@@ -386,10 +395,79 @@ function main() {
                     process.exit(1);
                     return [3 /*break*/, 4];
                 case 4:
-                    mostUsedLanguages = getMostUsedLanguages(rawGHMEta);
-                    groupedMeta = makeRepoGroups(mostUsedLanguages, rawGHMEta);
-                    (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(groupedMeta));
+                    mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
+                    groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
+                    processedMeta = __assign({ All: ungroupedMeta }, groupedMeta);
+                    return [4 /*yield*/, commitsCounter(__spreadArray([], ungroupedMeta, true).map(function (meta) { return meta.url; }))];
+                case 5:
+                    totalCommits = _a.sent();
+                    localMeta = {
+                        projects: processedMeta,
+                        totalProjects: ungroupedMeta.length,
+                        totalCommits: totalCommits,
+                    };
+                    (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(localMeta));
                     return [2 /*return*/];
+            }
+        });
+    });
+}
+function commitsCounter(urls) {
+    return __awaiter(this, void 0, void 0, function () {
+        var overallCommits, _loop_1, _i, urls_1, url;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    overallCommits = 0;
+                    _loop_1 = function (url) {
+                        var commitsUrl, options, totalRepoCommits;
+                        return __generator(this, function (_b) {
+                            switch (_b.label) {
+                                case 0:
+                                    commitsUrl = "".concat(url, "/commits");
+                                    options = new RequestOption(new URL(commitsUrl).pathname);
+                                    return [4 /*yield*/, new Promise(function (resolve, reject) {
+                                            (0, https_1.get)(options, function (response) {
+                                                var data = "";
+                                                response.on("data", function (chunk) {
+                                                    data += chunk;
+                                                });
+                                                response.on("end", function () {
+                                                    var _a;
+                                                    if (response.statusCode === 200) {
+                                                        var parsedData = JSON.parse(data !== null && data !== void 0 ? data : "{}");
+                                                        var totalRepoCommits_1 = (_a = parsedData.length) !== null && _a !== void 0 ? _a : 0;
+                                                        resolve(totalRepoCommits_1);
+                                                    }
+                                                    else {
+                                                        reject("Error getting response for commits | code " +
+                                                            response.statusCode);
+                                                    }
+                                                });
+                                            }).on("error", function (err) {
+                                                reject(err);
+                                            });
+                                        })];
+                                case 1:
+                                    totalRepoCommits = _b.sent();
+                                    overallCommits += totalRepoCommits;
+                                    return [2 /*return*/];
+                            }
+                        });
+                    };
+                    _i = 0, urls_1 = urls;
+                    _a.label = 1;
+                case 1:
+                    if (!(_i < urls_1.length)) return [3 /*break*/, 4];
+                    url = urls_1[_i];
+                    return [5 /*yield**/, _loop_1(url)];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3:
+                    _i++;
+                    return [3 /*break*/, 1];
+                case 4: return [2 /*return*/, overallCommits];
             }
         });
     });

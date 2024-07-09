@@ -144,7 +144,7 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 	});
 }
 
-function getMostUsedLanguages(rawGHMEta: any): string[] {
+function getMostUsedLanguages(rawGHMEta: GithubRepoMeta[]): string[] {
 	const mostUsedLanguages: Set<string> = new Set();
 
 	rawGHMEta.forEach((repoMeta: GithubRepoMeta) => {
@@ -354,20 +354,75 @@ function countLOC(languagesMeta: Record<string, number>): number {
 }
 
 async function main(): Promise<void> {
-	let rawGHMEta = {};
+	let ungroupedMeta: GithubRepoMeta[] = [];
 	try {
-		rawGHMEta = await loadGithubMeta();
+		ungroupedMeta = await loadGithubMeta();
 	} catch (err) {
 		console.log(err);
 		process.exit(1);
 	}
-	const mostUsedLanguages = getMostUsedLanguages(rawGHMEta);
-	const groupedMeta = makeRepoGroups(mostUsedLanguages, rawGHMEta);
+
+	const mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
+	const groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
+
+	const processedMeta = { All: ungroupedMeta, ...groupedMeta };
+	const totalCommits = await commitsCounter(
+		[...ungroupedMeta].map((meta) => meta.url),
+	);
+
+	const localMeta = {
+		projects: processedMeta,
+		totalProjects: ungroupedMeta.length,
+		totalCommits: totalCommits,
+	};
 
 	writeFileSync(
 		join(process.cwd(), "ghmeta.json"),
-		JSON.stringify(groupedMeta),
+		JSON.stringify(localMeta),
 	);
+}
+
+async function commitsCounter(urls: string[]): Promise<number> {
+	let overallCommits: number = 0;
+
+	for (const url of urls) {
+		const commitsUrl = `${url}/commits`;
+		const options = new RequestOption(new URL(commitsUrl).pathname);
+
+		const totalRepoCommits: number = await new Promise(
+			(resolve, reject) => {
+				get(options, (response) => {
+					let data: string = "";
+
+					response.on("data", (chunk) => {
+						data += chunk;
+					});
+
+					response.on("end", () => {
+						if (response.statusCode === 200) {
+							const parsedData: Record<string, any>[] = JSON.parse(
+								data ?? "{}",
+							);
+							const totalRepoCommits: number = parsedData.length ?? 0;
+
+							resolve(totalRepoCommits);
+						} else {
+							reject(
+								"Error getting response for commits | code " +
+									response.statusCode,
+							);
+						}
+					});
+				}).on("error", (err) => {
+					reject(err);
+				});
+			},
+		);
+
+		overallCommits += totalRepoCommits;
+	}
+
+	return overallCommits;
 }
 
 main().catch((err) => {
