@@ -9,7 +9,7 @@ export default () => {
 					<div className="max-w-3xl">
 						<p
 							className={
-								"leading-relaxed mt-2 text-8xl font-bold text-primary duration-1000 hover:text-blue-700 active:bg-gray-200 font-jose " +
+								"leading-relaxed mt-2 text-8xl font-bold text-primary duration-1000 hover:text-secondary active:bg-gray-200 font-jose " +
 								style.name
 							}>
 							{name}

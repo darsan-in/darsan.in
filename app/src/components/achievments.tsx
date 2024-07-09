@@ -42,7 +42,7 @@ export default () => {
 							<li
 								key={idx}
 								className="space-y-3">
-								<div className="w-12 h-12 mx-auto bg-indigo-50 text-primary rounded-full flex items-center justify-center">
+								<div className="w-12 h-12 mx-auto bg-secondary text-primary rounded-full flex items-center justify-center">
 									{item.icon}
 								</div>
 								<h4 className="text-lg text-gray-800 font-semibold">

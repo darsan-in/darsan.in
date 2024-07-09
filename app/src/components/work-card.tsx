@@ -23,14 +23,12 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 						<li
 							className={"border rounded-lg " + style.workCard}
 							key={idx}>
-							<div className="flex items-start justify-between p-4 rounded-t-lg bg-primary">
+							<div className="flex items-start justify-between p-4 rounded-t-lg bg-secondary">
 								<div className="space-y-2">
-									<h4 className="text-white font-bold text-blue-700 text-xl">
+									<h4 className="text-black font-bold text-xl">
 										{project.name.toUpperCase()}
 									</h4>
-									<p className="text-white text-sm">
-										{project.description}
-									</p>
+									<p className="text-sm">{project.description}</p>
 								</div>
 								<div className="flex gap-2">
 									<a
@@ -62,14 +60,14 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 								<div className="flex gap-x-2 justify-between">
 									<ul>
 										<li className="flex">
-											<GoGoal className="mr-2 pt-1 text-indigo-600" />
+											<GoGoal className="mr-2 pt-1 text-primary" />
 											Created on{" "}
 											<span className="ml-1 font-normal text-gray-500">
 												{project.createdAt}
 											</span>
 										</li>
 										<li className="mt-2 flex">
-											<RxUpdate className="mr-2 pt-1 text-indigo-600" />{" "}
+											<RxUpdate className="mr-2 pt-1 text-primary" />{" "}
 											Updated on{"  "}
 											<span className="ml-1 font-normal text-gray-500">
 												{project.updatedAt}
@@ -78,7 +76,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 
 										{project.downloadCount ? (
 											<li className="mt-2 flex">
-												<RxDownload className="mr-2 pt-1 text-indigo-600" />{" "}
+												<RxDownload className="mr-2 pt-1 text-primary" />{" "}
 												Downloads:{"  "}
 												<span className="ml-1 font-normal text-gray-500">
 													{project.downloadCount}
@@ -90,7 +88,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 
 										{project.openIssuesCount ? (
 											<li className="mt-2 flex">
-												<GoIssueOpened className="mr-2 pt-1 text-indigo-600" />
+												<GoIssueOpened className="mr-2 pt-1 text-primary" />
 												Request:{" "}
 												<span className="ml-1 font-normal text-gray-500">
 													{project.openIssuesCount}
@@ -101,7 +99,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 										)}
 										{project.loc ? (
 											<li className="mt-2 flex">
-												<HiOutlineCodeBracket className="mr-2 pt-1 text-indigo-600" />
+												<HiOutlineCodeBracket className="mr-2 pt-1 text-primary" />
 												Lines of code:{" "}
 												<span className="ml-1 font-normal text-gray-500">
 													{Math.ceil(project.loc)}

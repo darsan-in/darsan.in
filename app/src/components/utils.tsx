@@ -40,11 +40,11 @@ export async function fetchGHMeta(
 
 export function getBarColours(percentages: number[]): string[] {
 	const colors: string[] = [
-		"#0E46A3",
-		"#90D26D",
-		"#80BCBD",
-		"#7077A1",
-		"#AC87C5",
+		"#3498DB",
+		"#2ECC71",
+		"#E67E22",
+		"#E74C3C",
+		"#1ABC9C",
 	];
 
 	const sortedPercentage = percentages.sort();
