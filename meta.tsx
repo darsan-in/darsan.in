@@ -1,7 +1,8 @@
 export const metainfo = {
 	title:
-		"DARSAN (@iamspdarsan)- Expert in Web, Desktop, Mobile Development & SEO",
-	description: "",
+		"The Multifaceted Talent of Priyadarsan S: Founder, Coder, Problem-Solver | @iamspdarsan",
+	description:
+		"Discover why Priyadarsan, a founder, engineer, and digital innovator, could be your company's next valuable asset. Explore their journey, skills, and impact.",
 };
 
 export const name: string = `PRIYADARSAN`;
