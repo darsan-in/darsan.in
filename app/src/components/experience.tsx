@@ -1,6 +1,7 @@
 import { BsSuitcaseLg } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { RxCalendar } from "react-icons/rx";
+import { experienceDuration } from "./utils";
 
 const experiences = [
 	{
@@ -18,7 +19,7 @@ const experiences = [
 		job_type: "Full-time",
 		location: "IN, TN, Nagapattinam",
 		path: "https://cresteem.com",
-		duration: "1 Year & 6 Months",
+		duration: experienceDuration("01-01-2023"),
 	},
 	{
 		company_icon: (

@@ -71,7 +71,10 @@ export default function HomePage() {
 							<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
 								<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
 									<h1 className="text-primary font-medium">
-										<ShortMessage count={localMeta.totalProjects ?? 0} />
+										<ShortMessage
+											totalProjects={localMeta.totalProjects ?? 0}
+											totalCommits={localMeta.totalCommits ?? 0}
+										/>
 									</h1>
 
 									<h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl leading-loose">

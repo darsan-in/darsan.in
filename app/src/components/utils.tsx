@@ -30,20 +30,11 @@ export async function fetchGHMeta(
 			`https://raw.githubusercontent.com/${user}/${reponame}/main/ghmeta.json`,
 		);
 
-		const groupedMetaData: Record<string, GithubRepoMeta[]> =
-			await response.json();
+		const localMeta: localMetaStructure = await response.json();
 
-		const nonGrouped = Object.values(groupedMetaData).flat();
-		const processedMeta = { All: nonGrouped, ...groupedMetaData };
+		setItemWithExpiration(localMetaKey, localMeta, expiryInHours);
 
-		const upstreamMeta: localMetaStructure = {
-			projects: processedMeta,
-			totalProjects: nonGrouped.length,
-		};
-
-		setItemWithExpiration(localMetaKey, upstreamMeta, expiryInHours);
-
-		return upstreamMeta;
+		return localMeta;
 	}
 }
 
@@ -102,4 +93,26 @@ function getItemWithExpiration(key: string): boolean | any {
 export interface localMetaStructure {
 	projects: Record<string, GithubRepoMeta[]>;
 	totalProjects: number;
+	totalCommits: number;
+}
+
+export function experienceDuration(dateString: string) {
+	//"08-07-2024" Example date string in "date-month-year" format
+
+	const [day, month, year] = dateString.split("-").map(Number);
+
+	const startedFrom: number = new Date(year, month - 1, day).getTime();
+
+	const now: number = new Date().getTime();
+
+	const durationInMonths: number =
+		(now - startedFrom) / (1000 * 60 * 60 * 24 * 30.44);
+
+	//Return year and month in string
+	const remMonths = Math.floor(durationInMonths % 12);
+	const years = Math.floor(durationInMonths / 12);
+
+	return `${years} ${years > 1 ? "Years" : "Year"} & ${remMonths} ${
+		remMonths > 1 ? "Months" : "Month"
+	}`;
 }

@@ -1,9 +1,19 @@
 import Spinner from "./spinner";
 
-export const ShortMessage = ({ count }: { count: number }) => {
+export const ShortMessage = ({
+	totalProjects,
+	totalCommits,
+}: {
+	totalProjects: number;
+	totalCommits: number;
+}) => {
 	return (
 		<>
-			{count ? `Over ${count} projects completed` : <Spinner size={20} />}
+			{totalProjects ? (
+				`Over ${totalCommits} commits and ${totalProjects} projects completed`
+			) : (
+				<Spinner size={20} />
+			)}
 		</>
 	);
 };
