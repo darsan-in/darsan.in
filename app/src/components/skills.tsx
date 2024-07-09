@@ -42,7 +42,9 @@ export default function Skills({
 
 				return (
 					<div
-						className={`flex justify-center items-center my-3 mx-0`}
+						className={
+							`flex justify-center items-center my-3 mx-0 ` + style.skills
+						}
 						key={index}>
 						<SkillIcon
 							className={`text-center ${style.skillIcon}`}

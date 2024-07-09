@@ -11,7 +11,7 @@ export default () => {
 			<div className="gap-6 justify-between md:flex">
 				<div className="flex-1">
 					<div className="max-w-xs">
-						<p className="w-32 font-extrabold text-3xl text-primary">
+						<p className="w-32 font-extrabold text-3xl text-primary pt-4">
 							Keep innovating,
 						</p>
 						<p className="leading-relaxed mt-2 text-xl font-semibold">
@@ -81,13 +81,6 @@ export default () => {
 					</ul>
 				</div>
 			</div>
-			<style jsx>{`
-				.svg-icon path,
-				.svg-icon polygon,
-				.svg-icon rect {
-					fill: currentColor;
-				}
-			`}</style>
 		</footer>
 	);
 };

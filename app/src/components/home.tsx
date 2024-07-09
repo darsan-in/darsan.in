@@ -1,6 +1,6 @@
 "use client";
 
-import { ShortInto, communication, name, navigation, summary } from "meta";
+import { ShortInto, communication, summary } from "meta";
 import { useEffect, useState } from "react";
 import Achievments from "./achievments";
 import Education from "./education";
@@ -9,6 +9,7 @@ import Footer from "./footer";
 import Loading from "./loading";
 import Quote from "./quote";
 import Skills from "./skills";
+import Topnav from "./topnav";
 import { ShortMessage } from "./ui-utils";
 import { fetchGHMeta, localMetaStructure } from "./utils";
 import Works from "./works";
@@ -45,29 +46,8 @@ export default function HomePage() {
 			) : (
 				<>
 					<main>
-						<nav className="relative mt-9 items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
-							<div className="flex justify-between font-jose pr-20">
-								<a href="">
-									<p className="block w-full mt-2 text-center text-primary font-bold duration-1000 hover:text-blue-700 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm lg:text-8xl">
-										{name}
-									</p>
-								</a>
-							</div>
-
-							<ul
-								className={`flex-1 justify-between mt-12 md:text-lg md:font-medium md:flex md:mt-0 ${"absolute inset-x-0 px-4 border-b bg-white md:border-none md:static"}`}>
-								<div className="items-center space-y-5 md:flex md:space-x-6 md:space-y-0 md:ml-12">
-									{navigation.map((item, idx) => (
-										<li
-											className="ml-5 text-black hover:text-primary uppercase hover:underline hover:font-900"
-											key={idx}>
-											<a href={item.path}>{item.title}</a>
-										</li>
-									))}
-								</div>
-							</ul>
-						</nav>
-						<section className="py-20">
+						<Topnav />
+						<section className="px-6">
 							<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
 								<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
 									<h1 className="text-primary font-medium">
@@ -77,7 +57,7 @@ export default function HomePage() {
 										/>
 									</h1>
 
-									<h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl leading-loose">
+									<h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
 										<ShortInto />
 									</h2>
 

@@ -1,6 +1,7 @@
 import { BsSuitcaseLg } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { RxCalendar } from "react-icons/rx";
+import style from "../styles/style.module.scss";
 import { experienceDuration } from "./utils";
 
 const experiences = [
@@ -42,7 +43,7 @@ const experiences = [
 
 export default () => (
 	<section
-		className="py-20"
+		className="py-20 px-6"
 		id="experience">
 		<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
 			<div className="max-w-1xl md:mx-auto">
@@ -59,7 +60,10 @@ export default () => (
 				{experiences.map((item, idx) => (
 					<li
 						key={idx}
-						className="px-10 py-8 duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200">
+						className={
+							"px-10 py-8 duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200 " +
+							style.expCard
+						}>
 						<a
 							href={item.path}
 							target="_"
@@ -80,7 +84,11 @@ export default () => (
 							<p className="text-gray-600 sm:text-sm">
 								{item.job_description}
 							</p>
-							<div className="text-sm text-gray-600 flex items-center gap-6">
+							<div
+								className={
+									"text-sm text-gray-600 flex items-center gap-6 px-4 " +
+									style.expItems
+								}>
 								<span className="flex items-center gap-2">
 									<BsSuitcaseLg className="w-4 h-4 text-gray-500" />
 									{item.job_type}

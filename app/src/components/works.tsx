@@ -25,7 +25,7 @@ export default function Works({
 				</div>
 			) : (
 				<>
-					<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
+					<div className="max-w-screen-xl mx-auto px-12 md:text-center md:px-8">
 						<div className="max-w-xl md:mx-auto">
 							<h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
 								<span className="text-primary uppercase font-bold">
@@ -64,7 +64,7 @@ export default function Works({
 						</Tabs.List>
 
 						{/* mobile area */}
-						<div className="relative text-gray-500 sm:hidden">
+						<div className="relative text-gray-500 sm:hidden px-6">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 20 20"
