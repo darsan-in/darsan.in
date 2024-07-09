@@ -22,7 +22,7 @@ export default () => {
 									Steve Jobs
 								</span>
 								<span className="block text-gray-600 text-sm mt-0.5">
-									Former CEO of Apple
+									Co-Founder & Former CEO of Apple.
 								</span>
 							</div>
 						</div>

@@ -34,14 +34,14 @@ export default function Works({
 								Crafting Digital Solutions with Precision and Innovation
 							</h3>
 							<p className="mt-3 text-gray-600">
-								With a strong foundation in web, mobile, and desktop
-								development, I specialize in creating seamless and
-								efficient software solutions. Leveraging expertise in
-								technologies such as HTML, CSS, JavaScript, Python, and
-								MySQL, I am dedicated to delivering high-quality,
-								user-centric applications. As the founder of Cresteem, I
-								lead projects that consistently achieve perfect scores on
-								performance metrics, driving excellence in every endeavor.
+								Discover my extensive portfolio showcasing proficiency in
+								software engineering, automation, and digital marketing.
+								Projects like CareerBot automate job applications, while
+								Chatrix innovates IoT solutions. Notably, Hawk JS, Richie
+								JS, and Minomax enhance SEO strategies. With expertise in
+								TypeScript, Python, React.js, and more, these projects
+								exemplify my commitment to delivering impactful solutions
+								across diverse domains.
 							</p>
 						</div>
 					</div>

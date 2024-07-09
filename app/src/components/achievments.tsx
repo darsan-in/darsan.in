@@ -7,17 +7,17 @@ export default () => {
 		{
 			icon: <GoTrophy size={24} />,
 			title: "National Cyber Hackathon Winner (November 2022)",
-			desc: "Developed an award-winning software solution to combat online rumor propagation, securing the championship trophy and medal at a prestigious national-level competition organized by the Cyber Crime Department of Coimbatore, Tamil Nadu, in collaboration with Sri Krishna Arts and Science College (SKASC).",
+			desc: "Developed an award-winning software solution to combat online rumor propagation, securing the championship trophy and medal at a prestigious national-level competition organized by the Cyber Crime Department of Coimbatore, Tamil Nadu, in collaboration with Sri Krishna Arts and Science College (SKASC). Utilized Twitter API, Google Fact Check API, and Python for backend development",
 		},
 		{
 			icon: <LiaMedalSolid size={24} />,
 			title: "II Place, Top Coder Competition (December 2021)",
-			desc: "Secured second place in a thrilling campus coding contest hosted by Sri Krishna Arts and Science College (SKASC), demonstrating exceptional skills in advanced Object-Oriented Programming (OOP) concepts.",
+			desc: "Secured second place in a rigorous internal campus coding competition at Sri Krishna Arts and Science College (SKASC), demonstrating strong proficiency in advanced Object-Oriented Programming (OOP) concepts using Java, all within a limited time frame.",
 		},
 		{
 			icon: <FaRegStar size={24} />,
 			title: "Smart India Hackathon Pre-Finale Runner-Up (February 2022)",
-			desc: "Led a 5-member team in a prestigious national-level competition organized by AICTE and the Ministry of Education (MOE) of India, developing an innovative Plant Disease Prediction application for Android and web platforms.",
+			desc: "Led a 5-member team in a prestigious national-level competition organized by AICTE and the Ministry of Education (MOE) of India, developing an innovative Plant Disease Prediction application for Android and web platforms. Leveraged Flutter and Dart for front-end development, with Python powering the backend, integrating deep learning algorithms like Convolutional Neural Networks (CNN) for accurate predictive capabilities.",
 		},
 	];
 
@@ -48,7 +48,7 @@ export default () => {
 								<h4 className="text-lg text-gray-800 font-semibold">
 									{item.title}
 								</h4>
-								<p>{item.desc}</p>
+								<p className="leading-relaxed">{item.desc}</p>
 							</li>
 						))}
 					</ul>

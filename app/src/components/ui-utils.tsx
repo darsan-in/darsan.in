@@ -10,7 +10,7 @@ export const ShortMessage = ({
 	return (
 		<>
 			{totalProjects ? (
-				`Over ${totalCommits}+ commits and ${totalProjects} projects completed`
+				`Over ${totalCommits}+ commits and ${totalProjects}+ projects completed`
 			) : (
 				<Spinner size={20} />
 			)}

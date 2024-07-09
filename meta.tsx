@@ -9,18 +9,14 @@ export const name: string = `PRIYADARSAN`;
 export const ShortInto = (): React.ReactNode => {
 	return (
 		<>
-			Founder <span className="text-primary">@Cresteem</span>, Expert in
-			Web, Desktop, Mobile Development & SEO
+			Founder <span className="text-primary">@Cresteem</span>, Prodigy in
+			Software Engineering, Automations & Digital Marketing.
 		</>
 	);
 };
 
-export const summary: string = `I specialize in web, desktop, and mobile development,
-							combining innovation with meticulous craftsmanship to deliver
-							impactful software solutions. With a passion for transforming
-							ideas into reality, I lead projects that redefine user
-							experiences and drive business growth. Let's collaborate on
-							building the next generation of digital innovations.`;
+export const summary: string =
+	"With a passion for innovation and an entrepreneurial mindset, I excel in software engineering, automations, and digital marketing. Embracing Grace Hopper's philosophy, 'This is what we've always done' is the most dangerous phrase in the language. I believe in challenging the status quo to create impactful solutions. Known for my expertise in TypeScript, JavaScript, Python, and contributions to open-source projects, I continually expand my skill set to lead teams toward groundbreaking achievements.";
 
 export const navigation = [
 	{ title: "Works", path: "#works" },

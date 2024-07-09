@@ -16,7 +16,7 @@ const experiences = [
 		company_name: "Cresteem",
 		job_title: "Founder & Software Engineer",
 		job_description:
-			"Established and managed an IT services company, specializing in mobile, web, and desktop development, UI/UX design, SEO, digital marketing, and software solutions. Led a 3-member team in developing our flagship landing page (cresteem.com) with a perfect Google Lighthouse score of 100% in all categories. Technologies used: Git, HTML, JS, CSS, Python (Pandas), MySQL, and PHP.",
+			"As the founder and software engineer at Cresteem, I initiated the development of open-source projects like Hawk JS, Richie JS, and Minomax, specializing in web development and SEO. Our vision is to enhance web development and digital marketing efficiency through our automated tools. These projects, released on npm and GitHub, highlight my expertise in managing the entire software lifecycle from development to production. With a solid grasp of software licensing and operational strategies as a company founder, I successfully led a dedicated team of three members.",
 		job_type: "Full-time",
 		location: "IN, TN, Nagapattinam",
 		path: "https://cresteem.com",
@@ -33,7 +33,7 @@ const experiences = [
 		company_name: "Bluekode Solutions",
 		job_title: "Full Stack Developer",
 		job_description:
-			"Led a 4-member team in developing an Online Billing Management System using Django, JavaScript, and MySQL. Enhanced collaboration through effective GitHub utilization. Integrated team contributions into a unified web app.",
+			"During my internship at Bluekode Solutions, I spearheaded a dynamic team in crafting an innovative Online Billing Management System. Leveraging Django, JavaScript, and MySQL, we streamlined processes and enhanced user interaction, ensuring seamless integration and optimal performance. This experience fortified my leadership and technical skills, preparing me to drive impactful solutions in future endeavors.",
 		job_type: "Intern",
 		location: "IN, TN, Coimbatore",
 		path: "https://www.bluekode.com",
