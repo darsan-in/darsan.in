@@ -73,7 +73,7 @@ export default function HomePage() {
 									<h1 className="text-primary font-medium">
 										<ShortMessage
 											totalProjects={localMeta.totalProjects ?? 0}
-											totalCommits={localMeta.totalCommits ?? 0}
+											totalCommits={497}
 										/>
 									</h1>
 
