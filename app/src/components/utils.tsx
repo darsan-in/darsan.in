@@ -116,3 +116,9 @@ export function experienceDuration(dateString: string) {
 		remMonths > 1 ? "Months" : "Month"
 	}`;
 }
+
+export function suppressConsoleError() {
+	if (process.env.NODE_ENV === "production") {
+		console.error = function () {};
+	}
+}

@@ -11,7 +11,11 @@ import Quote from "./quote";
 import Skills from "./skills";
 import Topnav from "./topnav";
 import { ShortMessage } from "./ui-utils";
-import { fetchGHMeta, localMetaStructure } from "./utils";
+import {
+	fetchGHMeta,
+	localMetaStructure,
+	suppressConsoleError,
+} from "./utils";
 import Works from "./works";
 
 export default function HomePage() {
@@ -20,6 +24,9 @@ export default function HomePage() {
 	);
 
 	useEffect(() => {
+		/* Suppress error messages */
+		suppressConsoleError();
+		/*  */
 		const getSetMeta = async () => {
 			const expiryInHours = 1;
 
