@@ -365,13 +365,13 @@ async function main(): Promise<void> {
 	const mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
 	const groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
 
-	const processedMeta = { All: ungroupedMeta, ...groupedMeta };
+	/* const processedMeta = { All: ungroupedMeta, ...groupedMeta }; */
 	/* 	const totalCommits = await commitsCounter(
 		[...ungroupedMeta].map((meta) => meta.url),
 	); */
 
 	const localMeta = {
-		projects: processedMeta,
+		projects: groupedMeta,
 		totalProjects: ungroupedMeta.length,
 		totalCommits: 0,
 	};

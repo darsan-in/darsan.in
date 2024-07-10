@@ -30,7 +30,17 @@ export async function fetchGHMeta(
 			`https://raw.githubusercontent.com/${user}/${reponame}/main/ghmeta.json`,
 		);
 
-		const localMeta: localMetaStructure = await response.json();
+		const localMetaWithoutAllCat: localMetaStructure =
+			await response.json();
+
+		const localMeta: localMetaStructure = {
+			projects: {
+				...localMetaWithoutAllCat.projects,
+				All: Object.values(localMetaWithoutAllCat.projects).flat(),
+			},
+			totalProjects: localMetaWithoutAllCat.totalProjects,
+			totalCommits: localMetaWithoutAllCat.totalCommits,
+		};
 
 		setItemWithExpiration(localMetaKey, localMeta, expiryInHours);
 
@@ -118,7 +128,5 @@ export function experienceDuration(dateString: string) {
 }
 
 export function suppressConsoleError() {
-	if (process.env.NODE_ENV === "production") {
-		console.error = function () {};
-	}
+	console.error = function () {};
 }

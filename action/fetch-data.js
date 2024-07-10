@@ -368,7 +368,7 @@ function countLOC(languagesMeta) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, processedMeta, localMeta;
+        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, localMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -388,9 +388,8 @@ function main() {
                 case 4:
                     mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
                     groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
-                    processedMeta = __assign({ All: ungroupedMeta }, groupedMeta);
                     localMeta = {
-                        projects: processedMeta,
+                        projects: groupedMeta,
                         totalProjects: ungroupedMeta.length,
                         totalCommits: 0,
                     };
