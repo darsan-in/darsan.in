@@ -57,8 +57,8 @@ export default function RootLayout({
 							<a
 								href={`https://www.linkedin.com/in/${communication.linkedin}`}
 								className="flex gap-x-2"
-								aria-label="Visit linked page"
-								title="Visit linked page">
+								aria-label="Visit linkedin page"
+								title="Visit linkedin page">
 								<div className={iconBgClasses + " bg-blue-600"}>
 									<RiLinkedinFill size={bannerIconSize} />
 								</div>
