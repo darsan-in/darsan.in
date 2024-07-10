@@ -81,11 +81,7 @@ export default function Works({
 								className="py-2 px-3 w-full bg-transparent appearance-none outline-none border rounded-lg shadow-sm focus:border-gray-800 text-sm"
 								onChange={(e) => setSelectedTab(e.target.value)}>
 								{tabs.map((language, idx) => (
-									<option
-										key={idx}
-										tabIndex={idx}>
-										{language}
-									</option>
+									<option key={idx}>{language}</option>
 								))}
 							</select>
 						</div>

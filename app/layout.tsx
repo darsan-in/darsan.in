@@ -45,7 +45,9 @@ export default function RootLayout({
 							}>
 							<a
 								href={`https://github.com/${communication.github}`}
-								className="flex gap-x-2">
+								className="flex gap-x-2"
+								aria-label="Visit github page"
+								title="Visit github page">
 								<div className={iconBgClasses + " bg-black"}>
 									<RiGithubFill size={bannerIconSize} />
 								</div>
@@ -54,7 +56,9 @@ export default function RootLayout({
 
 							<a
 								href={`https://www.linkedin.com/in/${communication.linkedin}`}
-								className="flex gap-x-2">
+								className="flex gap-x-2"
+								aria-label="Visit linked page"
+								title="Visit linked page">
 								<div className={iconBgClasses + " bg-blue-600"}>
 									<RiLinkedinFill size={bannerIconSize} />
 								</div>
@@ -63,7 +67,9 @@ export default function RootLayout({
 
 							<a
 								href={`mailto:${communication.mail}`}
-								className="flex gap-x-2">
+								className="flex gap-x-2"
+								aria-label="Mail me"
+								title="Mail me">
 								<div className={iconBgClasses + " bg-green-600"}>
 									<IoMail size={bannerIconSize} />
 								</div>
@@ -72,7 +78,9 @@ export default function RootLayout({
 
 							<a
 								href={`tel:${communication.phone}`}
-								className="flex gap-x-2">
+								className="flex gap-x-2"
+								aria-label="My contact number"
+								title="My contact number">
 								<div className={iconBgClasses + " bg-teal-600"}>
 									<IoCallSharp size={bannerIconSize} />
 								</div>
@@ -81,7 +89,9 @@ export default function RootLayout({
 
 							<a
 								href="cv.pdf"
-								className="flex gap-x-2">
+								className="flex gap-x-2"
+								aria-label="Download my resume"
+								title="Download my resume">
 								<div className={iconBgClasses + " bg-yellow-600"}>
 									<HiDocumentArrowDown size={bannerIconSize} />
 								</div>

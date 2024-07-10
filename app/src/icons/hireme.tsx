@@ -1,8 +1,13 @@
+"use client";
+
 import { IoIosRocket } from "react-icons/io";
 
 export default () => {
 	return (
 		<button
+			onClick={() => {
+				location.href = "https://calendar.app.google/eYXb2TUHy4k3S8oX8";
+			}}
 			type="button"
 			className="relative inline-flex items-center p-3 px-5 text-sm font-medium text-center text-white bg-primary rounded-full hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-black">
 			<IoIosRocket size={22} />

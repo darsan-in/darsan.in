@@ -34,7 +34,9 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 									<a
 										href={project.htmlUrl + "#readme"}
 										target="_"
-										className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white">
+										className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white"
+										aria-label={"Visit github repo of " + project.name}
+										title={"Visit github repo of " + project.name}>
 										<FaGithub
 											size={20}
 											className="fill-current"
@@ -45,7 +47,13 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 										<a
 											href={project.homepage ?? ""}
 											target="_"
-											className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white">
+											className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white"
+											aria-label={
+												"Visit homepage of " + project.name + " project"
+											}
+											title={
+												"Visit homepage of " + project.name + " project"
+											}>
 											<RxExternalLink
 												size={20}
 												className="fill-current"
@@ -110,17 +118,17 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 										)}
 									</ul>
 									<ul className="text-right">
-										<p>
+										<li>
 											{project.latestVersion
 												? "v" + project.latestVersion
 												: "Unreleased"}
-										</p>
-										<p className="text-blue-500 mt-2">
+										</li>
+										<li className="text-blue-500 mt-2">
 											©️{" "}
 											{project.license.spdxId === "NOASSERTION"
 												? "Custom License"
 												: project.license.spdxId}
-										</p>
+										</li>
 									</ul>
 								</div>
 							</section>

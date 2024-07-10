@@ -74,9 +74,9 @@ export default () => {
 						<div
 							className="space-y-3 mt-6 px-8"
 							key={idx}>
-							<h4 className="text-gray-800 text-xl font-bold text-primary flex gap-x-4 items-center">
+							<p className="text-gray-800 text-xl font-bold text-primary flex gap-x-4 items-center">
 								{item.title}
-							</h4>
+							</p>
 							<p className="text-gray-500">{item.desc}</p>
 						</div>
 					))}

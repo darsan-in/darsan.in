@@ -16,6 +16,7 @@ export default () => {
 							<img
 								src="/icon/steve-jobs.webp"
 								className="w-16 h-16 rounded-full"
+								alt="steve jobs"
 							/>
 							<div>
 								<span className="block text-gray-800 font-semibold">
