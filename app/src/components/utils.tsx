@@ -35,8 +35,8 @@ export async function fetchGHMeta(
 
 		const localMeta: localMetaStructure = {
 			projects: {
-				...localMetaWithoutAllCat.projects,
 				All: Object.values(localMetaWithoutAllCat.projects).flat(),
+				...localMetaWithoutAllCat.projects,
 			},
 			totalProjects: localMetaWithoutAllCat.totalProjects,
 			totalCommits: localMetaWithoutAllCat.totalCommits,
