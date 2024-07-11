@@ -57,7 +57,7 @@ export default function HomePage() {
 						<section className="px-6">
 							<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
 								<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
-									<h1 className="text-primary font-medium">
+									<h1 className="text-primary font-medium animate-pulse">
 										<ShortMessage
 											totalProjects={localMeta.totalProjects ?? 0}
 											totalCommits={497}

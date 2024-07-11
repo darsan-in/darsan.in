@@ -12,7 +12,12 @@ export const ShortMessage = ({
 	return (
 		<>
 			{totalProjects ? (
-				`Over ${totalCommits}+ commits, ${overallDownloadCounts}+ NPM downloads and ${totalProjects}+ projects completed`
+				<>
+					Over <span className="font-bold">{totalCommits}</span>+ commits,{" "}
+					<span className="font-bold">{overallDownloadCounts}</span>+ NPM
+					downloads and <span className="font-bold">{totalProjects}</span>+
+					projects completed{" "}
+				</>
 			) : (
 				<Spinner size={20} />
 			)}
