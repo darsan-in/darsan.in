@@ -61,6 +61,9 @@ export default function HomePage() {
 										<ShortMessage
 											totalProjects={localMeta.totalProjects ?? 0}
 											totalCommits={497}
+											overallDownloadCounts={
+												localMeta.overallDownloadCounts ?? 0
+											}
 										/>
 									</h1>
 

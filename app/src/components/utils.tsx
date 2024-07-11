@@ -40,6 +40,7 @@ export async function fetchGHMeta(
 			},
 			totalProjects: localMetaWithoutAllCat.totalProjects,
 			totalCommits: localMetaWithoutAllCat.totalCommits,
+			overallDownloadCounts: localMetaWithoutAllCat.overallDownloadCounts,
 		};
 
 		setItemWithExpiration(localMetaKey, localMeta, expiryInHours);
@@ -104,6 +105,7 @@ export interface localMetaStructure {
 	projects: Record<string, GithubRepoMeta[]>;
 	totalProjects: number;
 	totalCommits: number;
+	overallDownloadCounts: number;
 }
 
 export function experienceDuration(dateString: string) {

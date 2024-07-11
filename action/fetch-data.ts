@@ -374,12 +374,23 @@ async function main(): Promise<void> {
 		projects: groupedMeta,
 		totalProjects: ungroupedMeta.length,
 		totalCommits: 0,
+		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
 	};
 
 	writeFileSync(
 		join(process.cwd(), "ghmeta.json"),
 		JSON.stringify(localMeta),
 	);
+}
+
+function getOverallDownloadCounts(ghMetas: GithubRepoMeta[]): number {
+	let overallDownloadCounts: number = 0;
+
+	ghMetas.forEach((meta) => {
+		overallDownloadCounts += meta.downloadCount ?? 0;
+	});
+
+	return overallDownloadCounts;
 }
 
 /* @ts-ignore */

@@ -392,12 +392,21 @@ function main() {
                         projects: groupedMeta,
                         totalProjects: ungroupedMeta.length,
                         totalCommits: 0,
+                        overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
                     };
                     (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(localMeta));
                     return [2 /*return*/];
             }
         });
     });
+}
+function getOverallDownloadCounts(ghMetas) {
+    var overallDownloadCounts = 0;
+    ghMetas.forEach(function (meta) {
+        var _a;
+        overallDownloadCounts += (_a = meta.downloadCount) !== null && _a !== void 0 ? _a : 0;
+    });
+    return overallDownloadCounts;
 }
 /* @ts-ignore */
 function commitsCounter(urls) {
