@@ -404,7 +404,10 @@ function getOverallDownloadCounts(ghMetas) {
     var overallDownloadCounts = 0;
     ghMetas.forEach(function (meta) {
         var _a;
-        overallDownloadCounts += (_a = meta.downloadCount) !== null && _a !== void 0 ? _a : 0;
+        var downloadCount = (_a = meta.downloadCount) !== null && _a !== void 0 ? _a : 0;
+        if (!!downloadCount) {
+            overallDownloadCounts += downloadCount;
+        }
     });
     return overallDownloadCounts;
 }

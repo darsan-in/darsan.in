@@ -387,7 +387,11 @@ function getOverallDownloadCounts(ghMetas: GithubRepoMeta[]): number {
 	let overallDownloadCounts: number = 0;
 
 	ghMetas.forEach((meta) => {
-		overallDownloadCounts += meta.downloadCount ?? 0;
+		const downloadCount: number = meta.downloadCount ?? 0;
+
+		if (!!downloadCount) {
+			overallDownloadCounts += downloadCount;
+		}
 	});
 
 	return overallDownloadCounts;
