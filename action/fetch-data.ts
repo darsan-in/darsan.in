@@ -2,6 +2,7 @@ import { writeFileSync } from "fs";
 import { get } from "https";
 import { join } from "path";
 import { GithubRepoMeta } from "./ds";
+import { fetchDataForAllYears } from "./get-contribs.js";
 
 class RequestOption {
 	hostname: string = "api.github.com";
@@ -370,10 +371,13 @@ async function main(): Promise<void> {
 		[...ungroupedMeta].map((meta) => meta.url),
 	); */
 
+	const totalContributions: Awaited<number> =
+		await getTotalContributions();
+
 	const localMeta = {
 		projects: groupedMeta,
 		totalProjects: ungroupedMeta.length,
-		totalCommits: 0,
+		totalCommits: totalContributions,
 		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
 	};
 
@@ -437,6 +441,21 @@ async function commitsCounter(urls: string[]): Promise<number> {
 	}
 
 	return overallCommits;
+}
+
+async function getTotalContributions(
+	userName: string = "iamspdarsan",
+): Promise<number> {
+	const data: Record<string, any> = await fetchDataForAllYears(userName);
+
+	/* @ts-ignore */
+	const totalContributions: number = data.years.reduce(
+		(acumulator: number, currentValue: any) =>
+			acumulator + currentValue.total,
+		0,
+	);
+
+	return totalContributions;
 }
 
 main().catch((err) => {

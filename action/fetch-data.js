@@ -50,6 +50,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var https_1 = require("https");
 var path_1 = require("path");
+var get_contribs_js_1 = require("./get-contribs.js");
 var RequestOption = /** @class */ (function () {
     function RequestOption(path) {
         this.hostname = "api.github.com";
@@ -368,7 +369,7 @@ function countLOC(languagesMeta) {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, localMeta;
+        var ungroupedMeta, err_2, mostUsedLanguages, groupedMeta, totalContributions, localMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -388,10 +389,13 @@ function main() {
                 case 4:
                     mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
                     groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
+                    return [4 /*yield*/, getTotalContributions()];
+                case 5:
+                    totalContributions = _a.sent();
                     localMeta = {
                         projects: groupedMeta,
                         totalProjects: ungroupedMeta.length,
-                        totalCommits: 0,
+                        totalCommits: totalContributions,
                         overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
                     };
                     (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(localMeta));
@@ -468,6 +472,23 @@ function commitsCounter(urls) {
                     _i++;
                     return [3 /*break*/, 1];
                 case 4: return [2 /*return*/, overallCommits];
+            }
+        });
+    });
+}
+function getTotalContributions() {
+    return __awaiter(this, arguments, void 0, function (userName) {
+        var data, totalContributions;
+        if (userName === void 0) { userName = "iamspdarsan"; }
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, get_contribs_js_1.fetchDataForAllYears)(userName)];
+                case 1:
+                    data = _a.sent();
+                    totalContributions = data.years.reduce(function (acumulator, currentValue) {
+                        return acumulator + currentValue.total;
+                    }, 0);
+                    return [2 /*return*/, totalContributions];
             }
         });
     });

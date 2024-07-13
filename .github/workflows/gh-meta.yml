@@ -19,6 +19,10 @@ jobs:
         with:
           node-version: '21'  # Adjust to the appropriate Node.js version
 
+      - name: Install Dependencies
+        run: |
+          npm install cheerio lodash
+
       - name: Fetch GitHub Repos
         env:
           GITHUB_TOKEN: ${{ secrets.GHTOKEN }}
