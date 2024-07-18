@@ -11,11 +11,7 @@ import Quote from "./quote";
 import Skills from "./skills";
 import Topnav from "./topnav";
 import { ShortMessage } from "./ui-utils";
-import {
-	fetchGHMeta,
-	localMetaStructure,
-	suppressConsoleError,
-} from "./utils";
+import { fetchGHMeta, localMetaStructure } from "./utils";
 import Works from "./works";
 
 export default function HomePage() {
@@ -24,11 +20,9 @@ export default function HomePage() {
 	);
 
 	useEffect(() => {
-		/* Suppress error messages */
-		suppressConsoleError();
 		/*  */
 		const getSetMeta = async () => {
-			const expiryInHours = 1;
+			const expiryInHours = 3;
 
 			const localMeta: localMetaStructure = await fetchGHMeta(
 				communication.github,
@@ -46,7 +40,7 @@ export default function HomePage() {
 
 	return (
 		<>
-			{Object.keys(localMeta).length === 0 ? (
+			{!localMeta.projects ? (
 				<div className="flex w-full h-full justify-center mt-20">
 					<Loading className="animate-spin" />
 				</div>

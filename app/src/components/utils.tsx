@@ -128,7 +128,3 @@ export function experienceDuration(dateString: string) {
 		remMonths > 1 ? "Months" : "Month"
 	}`;
 }
-
-export function suppressConsoleError() {
-	console.error = function () {};
-}
