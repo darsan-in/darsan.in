@@ -51,6 +51,7 @@ var fs_1 = require("fs");
 var https_1 = require("https");
 var path_1 = require("path");
 var get_contribs_js_1 = require("./get-contribs.js");
+var ignore_json_1 = require("./ignore.json");
 var RequestOption = /** @class */ (function () {
     function RequestOption(path) {
         this.hostname = "api.github.com";
@@ -147,6 +148,9 @@ function getReposMeta(user) {
                             if (!(_i < ghResponse_1.length)) return [3 /*break*/, 9];
                             repoMetaRaw = ghResponse_1[_i];
                             repoMeta = parseRepoMeta(repoMetaRaw);
+                            if (ignore_json_1.ignore.includes(repoMeta.name)) {
+                                return [3 /*break*/, 8];
+                            }
                             languagesMeta = {};
                             latestVersion = "";
                             downloadCount = 0;

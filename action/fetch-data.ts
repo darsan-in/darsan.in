@@ -3,6 +3,7 @@ import { get } from "https";
 import { join } from "path";
 import { GithubRepoMeta } from "./ds";
 import { fetchDataForAllYears } from "./get-contribs.js";
+import { ignore } from "./ignore.json";
 
 class RequestOption {
 	hostname: string = "api.github.com";
@@ -104,6 +105,10 @@ function getReposMeta(user: repoFetchOption): Promise<GithubRepoMeta[]> {
 
 					for (const repoMetaRaw of ghResponse) {
 						const repoMeta: GithubRepoMeta = parseRepoMeta(repoMetaRaw);
+
+						if (ignore.includes(repoMeta.name)) {
+							continue;
+						}
 
 						let languagesMeta: Record<string, number> = {};
 						let latestVersion: string | boolean = "";
