@@ -141,6 +141,7 @@ function getReposMeta(user) {
                             if (!(_i < ghResponse_1.length)) return [3 /*break*/, 9];
                             repoMetaRaw = ghResponse_1[_i];
                             repoMeta = parseRepoMeta(repoMetaRaw);
+                            console.log(repoMeta.name);
                             languagesMeta = {};
                             latestVersion = "";
                             downloadCount = 0;
