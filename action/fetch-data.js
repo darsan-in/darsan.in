@@ -56,10 +56,14 @@ var RequestOption = /** @class */ (function () {
         this.hostname = "api.github.com";
         this.headers = {
             "user-agent": "Node.js",
-            Authorization: "Bearer ".concat(process.env.GITHUB_TOKEN),
-            Accept: "application/json",
+            Authorization: "token ".concat(process.env.GITHUB_TOKEN),
+            Accept: "application/vnd.github+json",
         };
         this.path = "";
+        this.searchParams = {
+            type: "all",
+            per_page: 100,
+        };
         this.path = path;
     }
     return RequestOption;
@@ -118,7 +122,9 @@ function parseRepoMeta(ghResponse) {
 }
 function getReposMeta(user) {
     var _this = this;
-    var path = "/users/".concat(user, "/repos");
+    var path = user.isUser
+        ? "/users/".concat(user.name, "/repos")
+        : "/orgs/".concat(user.name, "/repos");
     var options = new RequestOption(path);
     return new Promise(function (resolve, reject) {
         (0, https_1.get)(options, function (res) {
@@ -141,7 +147,6 @@ function getReposMeta(user) {
                             if (!(_i < ghResponse_1.length)) return [3 /*break*/, 9];
                             repoMetaRaw = ghResponse_1[_i];
                             repoMeta = parseRepoMeta(repoMetaRaw);
-                            console.log(repoMeta.name);
                             languagesMeta = {};
                             latestVersion = "";
                             downloadCount = 0;
@@ -170,7 +175,7 @@ function getReposMeta(user) {
                             console.log("\n⚠️ Error Getting languages meta or latest version or download count");
                             return [3 /*break*/, 7];
                         case 7:
-                            reposMeta.push(__assign(__assign({}, repoMeta), { createdAt: convertDate(repoMeta.createdAt), updatedAt: convertDate(repoMeta.updatedAt), languagesMeta: languagesMeta, latestVersion: latestVersion, downloadCount: downloadCount, loc: loc }));
+                            reposMeta.push(__assign(__assign({}, repoMeta), { createdAt: convertDate(repoMeta.createdAt), updatedAt: convertDate(repoMeta.updatedAt), languagesMeta: languagesMeta, latestVersion: latestVersion, downloadCount: downloadCount, loc: loc, language: repoMeta.language === "" ? "Other" : repoMeta.language }));
                             _c.label = 8;
                         case 8:
                             _i++;
@@ -243,7 +248,10 @@ var loadGithubMeta = function () { return __awaiter(void 0, void 0, void 0, func
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                workedOn = ["iamspdarsan", "cresteem"];
+                workedOn = [
+                    { name: "iamspdarsan", isUser: true },
+                    { name: "cresteem", isUser: false },
+                ];
                 reposMeta = [];
                 _i = 0, workedOn_1 = workedOn;
                 _a.label = 1;

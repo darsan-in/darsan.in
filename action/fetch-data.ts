@@ -8,11 +8,14 @@ class RequestOption {
 	hostname: string = "api.github.com";
 	headers: Record<string, string> = {
 		"user-agent": "Node.js",
-		Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-		Accept: "application/json",
+		Authorization: `token ${process.env.GITHUB_TOKEN}`,
+		Accept: "application/vnd.github+json",
 	};
 	path: string = ``;
-
+	searchParams: Record<string, string | number> = {
+		type: "all",
+		per_page: 100,
+	};
 	constructor(path: string) {
 		this.path = path;
 	}
@@ -74,8 +77,15 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 	};
 }
 
-function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
-	const path = `/users/${user}/repos`;
+interface repoFetchOption {
+	name: string;
+	isUser: boolean;
+}
+
+function getReposMeta(user: repoFetchOption): Promise<GithubRepoMeta[]> {
+	const path = user.isUser
+		? `/users/${user.name}/repos`
+		: `/orgs/${user.name}/repos`;
 	const options = new RequestOption(path);
 
 	return new Promise((resolve, reject) => {
@@ -131,6 +141,8 @@ function getReposMeta(user: string): Promise<GithubRepoMeta[]> {
 							latestVersion: latestVersion,
 							downloadCount: downloadCount,
 							loc: loc,
+							language:
+								repoMeta.language === "" ? "Other" : repoMeta.language,
 						});
 					}
 
@@ -221,7 +233,10 @@ function getLanguagesMeta(
 
 const loadGithubMeta = async () => {
 	/* GitHub page owners whose projects you have worked on */
-	const workedOn: string[] = ["iamspdarsan", "cresteem"];
+	const workedOn: repoFetchOption[] = [
+		{ name: "iamspdarsan", isUser: true },
+		{ name: "cresteem", isUser: false },
+	];
 
 	const reposMeta: GithubRepoMeta[] = [];
 
