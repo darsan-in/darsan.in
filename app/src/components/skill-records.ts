@@ -37,6 +37,7 @@ import {
 	SiCplusplus,
 	SiExpress,
 	SiFoodpanda,
+	SiGooglecloud,
 	SiGooglesearchconsole,
 	SiJest,
 	SiKeystone,
@@ -110,6 +111,7 @@ const skills: Record<string, any>[] = [
 	{ text: "Jenkins", icon: FaJenkins },
 	{ text: "Nextra", icon: SiNextra },
 	{ text: "AWS", icon: FaAws },
+	{ text: "Google Cloud", icon: SiGooglecloud },
 ];
 
 export default skills;
