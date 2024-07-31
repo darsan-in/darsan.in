@@ -12,7 +12,7 @@ import { CiPenpot } from "react-icons/ci";
 import { DiDart } from "react-icons/di";
 import { FaGulp, FaLinux, FaNode } from "react-icons/fa";
 import { FaAws, FaFreebsd, FaGitAlt, FaJenkins } from "react-icons/fa6";
-import { GiDolphin } from "react-icons/gi";
+import { GiDolphin, GiEyeTarget } from "react-icons/gi";
 import {
 	IoLogoCss3,
 	IoLogoElectron,
@@ -34,6 +34,8 @@ import {
 import {
 	SiAdobeillustrator,
 	SiAdobephotoshop,
+	SiArduino,
+	SiBurpsuite,
 	SiCplusplus,
 	SiExpress,
 	SiFoodpanda,
@@ -51,10 +53,11 @@ import {
 	SiWebassembly,
 	SiWebpack,
 	SiWindowsterminal,
+	SiWireshark,
 } from "react-icons/si";
 import Office from "../icons/office";
 
-const skills: Record<string, any>[] = [
+const skills: { text: string; icon: any }[] = [
 	{ text: "TypeScript", icon: BiLogoTypescript },
 	{ text: "JavaScript", icon: RiJavascriptFill },
 	{ text: "Python", icon: BiLogoPython },
@@ -112,6 +115,10 @@ const skills: Record<string, any>[] = [
 	{ text: "Nextra", icon: SiNextra },
 	{ text: "AWS", icon: FaAws },
 	{ text: "Google Cloud", icon: SiGooglecloud },
+	{ text: "Wireshark", icon: SiWireshark },
+	{ text: "Burp Suite", icon: SiBurpsuite },
+	{ text: "Nmap", icon: GiEyeTarget },
+	{ text: "Arduino", icon: SiArduino },
 ];
 
 export default skills;
