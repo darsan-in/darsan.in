@@ -335,16 +335,16 @@ async function main() {
     const totalContributions = await getTotalContributions();
     const localMeta = {
         projects: groupedMeta,
-        totalProjects: ungroupedMeta.length - ignore_json_1.dontCount.length,
+        totalProjects: ungroupedMeta.length - (ignore_json_1.dontCount.length - ignore_json_1.ignore.length),
         totalCommits: totalContributions,
         overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
     };
     (0, fs_1.writeFileSync)((0, path_1.join)(process.cwd(), "ghmeta.json"), JSON.stringify(localMeta));
     /* summary */
-    console.log("Overall available repos count: ", ungroupedMeta.length);
-    console.log("No card - Ignored repos count: ", ignore_json_1.ignore.length);
+    console.log("Repo cards count: ", ungroupedMeta.length);
+    console.log("Ignored repo cards count: ", ignore_json_1.ignore.length);
     console.log("DontCount size: ", ignore_json_1.dontCount.length);
-    console.log("Final repos count = (Overall - DontCount) : ", localMeta.totalProjects);
+    console.log("Final repos count = ( Repo cards count - (DontCount - ignored length) ) : ", localMeta.totalProjects);
 }
 main().catch((err) => {
     console.log(err);
