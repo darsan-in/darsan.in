@@ -79,7 +79,7 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 }
 
 async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
-	const { Octokit } = await import("octokit");
+	const { Octokit } = await import("@octokit/rest");
 
 	const octakit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
@@ -328,11 +328,15 @@ async function getDownloadCount(htmlUrl: string): Promise<number> {
 }
 
 async function countLOC(repoURL: string): Promise<number> {
-	const locMetaFilePath: string = `${repoURL}/raw/main/loc-meta.json`;
-	const rawResponse = await fetch(locMetaFilePath);
-	const jsonResponse = await rawResponse.json();
+	try {
+		const locMetaFilePath: string = `${repoURL}/raw/main/loc-meta.json`;
+		const rawResponse = await fetch(locMetaFilePath);
+		const jsonResponse = await rawResponse.json();
 
-	return jsonResponse.SUM?.code;
+		return jsonResponse.SUM?.code;
+	} catch {
+		return 0;
+	}
 }
 
 function getOverallDownloadCounts(ghMetas: GithubRepoMeta[]): number {

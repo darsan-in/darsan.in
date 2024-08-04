@@ -21,7 +21,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install cheerio lodash octokit
+          npm install cheerio lodash @octokit/rest
 
       - name: Fetch GitHub Repos
         env:

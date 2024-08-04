@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const cheerio = require("cheerio");
 const _ = require("lodash");
 const COLOR_MAP = {
