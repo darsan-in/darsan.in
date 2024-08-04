@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import Achievments from "./achievments";
 import Education from "./education";
 import Experience from "./experience";
-import Footer from "./footer";
 import Loading from "./loading";
+import NotLimited from "./not-limited";
 import Quote from "./quote";
 import skillRecords from "./skill-records";
 import Skills from "./skills";
@@ -42,17 +42,17 @@ export default function HomePage() {
 	return (
 		<>
 			{!localMeta.projects ? (
-				<div className="flex w-full h-full justify-center mt-20">
-					<Loading className="animate-spin" />
+				<div className="flex w-full h-full justify-center mt-20 pb-[50%]">
+					<Loading className="animate-pulse" />
 				</div>
 			) : (
 				<>
-					<main>
+					<main className="px-10">
 						<Topnav />
-						<section className="px-6">
+						<section>
 							<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
-								<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl mb-20 pb-12">
-									<h1 className="text-primary font-medium animate-pulse">
+								<div className="flex-none space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl mb-20 pb-12">
+									<h1 className="text-primary font-medium">
 										<ShortMessage
 											totalProjects={localMeta.totalProjects}
 											totalCommits={localMeta.totalCommits}
@@ -131,6 +131,8 @@ export default function HomePage() {
 									</div>
 								))}
 							</div>
+
+							<NotLimited />
 						</section>
 						<Works projectsMeta={localMeta.projects ?? {}} />
 
@@ -141,7 +143,6 @@ export default function HomePage() {
 						<Education />
 
 						<Quote />
-						<Footer />
 					</main>
 				</>
 			)}

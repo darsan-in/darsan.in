@@ -2,6 +2,7 @@ import { communication, metainfo } from "meta";
 import { HiDocumentArrowDown } from "react-icons/hi2";
 import { IoCallSharp, IoMail } from "react-icons/io5";
 import { RiGithubFill, RiLinkedinFill } from "react-icons/ri";
+import Footer from "./src/components/footer";
 import Hireme from "./src/icons/hireme";
 import "./src/styles/globals.scss";
 import style from "./src/styles/style.module.scss";
@@ -103,6 +104,7 @@ export default function RootLayout({
 					</div>
 				</header>
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);

@@ -7,6 +7,7 @@ import LevelBars from "./levelBar";
 import { useEffect } from "react";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
 import style from "../styles/style.module.scss";
+import Topics from "./topics";
 export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 	useEffect(() => {
 		const cards = document.querySelectorAll(`.${style.workCard}`);
@@ -132,12 +133,26 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 									</ul>
 								</div>
 							</section>
-							<div className="border-t border-grey-400">
+							<div
+								className={`${
+									project.topics.length === 0 ? "border-t" : "border-y"
+								} border-grey-400`}>
 								<p className="font-semibold text-start text-md pl-5 pt-4 text-gray-600">
 									LANGUAGE USAGE STATISTICS
 								</p>
 								<LevelBars languagesMeta={project.languagesMeta ?? {}} />
 							</div>
+
+							{project.topics.length !== 0 ? (
+								<div>
+									<p className="font-semibold text-start text-md pl-5 pt-4 text-gray-600">
+										TOPICS
+									</p>
+									<Topics topics={project.topics.slice(0, 7)} />
+								</div>
+							) : (
+								""
+							)}
 						</li>
 					))}
 				</ul>

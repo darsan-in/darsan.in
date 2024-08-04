@@ -9,7 +9,7 @@ export default () => {
 					<div className="max-w-3xl">
 						<p
 							className={
-								"mt-2 text-8xl font-bold text-primary transition-all duration-[3000ms] ease-in-out font-jose hover:bg-white " +
+								"mt-2 text-8xl font-bold text-primary transition-all duration-[3000ms] ease-in-out font-jose hover:bg-white tracking-widest	" +
 								style.name
 							}>
 							{name}

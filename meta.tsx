@@ -5,7 +5,7 @@ export const metainfo = {
 		"Discover why Priyadarsan, a founder, engineer, and digital innovator, could be your company's next valuable asset. Explore their journey, skills, and impact.",
 };
 
-export const name: string = `PRIYADARSAN`;
+export const name: string = `DARSAN`;
 
 export const ShortInto = (): React.ReactNode => {
 	return (
