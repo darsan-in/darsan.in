@@ -9,7 +9,7 @@ export interface GithubRepoMeta {
 	downloadCount?: number;
 	loc?: number;
 	/* fork: boolean; */
-	url: string;
+	/* url: string; */
 	/* releasesUrl?: string; */
 	latestVersion?: string | boolean;
 	/* languagesUrl?: string; */

@@ -37,7 +37,7 @@ function parseRepoMeta(ghResponse) {
         htmlUrl: ghResponse.html_url ?? "",
         description: ghResponse.description ?? "",
         /* fork: ghResponse.fork ?? "", */
-        url: ghResponse.url ?? "",
+        /* url: ghResponse.url ?? "", */
         /* releasesUrl: ghResponse.releases_url ?? "", */
         /* languagesUrl: ghResponse.languages_url ?? "", */
         /* contributorsUrl: ghResponse.contributors_url ?? "", */
@@ -155,7 +155,8 @@ async function getLatestVersion(owner, repo) {
             const { rest: { repos: { getLatestRelease }, }, } = octokit;
             getLatestRelease({ owner: owner, repo: repo })
                 .then((releaseMeta) => {
-                resolve(releaseMeta.data?.tag_name ?? false);
+                const latestVersion = releaseMeta.data?.tag_name ?? false;
+                resolve(latestVersion);
             })
                 .catch((_err) => {
                 resolve(false);
@@ -178,7 +179,8 @@ function isNodejsProject(owner, repoName) {
                 .then((response) => {
                 if (response.status === 200) {
                     try {
-                        const nodejsPackageName = JSON.parse(response.data.toString())?.name;
+                        const content = Buffer.from(response.data.content, "base64").toString("utf8");
+                        const nodejsPackageName = JSON.parse(content)?.name;
                         resolve(nodejsPackageName);
                     }
                     catch {
@@ -245,8 +247,8 @@ async function countLOC(owner, repoName) {
                 .then((response) => {
                 if (response.status === 200) {
                     try {
-                        const LOC = JSON.parse(response.data.toString())?.SUM
-                            ?.code;
+                        const content = Buffer.from(response.data.content, "base64").toString("utf8");
+                        const LOC = JSON.parse(content)?.SUM?.code;
                         resolve(LOC);
                     }
                     catch {

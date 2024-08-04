@@ -111,8 +111,10 @@ export default function HomePage() {
 									</span>{" "}
 									Have Experience with Numerous Technologies.
 								</p>
-								{Object.keys(skillRecords).map((skillsCat) => (
-									<div className="py-7">
+								{Object.keys(skillRecords).map((skillsCat, idx) => (
+									<div
+										className="py-7"
+										key={idx}>
 										<p className="text-center text-2xl text-primary font-bold uppercase mb-8">
 											{skillsCat}
 										</p>

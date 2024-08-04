@@ -41,7 +41,7 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 		htmlUrl: ghResponse.html_url ?? "",
 		description: ghResponse.description ?? "",
 		/* fork: ghResponse.fork ?? "", */
-		url: ghResponse.url ?? "",
+		/* url: ghResponse.url ?? "", */
 		/* releasesUrl: ghResponse.releases_url ?? "", */
 		/* languagesUrl: ghResponse.languages_url ?? "", */
 		/* contributorsUrl: ghResponse.contributors_url ?? "", */
@@ -223,7 +223,9 @@ async function getLatestVersion(
 
 				getLatestRelease({ owner: owner, repo: repo })
 					.then((releaseMeta) => {
-						resolve(releaseMeta.data?.tag_name ?? false);
+						const latestVersion = releaseMeta.data?.tag_name ?? false;
+
+						resolve(latestVersion);
 					})
 					.catch((_err) => {
 						resolve(false);
@@ -252,12 +254,15 @@ function isNodejsProject(
 					ref: "main",
 					path: "package.json",
 				})
-					.then((response) => {
+					.then((response: any) => {
 						if (response.status === 200) {
 							try {
-								const nodejsPackageName = JSON.parse(
-									response.data.toString(),
-								)?.name;
+								const content: string = Buffer.from(
+									response.data.content,
+									"base64",
+								).toString("utf8");
+
+								const nodejsPackageName = JSON.parse(content)?.name;
 
 								resolve(nodejsPackageName);
 							} catch {
@@ -338,11 +343,15 @@ async function countLOC(owner: string, repoName: string): Promise<number> {
 					ref: "main",
 					path: "loc-meta.json",
 				})
-					.then((response) => {
+					.then((response: any) => {
 						if (response.status === 200) {
 							try {
-								const LOC = JSON.parse(response.data.toString())?.SUM
-									?.code;
+								const content = Buffer.from(
+									response.data.content,
+									"base64",
+								).toString("utf8");
+
+								const LOC = JSON.parse(content)?.SUM?.code;
 
 								resolve(LOC);
 							} catch {
