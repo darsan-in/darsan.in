@@ -3,7 +3,8 @@ import { get } from "https";
 import { join } from "path";
 import { GithubRepoMeta } from "./ds";
 import { fetchDataForAllYears } from "./get-contribs.js";
-import { ignore } from "./ignore.json";
+/* @ts-ignore */
+import { dontCount, ignore } from "./ignore.json";
 
 class RequestOption {
 	hostname: string = "api.github.com";
@@ -93,6 +94,7 @@ async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
 		username: username,
 		type: "all",
 		per_page: 100,
+		sort: "pushed",
 	});
 
 	const parsedData: GithubRepoMeta[] = data.map((repoMeta: any) => {
@@ -434,7 +436,7 @@ async function main(): Promise<void> {
 
 	const localMeta = {
 		projects: groupedMeta,
-		totalProjects: ungroupedMeta.length,
+		totalProjects: ungroupedMeta.length - dontCount.length,
 		totalCommits: totalContributions,
 		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
 	};
@@ -442,6 +444,17 @@ async function main(): Promise<void> {
 	writeFileSync(
 		join(process.cwd(), "ghmeta.json"),
 		JSON.stringify(localMeta),
+	);
+
+	/* summary */
+	console.log("Overall available repos count: ", ungroupedMeta.length);
+
+	console.log("No card - Ignored repos count: ", ignore.length);
+	console.log("DontCount size: ", dontCount.length);
+
+	console.log(
+		"Final repos count = (Overall - DontCount) : ",
+		localMeta.totalProjects,
 	);
 }
 

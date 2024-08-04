@@ -1,12 +1,38 @@
 {
 	"ignore": [
+		"Richie-JS-Demo",
+		"Hawk-JS-Demo",
+		"Minomax-Demo",
+		".github",
+		"demo-repository",
+		"first-hunt",
+		"BONSE-WebApp",
+		"opensource-page",
+		"Template-repo",
 		"pixteroid-demo",
 		"handstop-demo",
-		"demo-repository",
-		".github",
-		"first-hunt",
+		"Fastimage-API",
+		".github"
+	],
+	"dontCount": [
+		"Richie-JS-DocSite",
+		"Hawk-JS-DocSite",
+		"Minomax-DocSite",
 		"Minomax-Demo",
+		"Richie-JS-Demo",
 		"Hawk-JS-Demo",
-		"Richie-JS-Demo"
+		".github",
+		"demo-repository",
+		"first-hunt",
+		"BONSE-WebApp",
+		"Colibit",
+		"opensource-page",
+		"Github-Admin",
+		"Template-repo",
+		"SEO-KW-Filter",
+		"pixteroid-demo",
+		"handstop-demo",
+		"Fastimage-API",
+		".github"
 	]
 }
