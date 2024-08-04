@@ -94,7 +94,7 @@ async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
 		username: username,
 		type: "all",
 		per_page: 100,
-		sort: "pushed",
+		sort: "created",
 	});
 
 	const parsedData: GithubRepoMeta[] = data.map((repoMeta: any) => {

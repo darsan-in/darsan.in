@@ -82,7 +82,7 @@ async function getReposMeta(username) {
         username: username,
         type: "all",
         per_page: 100,
-        sort: "pushed",
+        sort: "created",
     });
     const parsedData = data.map((repoMeta) => {
         return parseRepoMeta(repoMeta);
