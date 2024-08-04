@@ -6,23 +6,6 @@ import { fetchDataForAllYears } from "./get-contribs.js";
 /* @ts-ignore */
 import { dontCount, ignore } from "./ignore.json";
 
-class RequestOption {
-	hostname: string = "api.github.com";
-	headers: Record<string, string> = {
-		"user-agent": "Node.js",
-		Authorization: `token ${process.env.GITHUB_TOKEN}`,
-		Accept: "application/vnd.github+json",
-	};
-	path: string = ``;
-	searchParams: Record<string, string | number> = {
-		type: "all",
-		per_page: 100,
-	};
-	constructor(path: string) {
-		this.path = path;
-	}
-}
-
 function convertDate(dateString: string): string {
 	const date = new Date(dateString);
 
@@ -53,23 +36,23 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 		name: ghResponse.name ?? "",
 		owner: {
 			login: ghResponse.owner?.login ?? "",
-			type: ghResponse.owner?.type ?? "",
+			/* type: ghResponse.owner?.type ?? "", */
 		},
 		htmlUrl: ghResponse.html_url ?? "",
 		description: ghResponse.description ?? "",
-		fork: ghResponse.fork ?? "",
+		/* fork: ghResponse.fork ?? "", */
 		url: ghResponse.url ?? "",
-		releasesUrl: ghResponse.releases_url ?? "",
-		languagesUrl: ghResponse.languages_url ?? "",
-		contributorsUrl: ghResponse.contributors_url ?? "",
+		/* releasesUrl: ghResponse.releases_url ?? "", */
+		/* languagesUrl: ghResponse.languages_url ?? "", */
+		/* contributorsUrl: ghResponse.contributors_url ?? "", */
 		createdAt: ghResponse.created_at ?? "",
 		updatedAt: ghResponse.updated_at ?? "",
 		homepage: ghResponse.homepage ?? "",
-		stargazersCount: ghResponse.stargazers_count ?? "",
-		watchersCount: ghResponse.watchers_count ?? "",
+		/* stargazersCount: ghResponse.stargazers_count ?? "", */
+		/* watchersCount: ghResponse.watchers_count ?? "", */
 		language: ghResponse.language ?? "",
-		forksCount: ghResponse.forks_count ?? "",
-		archived: ghResponse.archived ?? "",
+		/* forksCount: ghResponse.forks_count ?? "", */
+		/* archived: ghResponse.archived ?? "", */
 		openIssuesCount: ghResponse.open_issues_count ?? "",
 		license: {
 			name: ghResponse.license?.name ?? "",
@@ -79,14 +62,18 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 	};
 }
 
-async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
+async function initOctokit() {
 	const { Octokit } = await import("@octokit/rest");
 
-	const octakit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+	return new Octokit({ auth: process.env.GITHUB_TOKEN });
+}
+
+async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
+	const octokit = await initOctokit();
 
 	const {
 		repos: { listForAuthenticatedUser },
-	} = octakit.rest;
+	} = octokit.rest;
 
 	const reposMeta: GithubRepoMeta[] = [];
 
@@ -112,18 +99,25 @@ async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
 		let loc: number = 0;
 
 		try {
-			languagesMeta = await getLanguagesMeta(repoMeta.languagesUrl ?? "");
+			languagesMeta = await getLanguagesMeta(
+				repoMeta.owner.login,
+				repoMeta.name,
+			);
 			/* Calculate LOC */
-			loc = await countLOC(repoMeta.htmlUrl);
+			loc = await countLOC(repoMeta.owner.login, repoMeta.name);
 
 			/* Calculate percentage of the language meta */
 			languagesMeta = calculateLangUtilPercentage(languagesMeta);
 
-			delete repoMeta.languagesUrl;
+			latestVersion = await getLatestVersion(
+				repoMeta.owner.login,
+				repoMeta.name,
+			);
 
-			latestVersion = await getLatestVersion(repoMeta.releasesUrl ?? "");
-
-			downloadCount = await getDownloadCount(repoMeta.htmlUrl);
+			downloadCount = await getDownloadCount(
+				repoMeta.owner.login,
+				repoMeta.name,
+			);
 		} catch (err) {
 			console.log(err);
 			console.log(
@@ -192,108 +186,107 @@ function calculateLangUtilPercentage(
 }
 
 function getLanguagesMeta(
-	languageURL: string,
+	owner: string,
+	repoName: string,
 ): Promise<Record<string, number>> {
 	return new Promise((resolve, reject) => {
-		const path = new URL(languageURL).pathname;
-		const options = new RequestOption(path);
+		initOctokit()
+			.then((octokit) => {
+				const {
+					repos: { listLanguages },
+				} = octokit;
 
-		get(options, (response) => {
-			let data = "";
-
-			response.on("data", (chunk) => {
-				data += chunk;
-			});
-
-			response.on("end", () => {
-				if (response.statusCode === 200) {
-					const languagesMeta: Record<string, number> = JSON.parse(data);
-
-					resolve(languagesMeta);
-				} else {
-					reject(response.statusCode);
-				}
-			});
-		}).on("error", (err) => {
-			reject(err);
-		});
+				listLanguages({ owner: owner, repo: repoName })
+					.then((response) => {
+						resolve(response.data ?? {});
+					})
+					.catch((_err) => {
+						resolve({});
+					});
+			})
+			.catch(reject);
 	});
 }
 
-function getLatestVersion(releasesUrl: string): Promise<string | boolean> {
+async function getLatestVersion(
+	owner: string,
+	repo: string,
+): Promise<string | boolean> {
 	return new Promise((resolve, reject) => {
-		const parsedUrl = new URL(`${releasesUrl.slice(0, -5)}/latest`);
-		const options = new RequestOption(parsedUrl.pathname);
+		initOctokit()
+			.then((octokit) => {
+				const {
+					rest: {
+						repos: { getLatestRelease },
+					},
+				} = octokit;
 
-		get(options, (response) => {
-			let data = "";
-
-			response.on("data", (chunk) => {
-				data += chunk;
-			});
-
-			response.on("end", () => {
-				if (response.statusCode === 200) {
-					const latestVersion: string | boolean =
-						JSON.parse(data)?.tag_name ?? false;
-					resolve(latestVersion);
-				} else {
-					resolve(false);
-				}
-			});
-		}).on("error", (err) => {
-			reject(err);
-		});
+				getLatestRelease({ owner: owner, repo: repo })
+					.then((releaseMeta) => {
+						resolve(releaseMeta.data?.tag_name ?? false);
+					})
+					.catch((_err) => {
+						resolve(false);
+					});
+			})
+			.catch(reject);
 	});
 }
 
 function isNodejsProject(
-	userName: string,
+	owner: string,
 	repoName: string,
 ): Promise<boolean | string> {
-	const options = {
-		hostname: "raw.githubusercontent.com",
-		headers: {
-			"user-agent": "Node.js",
-			Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-			Accept: "application/json",
-		},
-		path: `/${userName}/${repoName}/main/package.json`,
-	};
-
 	return new Promise((resolve, reject) => {
-		get(options, (response) => {
-			let data: string = "";
+		initOctokit()
+			.then((octokit) => {
+				const {
+					rest: {
+						repos: { getContent },
+					},
+				} = octokit;
 
-			response.on("data", (chunk) => {
-				data += chunk;
-			});
+				getContent({
+					owner: owner,
+					repo: repoName,
+					ref: "main",
+					path: "package.json",
+				})
+					.then((response) => {
+						if (response.status === 200) {
+							try {
+								const nodejsPackageName = JSON.parse(
+									response.data.toString(),
+								)?.name;
 
-			response.on("end", () => {
-				if (response.statusCode === 200) {
-					const packageName: string = JSON.parse(data).name;
-					resolve(packageName);
-				} else {
-					resolve(false);
-				}
-			});
-		}).on("error", (err) => {
-			reject(err);
-		});
+								resolve(nodejsPackageName);
+							} catch {
+								resolve(false);
+							}
+						} else {
+							resolve(false);
+						}
+					})
+					.catch((_err) => {
+						resolve(false);
+					});
+			})
+			.catch(reject);
 	});
 }
 
-async function getDownloadCount(htmlUrl: string): Promise<number> {
-	const [userName, repoName] = htmlUrl.slice(19).split("/");
-
+async function getDownloadCount(
+	owner: string,
+	repoName: string,
+): Promise<number> {
 	const nodejsPackageName: string | boolean = await isNodejsProject(
-		userName,
+		owner,
 		repoName,
 	);
 
 	return new Promise((resolve, reject) => {
 		const npmEndpoint: string = `/npm/d18m/${nodejsPackageName}?label=%20&cacheSeconds=60`;
-		const githubEndpoint: string = `/github/downloads-pre/${userName}/${repoName}/latest/total?sort=date&label=%20&cacheSeconds=60`;
+		const githubEndpoint: string = `/github/downloads-pre/${owner}/${repoName}/latest/total?sort=date&label=%20&cacheSeconds=60`;
 
 		const options = {
 			hostname: "img.shields.io",
@@ -329,16 +322,42 @@ async function getDownloadCount(htmlUrl: string): Promise<number> {
 	});
 }
 
-async function countLOC(repoURL: string): Promise<number> {
-	try {
-		const locMetaFilePath: string = `${repoURL}/raw/main/loc-meta.json`;
-		const rawResponse = await fetch(locMetaFilePath);
-		const jsonResponse = await rawResponse.json();
+async function countLOC(owner: string, repoName: string): Promise<number> {
+	return new Promise((resolve, reject) => {
+		initOctokit()
+			.then((octokit) => {
+				const {
+					rest: {
+						repos: { getContent },
+					},
+				} = octokit;
 
-		return jsonResponse.SUM?.code;
-	} catch {
-		return 0;
-	}
+				getContent({
+					owner: owner,
+					repo: repoName,
+					ref: "main",
+					path: "loc-meta.json",
+				})
+					.then((response) => {
+						if (response.status === 200) {
+							try {
+								const LOC = JSON.parse(response.data.toString())?.SUM
+									?.code;
+
+								resolve(LOC);
+							} catch {
+								resolve(0);
+							}
+						} else {
+							resolve(0);
+						}
+					})
+					.catch((_err) => {
+						resolve(0);
+					});
+			})
+			.catch(reject);
+	});
 }
 
 function getOverallDownloadCounts(ghMetas: GithubRepoMeta[]): number {
@@ -355,51 +374,7 @@ function getOverallDownloadCounts(ghMetas: GithubRepoMeta[]): number {
 	return overallDownloadCounts;
 }
 
-/* @ts-ignore */
-async function commitsCounter(urls: string[]): Promise<number> {
-	let overallCommits: number = 0;
-
-	for (const url of urls) {
-		const commitsUrl = `${url}/commits`;
-		const options = new RequestOption(new URL(commitsUrl).pathname);
-
-		const totalRepoCommits: number = await new Promise(
-			(resolve, reject) => {
-				get(options, (response) => {
-					let data: string = "";
-
-					response.on("data", (chunk) => {
-						data += chunk;
-					});
-
-					response.on("end", () => {
-						if (response.statusCode === 200) {
-							const parsedData: Record<string, any>[] = JSON.parse(
-								data ?? "{}",
-							);
-							const totalRepoCommits: number = parsedData.length ?? 0;
-
-							resolve(totalRepoCommits);
-						} else {
-							console.log("⚠️Failed " + commitsUrl);
-							resolve(0);
-						}
-					});
-				}).on("error", (err) => {
-					reject(err);
-				});
-			},
-		);
-
-		overallCommits += totalRepoCommits;
-	}
-
-	return overallCommits;
-}
-
-async function getTotalContributions(
-	userName: string = "iamspdarsan",
-): Promise<number> {
+async function getTotalContributions(userName: string): Promise<number> {
 	const data: Record<string, any> = await fetchDataForAllYears(userName);
 
 	/* @ts-ignore */
@@ -426,18 +401,13 @@ async function main(): Promise<void> {
 	const mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
 	const groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
 
-	/* const processedMeta = { All: ungroupedMeta, ...groupedMeta }; */
-	/* 	const totalCommits = await commitsCounter(
-		[...ungroupedMeta].map((meta) => meta.url),
-	); */
-
-	const totalContributions: Awaited<number> =
-		await getTotalContributions();
+	const totalContributions: Awaited<number> = await getTotalContributions(
+		userName,
+	);
 
 	const localMeta = {
 		projects: groupedMeta,
-		totalProjects:
-			ungroupedMeta.length - (dontCount.length - ignore.length),
+		totalProjects: ungroupedMeta.length + ignore.length - dontCount.length,
 
 		totalCommits: totalContributions,
 		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
@@ -454,11 +424,9 @@ async function main(): Promise<void> {
 	console.log("DontCount size: ", dontCount.length);
 
 	console.log(
-		"Final repos count = ( Repo cards count - (DontCount - ignored length) ) : ",
+		"Final repos count = ( ungroupedMeta.length + ignore.length - dontCount.length ) : ",
 		localMeta.totalProjects,
 	);
 }
 
-main().catch((err) => {
-	console.log(err);
-});
+main().catch(console.log);
