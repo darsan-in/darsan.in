@@ -436,7 +436,9 @@ async function main(): Promise<void> {
 
 	const localMeta = {
 		projects: groupedMeta,
-		totalProjects: ungroupedMeta.length - dontCount.length,
+		totalProjects:
+			ungroupedMeta.length - (dontCount.length - ignore.length),
+
 		totalCommits: totalContributions,
 		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
 	};
@@ -447,13 +449,12 @@ async function main(): Promise<void> {
 	);
 
 	/* summary */
-	console.log("Overall available repos count: ", ungroupedMeta.length);
-
-	console.log("No card - Ignored repos count: ", ignore.length);
+	console.log("Repo cards count: ", ungroupedMeta.length);
+	console.log("Ignored repo cards count: ", ignore.length);
 	console.log("DontCount size: ", dontCount.length);
 
 	console.log(
-		"Final repos count = (Overall - DontCount) : ",
+		"Final repos count = ( Repo cards count - (DontCount - ignored length) ) : ",
 		localMeta.totalProjects,
 	);
 }
