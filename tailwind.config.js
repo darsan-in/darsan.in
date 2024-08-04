@@ -12,7 +12,7 @@ module.exports = {
 				secondary: "#E6CCFF",
 			},
 			boxShadow: {
-				"custom-light": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;",
+				"custom-light": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
 			},
 		},
 	},
