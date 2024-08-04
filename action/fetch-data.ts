@@ -1,16 +1,9 @@
 import { writeFileSync } from "fs";
 import { get } from "https";
-import { Octokit } from "octokit";
 import { join } from "path";
 import { GithubRepoMeta } from "./ds";
 import { fetchDataForAllYears } from "./get-contribs.js";
 import { ignore } from "./ignore.json";
-
-const octakit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-const {
-	repos: { listForAuthenticatedUser },
-} = octakit.rest;
 
 class RequestOption {
 	hostname: string = "api.github.com";
@@ -86,6 +79,14 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 }
 
 async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
+	const { Octokit } = await import("octokit");
+
+	const octakit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+	const {
+		repos: { listForAuthenticatedUser },
+	} = octakit.rest;
+
 	const reposMeta: GithubRepoMeta[] = [];
 
 	const { data } = await listForAuthenticatedUser({
