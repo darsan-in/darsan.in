@@ -25,7 +25,7 @@ export default function Works({
 				</div>
 			) : (
 				<>
-					<div className="max-w-screen-xl mx-auto px-12 md:text-center md:px-8">
+					<div className="max-w-screen-xl mx-auto px-12 md:text-center md:px-8 mt-12 pt-20">
 						<div className="max-w-xl md:mx-auto">
 							<h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
 								<span className="text-primary uppercase font-bold">

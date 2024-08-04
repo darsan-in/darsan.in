@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import style from "../styles/style.module.scss";
-import skills from "./skill-records";
+
 import { getRandomColor } from "./utils";
 
 export default function Skills({
 	iconSize,
 	color,
+	skills,
 }: {
 	iconSize: number;
 	color: string;
+	skills: { text: string; icon: any }[];
 }) {
 	useEffect(() => {
 		/* Skill hover animation */
@@ -43,7 +45,7 @@ export default function Skills({
 				return (
 					<div
 						className={
-							`flex justify-center items-center my-3 mx-0 ` + style.skills
+							`flex justify-center items-center mx-0 ` + style.skills
 						}
 						key={index}>
 						<SkillIcon

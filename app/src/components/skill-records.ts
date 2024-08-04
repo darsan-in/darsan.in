@@ -37,6 +37,7 @@ import {
 	SiArduino,
 	SiBurpsuite,
 	SiCplusplus,
+	SiDocker,
 	SiExpress,
 	SiFoodpanda,
 	SiGooglecloud,
@@ -57,68 +58,95 @@ import {
 } from "react-icons/si";
 import Office from "../icons/office";
 
-const skills: { text: string; icon: any }[] = [
-	{ text: "TypeScript", icon: BiLogoTypescript },
-	{ text: "JavaScript", icon: RiJavascriptFill },
-	{ text: "Python", icon: BiLogoPython },
-	{ text: "Flutter", icon: RiFlutterFill },
-	{ text: "Dart", icon: DiDart },
-	{ text: "Node", icon: FaNode },
-	{ text: "React", icon: RiReactjsFill },
+const skillRecords: Record<string, { text: string; icon: any }[]> = {
+	"Programming Languages": [
+		{ text: "TypeScript", icon: BiLogoTypescript },
+		{ text: "JavaScript", icon: RiJavascriptFill },
+		{ text: "Python", icon: BiLogoPython },
+		{ text: "Dart", icon: DiDart },
+		{ text: "PHP", icon: SiPhp },
+		{ text: "Java", icon: RiJavaFill },
+		{ text: "C & C++", icon: SiCplusplus },
+	],
 
-	{ text: "Next JS", icon: RiNextjsFill },
-	{ text: "Mongo DB", icon: BiLogoMongodb },
-	{ text: "Socket.io", icon: SiSocketdotio },
-	{ text: "Electron JS", icon: IoLogoElectron },
-	{ text: "PHP", icon: SiPhp },
+	"Frontend Development": [
+		{ text: "React", icon: RiReactjsFill },
+		{ text: "Next JS", icon: RiNextjsFill },
+		{ text: "Flutter", icon: RiFlutterFill },
+		{ text: "HTML", icon: IoLogoHtml5 },
+		{ text: "CSS", icon: IoLogoCss3 },
+		{ text: "SCSS", icon: BiLogoSass },
+		{ text: "Tailwind CSS", icon: RiTailwindCssFill },
+		{ text: "Jquery", icon: BiLogoJquery },
+		{ text: "Web Assembly", icon: SiWebassembly },
+		{ text: "Nextra", icon: SiNextra },
+		{ text: "Electron JS", icon: IoLogoElectron },
+	],
 
-	{ text: "WebPack", icon: SiWebpack },
-	{ text: "Gulp", icon: FaGulp },
-	{ text: "Github & CI", icon: IoLogoGithub },
-	{ text: "Git", icon: FaGitAlt },
-	{ text: "HTML", icon: IoLogoHtml5 },
+	"Backend Development": [
+		{ text: "Node", icon: FaNode },
+		{ text: "Express JS", icon: SiExpress },
+		{ text: "Django", icon: BiLogoDjango },
+		{ text: "Flask", icon: BiLogoFlask },
+		{ text: "Keystone JS", icon: SiKeystone },
+		{ text: "Passport JS", icon: SiPassport },
+		{ text: "Socket.io", icon: SiSocketdotio },
+	],
 
-	{ text: "CSS", icon: IoLogoCss3 },
-	{ text: "Tailwind CSS", icon: RiTailwindCssFill },
-	{ text: "SCSS", icon: BiLogoSass },
-	{ text: "Java", icon: RiJavaFill },
-	{ text: "C & C++", icon: SiCplusplus },
-	{ text: "Web Assembly", icon: SiWebassembly },
-	{ text: "My SQL", icon: GiDolphin },
-	{ text: "Linux", icon: FaLinux },
+	"Databases and Data Handling": [
+		{ text: "Mongo DB", icon: BiLogoMongodb },
+		{ text: "My SQL", icon: GiDolphin },
+		{ text: "Firebase", icon: RiFirebaseFill },
+		{ text: "GraphQL", icon: BiLogoGraphql },
+		{ text: "Pandas", icon: SiFoodpanda },
+		{ text: "Numpy", icon: SiNumpy },
+		{ text: "MatPlotlib", icon: MdScatterPlot },
+	],
 
-	{ text: "Windows", icon: RiWindowsFill },
-	{ text: "Free BSD", icon: FaFreebsd },
-	{ text: "GraphQL", icon: BiLogoGraphql },
-	{ text: "Firebase", icon: RiFirebaseFill },
-	{ text: "Jquery", icon: BiLogoJquery },
-	{ text: "Pandas", icon: SiFoodpanda },
-	{ text: "Numpy", icon: SiNumpy },
-	{ text: "Django", icon: BiLogoDjango },
+	"DevOps and CI/CD": [
+		{ text: "Github & CI", icon: IoLogoGithub },
+		{ text: "Git", icon: FaGitAlt },
+		{ text: "Jenkins", icon: FaJenkins },
+		{ text: "WebPack", icon: SiWebpack },
+		{ text: "Gulp", icon: FaGulp },
+		{ text: "AWS", icon: FaAws },
+		{ text: "Google Cloud", icon: SiGooglecloud },
+		{ text: "Docker", icon: SiDocker },
+	],
 
-	{ text: "Flask", icon: BiLogoFlask },
-	{ text: "Express JS", icon: SiExpress },
-	{ text: "Keystone JS", icon: SiKeystone },
-	{ text: "Passport JS", icon: SiPassport },
-	{ text: "MatPlotlib", icon: MdScatterPlot },
-	{ text: "Bash", icon: IoTerminal },
-	{ text: "CMD", icon: SiWindowsterminal },
-	{ text: "Photoshop", icon: SiAdobephotoshop },
-	{ text: "Illustrator", icon: SiAdobeillustrator },
-	{ text: "Penpot", icon: CiPenpot },
-	{ text: "MS Office", icon: Office },
-	{ text: "SEO", icon: SiGooglesearchconsole },
-	{ text: "Puppeteer", icon: SiPuppeteer },
-	{ text: "Jest", icon: SiJest },
-	{ text: "Selenium", icon: SiSelenium },
-	{ text: "Jenkins", icon: FaJenkins },
-	{ text: "Nextra", icon: SiNextra },
-	{ text: "AWS", icon: FaAws },
-	{ text: "Google Cloud", icon: SiGooglecloud },
-	{ text: "Wireshark", icon: SiWireshark },
-	{ text: "Burp Suite", icon: SiBurpsuite },
-	{ text: "Nmap", icon: GiEyeTarget },
-	{ text: "Arduino", icon: SiArduino },
-];
+	"Test Automation": [
+		{ text: "Puppeteer", icon: SiPuppeteer },
+		{ text: "Jest", icon: SiJest },
+		{ text: "Selenium", icon: SiSelenium },
+	],
 
-export default skills;
+	"Network Security Tools": [
+		{ text: "Wireshark", icon: SiWireshark },
+		{ text: "Burp Suite", icon: SiBurpsuite },
+		{ text: "Nmap", icon: GiEyeTarget },
+	],
+
+	"Operating Systems": [
+		{ text: "Linux", icon: FaLinux },
+		{ text: "Windows", icon: RiWindowsFill },
+		{ text: "Free BSD", icon: FaFreebsd },
+	],
+
+	"Design Tools": [
+		{ text: "Photoshop", icon: SiAdobephotoshop },
+		{ text: "Illustrator", icon: SiAdobeillustrator },
+		{ text: "Penpot", icon: CiPenpot },
+	],
+
+	"Development and Productivity Tools": [
+		{ text: "Bash", icon: IoTerminal },
+		{ text: "CMD", icon: SiWindowsterminal },
+		{ text: "MS Office", icon: Office },
+	],
+
+	"Digital Marketing": [{ text: "SEO", icon: SiGooglesearchconsole }],
+
+	"IOT & Hardwares": [{ text: "Arduino", icon: SiArduino }],
+};
+
+export default skillRecords;

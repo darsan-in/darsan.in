@@ -8,6 +8,7 @@ import Experience from "./experience";
 import Footer from "./footer";
 import Loading from "./loading";
 import Quote from "./quote";
+import skillRecords from "./skill-records";
 import Skills from "./skills";
 import Topnav from "./topnav";
 import { ShortMessage } from "./ui-utils";
@@ -50,7 +51,7 @@ export default function HomePage() {
 						<Topnav />
 						<section className="px-6">
 							<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
-								<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
+								<div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl mb-20 pb-12">
 									<h1 className="text-primary font-medium animate-pulse">
 										<ShortMessage
 											totalProjects={localMeta.totalProjects}
@@ -104,22 +105,29 @@ export default function HomePage() {
 							<div
 								className="mt-20 px-4 py-10 md:px-8"
 								id="skills">
-								<p className="text-center text-4xl text-gray-700 font-semibold">
+								<p className="text-center text-4xl text-gray-700 font-semibold mb-10">
 									<span className="text-primary font-bold uppercase">
 										Technical Skills:
 									</span>{" "}
 									Have Experience with Numerous Technologies.
 								</p>
-
-								<div
-									className={
-										"flex justify-center items-center text-center flex-wrap gap-x-12 gap-y-6 text-sm w-100 px-20 my-10"
-									}>
-									<Skills
-										color="#4B5563"
-										iconSize={40}
-									/>
-								</div>
+								{Object.keys(skillRecords).map((skillsCat) => (
+									<div className="py-7">
+										<p className="text-center text-2xl text-primary font-bold uppercase mb-8">
+											{skillsCat}
+										</p>
+										<div
+											className={
+												"flex justify-center items-center text-center flex-wrap gap-x-12 gap-y-6 text-sm w-100 px-20 shadow-custom-light pb-10 rounded-3xl"
+											}>
+											<Skills
+												color="#4B5563"
+												iconSize={40}
+												skills={skillRecords[skillsCat]}
+											/>
+										</div>
+									</div>
+								))}
 							</div>
 						</section>
 						<Works projectsMeta={localMeta.projects ?? {}} />
