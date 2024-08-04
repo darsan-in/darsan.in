@@ -1,9 +1,16 @@
 import { writeFileSync } from "fs";
 import { get } from "https";
+import { Octokit } from "octokit";
 import { join } from "path";
 import { GithubRepoMeta } from "./ds";
 import { fetchDataForAllYears } from "./get-contribs.js";
 import { ignore } from "./ignore.json";
+
+const octakit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+const {
+	repos: { listForAuthenticatedUser },
+} = octakit.rest;
 
 class RequestOption {
 	hostname: string = "api.github.com";
@@ -78,88 +85,62 @@ function parseRepoMeta(ghResponse: Record<string, any>): GithubRepoMeta {
 	};
 }
 
-interface repoFetchOption {
-	name: string;
-	isUser: boolean;
-}
+async function getReposMeta(username: string): Promise<GithubRepoMeta[]> {
+	const reposMeta: GithubRepoMeta[] = [];
 
-function getReposMeta(user: repoFetchOption): Promise<GithubRepoMeta[]> {
-	const path = user.isUser
-		? `/users/${user.name}/repos`
-		: `/orgs/${user.name}/repos`;
-	const options = new RequestOption(path);
-
-	return new Promise((resolve, reject) => {
-		get(options, (res) => {
-			let data: string = "";
-
-			res.on("data", (chunk) => {
-				data += chunk;
-			});
-
-			res.on("end", async () => {
-				if (res.statusCode === 200) {
-					const ghResponse: Record<string, any>[] = JSON.parse(data);
-
-					const reposMeta: GithubRepoMeta[] = [];
-
-					for (const repoMetaRaw of ghResponse) {
-						const repoMeta: GithubRepoMeta = parseRepoMeta(repoMetaRaw);
-
-						if (ignore.includes(repoMeta.name)) {
-							continue;
-						}
-
-						let languagesMeta: Record<string, number> = {};
-						let latestVersion: string | boolean = "";
-						let downloadCount: number = 0;
-						let loc: number = 0;
-						try {
-							languagesMeta = await getLanguagesMeta(
-								repoMeta.languagesUrl ?? "",
-							);
-							/* Calculate LOC */
-							loc = countLOC(languagesMeta);
-
-							/* Calculate percentage of the language meta */
-							languagesMeta = calculateLangUtilPercentage(languagesMeta);
-
-							delete repoMeta.languagesUrl;
-
-							latestVersion = await getLatestVersion(
-								repoMeta.releasesUrl ?? "",
-							);
-
-							downloadCount = await getDownloadCount(repoMeta.htmlUrl);
-						} catch (err) {
-							console.log(err);
-							console.log(
-								"\n⚠️ Error Getting languages meta or latest version or download count",
-							);
-						}
-
-						reposMeta.push({
-							...repoMeta,
-							createdAt: convertDate(repoMeta.createdAt),
-							updatedAt: convertDate(repoMeta.updatedAt),
-							languagesMeta: languagesMeta,
-							latestVersion: latestVersion,
-							downloadCount: downloadCount,
-							loc: loc,
-							language:
-								repoMeta.language === "" ? "Other" : repoMeta.language,
-						});
-					}
-
-					resolve(reposMeta);
-				} else {
-					reject("Error code:" + res.statusCode);
-				}
-			});
-		}).on("error", (err: Error) => {
-			reject(err);
-		});
+	const { data } = await listForAuthenticatedUser({
+		username: username,
+		type: "all",
+		per_page: 100,
 	});
+
+	const parsedData: GithubRepoMeta[] = data.map((repoMeta: any) => {
+		return parseRepoMeta(repoMeta);
+	});
+
+	for (const repoMeta of parsedData) {
+		if (ignore.includes(repoMeta.name)) {
+			continue;
+		}
+
+		let languagesMeta: Record<string, number> = {};
+		let latestVersion: string | boolean = "";
+		let downloadCount: number = 0;
+		let loc: number = 0;
+
+		try {
+			languagesMeta = await getLanguagesMeta(repoMeta.languagesUrl ?? "");
+			/* Calculate LOC */
+			loc = await countLOC(repoMeta.htmlUrl);
+
+			/* Calculate percentage of the language meta */
+			languagesMeta = calculateLangUtilPercentage(languagesMeta);
+
+			delete repoMeta.languagesUrl;
+
+			latestVersion = await getLatestVersion(repoMeta.releasesUrl ?? "");
+
+			downloadCount = await getDownloadCount(repoMeta.htmlUrl);
+		} catch (err) {
+			console.log(err);
+			console.log(
+				"\n⚠️ Error Getting languages meta or latest version or download count",
+			);
+		}
+
+		reposMeta.push({
+			...repoMeta,
+			createdAt: convertDate(repoMeta.createdAt),
+			updatedAt: convertDate(repoMeta.updatedAt),
+			languagesMeta: languagesMeta,
+			latestVersion: latestVersion,
+			downloadCount: downloadCount,
+			loc: loc,
+			language: repoMeta.language === "" ? "Other" : repoMeta.language,
+		});
+	}
+
+	return reposMeta;
 }
 
 function getMostUsedLanguages(rawGHMEta: GithubRepoMeta[]): string[] {
@@ -235,26 +216,6 @@ function getLanguagesMeta(
 		});
 	});
 }
-
-const loadGithubMeta = async () => {
-	/* GitHub page owners whose projects you have worked on */
-	const workedOn: repoFetchOption[] = [
-		{ name: "iamspdarsan", isUser: true },
-		{ name: "cresteem", isUser: false },
-	];
-
-	const reposMeta: GithubRepoMeta[] = [];
-
-	for (const page of workedOn) {
-		const currentPageReposMeta: GithubRepoMeta[] = await getReposMeta(
-			page,
-		);
-		/* filter */
-
-		reposMeta.push(...currentPageReposMeta);
-	}
-	return reposMeta;
-};
 
 function getLatestVersion(releasesUrl: string): Promise<string | boolean> {
 	return new Promise((resolve, reject) => {
@@ -365,46 +326,12 @@ async function getDownloadCount(htmlUrl: string): Promise<number> {
 	});
 }
 
-function countLOC(languagesMeta: Record<string, number>): number {
-	const sum = Object.values(languagesMeta).reduce(
-		(accumulator, currentValue) => accumulator + currentValue,
-		0,
-	);
-	const charPerline = 80;
-	return sum / charPerline;
-}
+async function countLOC(repoURL: string): Promise<number> {
+	const locMetaFilePath: string = `${repoURL}/raw/main/loc-meta.json`;
+	const rawResponse = await fetch(locMetaFilePath);
+	const jsonResponse = await rawResponse.json();
 
-async function main(): Promise<void> {
-	let ungroupedMeta: GithubRepoMeta[] = [];
-	try {
-		ungroupedMeta = await loadGithubMeta();
-	} catch (err) {
-		console.log(err);
-		process.exit(1);
-	}
-
-	const mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
-	const groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
-
-	/* const processedMeta = { All: ungroupedMeta, ...groupedMeta }; */
-	/* 	const totalCommits = await commitsCounter(
-		[...ungroupedMeta].map((meta) => meta.url),
-	); */
-
-	const totalContributions: Awaited<number> =
-		await getTotalContributions();
-
-	const localMeta = {
-		projects: groupedMeta,
-		totalProjects: ungroupedMeta.length,
-		totalCommits: totalContributions,
-		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
-	};
-
-	writeFileSync(
-		join(process.cwd(), "ghmeta.json"),
-		JSON.stringify(localMeta),
-	);
+	return jsonResponse.SUM?.code;
 }
 
 function getOverallDownloadCounts(ghMetas: GithubRepoMeta[]): number {
@@ -476,6 +403,41 @@ async function getTotalContributions(
 	);
 
 	return totalContributions;
+}
+
+async function main(): Promise<void> {
+	const userName: string = "iamspdarsan";
+
+	let ungroupedMeta: GithubRepoMeta[] = [];
+	try {
+		ungroupedMeta = await getReposMeta(userName);
+	} catch (err) {
+		console.log(err);
+		process.exit(1);
+	}
+
+	const mostUsedLanguages = getMostUsedLanguages(ungroupedMeta);
+	const groupedMeta = makeRepoGroups(mostUsedLanguages, ungroupedMeta);
+
+	/* const processedMeta = { All: ungroupedMeta, ...groupedMeta }; */
+	/* 	const totalCommits = await commitsCounter(
+		[...ungroupedMeta].map((meta) => meta.url),
+	); */
+
+	const totalContributions: Awaited<number> =
+		await getTotalContributions();
+
+	const localMeta = {
+		projects: groupedMeta,
+		totalProjects: ungroupedMeta.length,
+		totalCommits: totalContributions,
+		overallDownloadCounts: getOverallDownloadCounts(ungroupedMeta),
+	};
+
+	writeFileSync(
+		join(process.cwd(), "ghmeta.json"),
+		JSON.stringify(localMeta),
+	);
 }
 
 main().catch((err) => {

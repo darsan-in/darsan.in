@@ -1,0 +1,12 @@
+{
+    "ignore": [
+        "pixteroid-demo",
+        "handstop-demo",
+        "demo-repository",
+        ".github",
+        "first-hunt",
+        "Minomax-Demo",
+        "Hawk-JS-Demo",
+        "Richie-JS-Demo"
+    ]
+}
