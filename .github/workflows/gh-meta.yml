@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GHTOKEN }}
         run: |
-          node ./action/fetch-data.js
+          node ./action/dist/fetch-data.js
 
       - name: Commit and push changes
         env:
