@@ -18,13 +18,13 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 
 	return (
 		<section className="py-5">
-			<div className="max-w-screen-xl mx-auto px-4 md:px-8">
+			<div className="max-w-screen-xl mx-auto">
 				<ul className="mt-0 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					{projects.map((project, idx) => (
 						<li
 							className={"border rounded-lg " + style.workCard}
 							key={idx}>
-							<div className="flex items-start justify-between p-4 rounded-t-lg bg-secondary">
+							<div className="flex items-start justify-between p-6 sm:p-4 rounded-t-lg bg-primary/[20%]">
 								<div className="space-y-2">
 									<h4 className="text-black font-bold text-xl">
 										{project.name.toUpperCase()}
@@ -34,7 +34,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 								<div className="flex gap-2">
 									<a
 										href={project.htmlUrl + "#readme"}
-										target="_"
+										target="_blank"
 										className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white"
 										aria-label={"Visit github repo of " + project.name}
 										title={"Visit github repo of " + project.name}>
@@ -47,7 +47,7 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 									{project.homepage ? (
 										<a
 											href={project.homepage ?? ""}
-											target="_"
+											target="_blank"
 											className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white"
 											aria-label={
 												"Visit homepage of " + project.name + " project"

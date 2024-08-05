@@ -47,11 +47,11 @@ export default function HomePage() {
 				</div>
 			) : (
 				<>
-					<main className="px-10">
+					<main className="px-7 sm:px-10 mt-10 sm:mt-0">
 						<Topnav />
 						<section>
 							<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 justify-between overflow-hidden md:flex md:px-8">
-								<div className="flex-none space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl mb-20 pb-12">
+								<div className="flex-none space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl mb-20 pb-12 mt-5 sm:mt-0">
 									<h1 className="text-primary font-medium">
 										<ShortMessage
 											totalProjects={localMeta.totalProjects}
@@ -62,7 +62,7 @@ export default function HomePage() {
 										/>
 									</h1>
 
-									<h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
+									<h2 className="text-4xl text-gray-800 font-bold md:text-5xl">
 										<ShortInto />
 									</h2>
 
@@ -71,7 +71,7 @@ export default function HomePage() {
 									<div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
 										<a
 											href="#skills"
-											className="block py-2 px-4 text-center text-white font-medium bg-primary duration-150 hover:bg-secondary active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none hover:text-black">
+											className="block py-2 px-4 text-center text-white font-medium bg-primary duration-150 hover:bg-primary/[80%] active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
 											Explore more
 										</a>
 										<a
@@ -106,7 +106,7 @@ export default function HomePage() {
 								className="mt-20 px-4 py-10 md:px-8"
 								id="skills">
 								<p className="text-center text-4xl text-gray-700 font-semibold mb-10">
-									<span className="text-primary font-bold uppercase">
+									<span className="text-primary font-bold uppercase tracking-wider">
 										Technical Skills:
 									</span>{" "}
 									Have Experience with Numerous Technologies.
@@ -115,15 +115,14 @@ export default function HomePage() {
 									<div
 										className="py-7"
 										key={idx}>
-										<p className="text-center text-2xl text-primary font-bold uppercase mb-8">
+										<p className="text-center text-2xl text-primary font-semibold mb-8 tracking-widest">
 											{skillsCat}
 										</p>
 										<div
 											className={
-												"flex justify-center items-center text-center flex-wrap gap-x-12 gap-y-6 text-sm w-100 px-20 shadow-custom-light pb-10 rounded-3xl"
+												"flex justify-center items-center text-center flex-wrap gap-x-12 gap-y-6 text-sm w-100 px-3 sm:px-20 shadow-custom-light pb-10 rounded-3xl"
 											}>
 											<Skills
-												color="#4B5563"
 												iconSize={40}
 												skills={skillRecords[skillsCat]}
 											/>

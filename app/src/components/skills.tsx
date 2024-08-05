@@ -5,12 +5,10 @@ import { getRandomColor } from "./utils";
 
 export default function Skills({
 	iconSize,
-	color,
 	skills,
 }: {
 	iconSize: number;
-	color: string;
-	skills: { text: string; icon: any }[];
+	skills: { text: string; icon: any; color: string }[];
 }) {
 	useEffect(() => {
 		/* Skill hover animation */
@@ -51,11 +49,11 @@ export default function Skills({
 						<SkillIcon
 							className={`text-center ${style.skillIcon}`}
 							size={iconSize}
-							color={color}
+							color={skill.color}
 						/>
 						<p
 							className="text-center mx-2"
-							style={{ color: color }}>
+							style={{ color: "black" }}>
 							{skill.text}
 						</p>
 					</div>

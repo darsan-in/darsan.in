@@ -1,3 +1,4 @@
+import { BiLinkExternal } from "react-icons/bi";
 import { BsSuitcaseLg } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { RxCalendar } from "react-icons/rx";
@@ -43,7 +44,7 @@ const experiences = [
 
 export default () => (
 	<section
-		className="py-20 px-6"
+		className="py-20"
 		id="experience">
 		<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
 			<div className="max-w-1xl md:mx-auto">
@@ -66,16 +67,16 @@ export default () => (
 						}>
 						<a
 							href={item.path}
-							target="_"
+							target="_blank"
 							className="space-y-3">
 							<div className="flex items-center gap-x-3">
 								<div className="bg-white w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
 									<div className="w-12">{item.company_icon}</div>
 								</div>
 								<div>
-									<span className="block text-sm text-primary font-medium">
-										{item.company_name}
-									</span>
+									<p className="flex text-sm text-primary font-medium items-center gap-x-2">
+										{item.company_name} <BiLinkExternal />
+									</p>
 									<h3 className="text-base text-gray-800 font-semibold mt-1">
 										{item.job_title}
 									</h3>

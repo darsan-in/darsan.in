@@ -8,10 +8,10 @@ export default function LevelBars({
 	const barColours: string[] = getBarColours(Object.values(languagesMeta));
 
 	return (
-		<div className="flex-col w-full p-5">
+		<div className="flex-col w-[90%] p-5">
 			{Object.keys(languagesMeta).map((language, idx) => (
 				<div
-					className="mb-4 flex"
+					className="mb-4 flex justify-around"
 					key={idx}>
 					<p className="text-sm font-semibold min-w-[24%]">{language}:</p>
 					<div className="flex bg-stroke dark:bg-dark-3 relative h-4 w-[60%] rounded-2xl">

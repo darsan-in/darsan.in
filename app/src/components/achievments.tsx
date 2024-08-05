@@ -23,7 +23,7 @@ export default () => {
 
 	return (
 		<section
-			className="py-14 px-20"
+			className="py-14"
 			id="achievments">
 			<div className="max-w-screen-xl mx-auto px-4 text-center text-gray-600 md:px-8">
 				<div className="max-w-2xl mx-auto">
@@ -42,7 +42,7 @@ export default () => {
 							<li
 								key={idx}
 								className="space-y-3">
-								<div className="w-12 h-12 mx-auto bg-secondary text-primary rounded-full flex items-center justify-center">
+								<div className="w-12 h-12 mx-auto bg-primary/[15%] text-primary rounded-full flex items-center justify-center">
 									{item.icon}
 								</div>
 								<h4 className="text-lg text-gray-800 font-semibold">

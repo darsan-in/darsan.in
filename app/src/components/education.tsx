@@ -6,7 +6,7 @@ export default () => {
 			title: (
 				<>
 					{" "}
-					<span className="bg-secondary p-2 rounded-full">
+					<span className="bg-primary/[15%] p-2 rounded-full">
 						<RiCodeSSlashLine size={21} />
 					</span>{" "}
 					Bachelor in Science (2018 - 2021)
@@ -29,7 +29,7 @@ export default () => {
 			title: (
 				<>
 					{" "}
-					<span className="bg-secondary p-2 rounded-full">
+					<span className="bg-primary/[15%] p-2 rounded-full">
 						<RiRobot2Line size={22} />
 					</span>{" "}
 					Master in Science (2021 - 2023)
@@ -56,7 +56,7 @@ export default () => {
 	];
 
 	return (
-		<div className="leading-relaxed mx-4 md:mx-8 pb-10 mt-20 pt-10 px-6">
+		<div className="leading-relaxed mx-4 md:mx-8 pb-10 mt-20 pt-10">
 			<div className="text-center space-y-3">
 				<h1 className="block text-4xl font-bold text-primary">
 					Educational Background
@@ -72,7 +72,7 @@ export default () => {
 				<div className="grid gap-4 py-8 md:grid-cols-2">
 					{degrees.map((item, idx) => (
 						<div
-							className="space-y-3 mt-6 px-8"
+							className="space-y-3 mt-6 px-10 py-0 lg:py-10"
 							key={idx}>
 							<p className="text-gray-800 text-xl font-bold text-primary flex gap-x-4 items-center">
 								{item.title}

@@ -52,22 +52,18 @@ body:has(.skillIcon:hover) {
 	.innerContainer > a > p {
 		display: none;
 	}
-	.innerContainer ~ button {
+	.innerContainer ~ a {
 		width: 6rem;
 		height: 0.4rem;
 		font-size: 0.7rem;
 	}
-	.innerContainer ~ button > svg {
+	.innerContainer ~ a > svg {
 		display: none;
 	}
 }
-@media screen and (max-width: 450px) and (min-width: 395px) {
-	.innerContainer ~ button {
-		display: none;
-	}
-}
+
 @media screen and (max-width: 450px) {
-	.innerContainer ~ button {
+	.innerContainer ~ a {
 		margin: auto;
 		margin-top: 10px;
 		text-align: center;
@@ -84,18 +80,11 @@ body:has(.skillIcon:hover) {
 /* Experience card ended*/
 
 @media screen and (max-width: 1200px) {
-	.name {
-		font-size: 5rem;
-	}
 	.navs a {
 		font-size: 1rem;
 	}
 }
-@media screen and (max-width: 1000px) {
-	.name {
-		font-size: 4rem;
-	}
-}
+
 @media screen and (max-width: 850px) {
 	.navs {
 		display: none;
@@ -110,19 +99,6 @@ body:has(.skillIcon:hover) {
 		font-size: 10px;
 	}
 }
-@media screen and (max-width: 500px) {
-	.name {
-		font-size: 3rem;
-		padding-left: 4.5%;
-	}
-}
-
-@media screen and (max-width: 500px) {
-	.name {
-		font-size: 2rem;
-		padding-left: 4.5%;
-	}
-}
 
 @media screen and (max-width: 580px) {
 	.expItems {
@@ -130,5 +106,14 @@ body:has(.skillIcon:hover) {
 		align-items: start;
 		position: relative;
 		left: -3%;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	.name {
+		font-size: 6.5ch;
+	}
+	.stats {
+		font-size: 1.3ch;
 	}
 }

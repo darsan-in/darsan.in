@@ -21,30 +21,15 @@ export default function RootLayout({
 
 	return (
 		<html lang="en">
-			<head>
-				<link
-					rel="preconnect"
-					href="https://fonts.googleapis.com"
-				/>
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin=""
-				/>
-				<link
-					href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mochiy+Pop+One&display=swap"
-					rel="stylesheet"
-				/>
-			</head>
-
 			<body>
-				<header className="h-15 rounded-b-lg border border-indigo-100">
-					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8 flex flex-wrap">
+				<header className="h-15 rounded-b-lg border border-indigo-100 flex sm:block">
+					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8 flex flex-wrap w-[60%] sm:w-[90%] mb-3 sm:mb-0">
 						<div
 							className={
 								"flex gap-x-4 text-sm text-black " + style.innerContainer
 							}>
 							<a
+								target="_blank"
 								href={`https://github.com/${communication.github}`}
 								className="flex gap-x-2"
 								aria-label="Visit github page"
@@ -56,6 +41,7 @@ export default function RootLayout({
 							</a>
 
 							<a
+								target="_blank"
 								href={`https://www.linkedin.com/in/${communication.linkedin}`}
 								className="flex gap-x-2"
 								aria-label="Visit linkedin page"
@@ -67,6 +53,7 @@ export default function RootLayout({
 							</a>
 
 							<a
+								target="_blank"
 								href={`mailto:${communication.mail}`}
 								className="flex gap-x-2"
 								aria-label="Mail me"
@@ -78,6 +65,7 @@ export default function RootLayout({
 							</a>
 
 							<a
+								target="_blank"
 								href={`tel:${communication.phone}`}
 								className="flex gap-x-2"
 								aria-label="My contact number"
@@ -89,6 +77,7 @@ export default function RootLayout({
 							</a>
 
 							<a
+								target="_blank"
 								href="cv.pdf"
 								className="flex gap-x-2"
 								aria-label="Download my resume"

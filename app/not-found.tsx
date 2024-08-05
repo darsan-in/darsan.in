@@ -14,7 +14,7 @@ export default () => {
 					<div className="flex flex-wrap items-center justify-center gap-3">
 						<a
 							href="/"
-							className="block py-2 px-4 text-white font-medium bg-primary duration-150 hover:bg-secondary active:bg-secondary rounded-lg"
+							className="block py-2 px-4 text-white font-medium bg-primary duration-150 hover:bg-primary/[60%] active:bg-primary/[60%] rounded-lg"
 							aria-label="go back to home page"
 							title="go back to home page">
 							Go back
