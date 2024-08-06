@@ -97,7 +97,7 @@ export default function HomePage() {
 									<img
 										src="pp-t.webp"
 										className=" md:rounded-tl-[108px] w-85"
-										alt="Profile picture of PRIYADARSAN S / iamspdarsan"
+										alt="Profile picture of PRIYADARSAN S / darsan-in"
 									/>
 								</div>
 							</div>

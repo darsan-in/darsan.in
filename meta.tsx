@@ -1,6 +1,6 @@
 export const metainfo = {
 	title:
-		"The Multifaceted Talent of Priyadarsan S: Founder, Coder, Problem-Solver | @iamspdarsan",
+		"The Multifaceted Talent of Priyadarsan S: Founder, Coder, Problem-Solver | @darsan-in",
 	description:
 		"Discover why Priyadarsan, a founder, engineer, and digital innovator, could be your company's next valuable asset. Explore their journey, skills, and impact.",
 };
@@ -44,12 +44,12 @@ export const navigation = [
 ];
 
 export const communication = {
-	github: "iamspdarsan",
-	linkedin: "iamspdarsan",
+	github: "darsan-in",
+	linkedin: "darsan-in",
 	mail: "hello@darsan.in",
 	phone: "+91-6381866191",
-	npmjs: "iamspdarsan",
-	youtube: "iamspdarsan",
+	npmjs: "darsan.in",
+	youtube: "darsan-in",
 	huggingface: "darsan",
 };
 

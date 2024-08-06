@@ -33,7 +33,7 @@ export default () => {
 						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
 							<a
 								href={"https://github.com/" + communication.github}
-								target="_"
+								target="_blank"
 								aria-label="Visit my github page"
 								title="Visit my github page">
 								<FaGithub className="svg-icon w-6 h-6 text-black" />
@@ -43,7 +43,7 @@ export default () => {
 						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
 							<a
 								href={"https://linkedin.com/in/" + communication.linkedin}
-								target="_"
+								target="_blank"
 								aria-label="Visit my linkedin page"
 								title="Visit my linkedin page">
 								<FaLinkedin className="svg-icon w-6 h-6 text-blue-600" />
@@ -52,8 +52,8 @@ export default () => {
 
 						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
 							<a
-								href={"https://npmjs.com/~" + communication.github}
-								target="_"
+								href={"https://npmjs.com/~" + communication.npmjs}
+								target="_blank"
 								aria-label="Visit my npmjs page"
 								title="Visit my npmjs page">
 								<RiNpmjsFill className="svg-icon w-7 h-7 text-red-600" />
@@ -65,7 +65,7 @@ export default () => {
 								href={
 									"https://huggingface.co/" + communication.huggingface
 								}
-								target="_"
+								target="_blank"
 								aria-label="Visit my huggingface page"
 								title="Visit my huggingface page">
 								<Huggingface className="svg-icon w-7 h-7 text-blue-600" />
@@ -75,7 +75,7 @@ export default () => {
 						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
 							<a
 								href="https://wa.me/+916381866191"
-								target="_"
+								target="_blank"
 								aria-label="Chat me on Whatsapp"
 								title="Chat me on Whatsapp">
 								<IoLogoWhatsapp className="svg-icon w-7 h-7 text-green-600" />
@@ -84,7 +84,7 @@ export default () => {
 						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
 							<a
 								href={"https://www.youtube.com/@" + communication.youtube}
-								target="_"
+								target="_blank"
 								aria-label="Visit my youtube channel"
 								title="Visit my youtube channel">
 								<FaYoutube className="svg-icon w-7 h-7 text-red-600" />

@@ -19,9 +19,9 @@
 	"bin": {
 		"kinact": "./dist/bin/cli.js"
 	},
-	"repository": "https://github.com/iamspdarsan/kinact",
+	"repository": "https://github.com/darsan-in/kinact",
 	"bugs": {
-		"url": "https://github.com/iamspdarsan/kinact/issues"
+		"url": "https://github.com/darsan-in/kinact/issues"
 	},
 	"author": "DARSAN <darsan@cresteem.com>",
 	"maintainers": [

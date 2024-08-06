@@ -397,7 +397,7 @@ async function getTotalContributions(userName: string): Promise<number> {
 }
 
 async function main(): Promise<void> {
-	const userName: string = "iamspdarsan";
+	const userName: string = "darsan-in";
 
 	let ungroupedMeta: GithubRepoMeta[] = [];
 	try {

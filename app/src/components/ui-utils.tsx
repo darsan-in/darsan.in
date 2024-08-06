@@ -29,7 +29,7 @@ export const ShortMessage = ({
 			</li>
 			<li className="flex justify-center before:content-['•'] before:mr-1 before:text-red-500">
 				<p>
-					<span className="font-bold">{totalProjects}</span>+ projects
+					<span className="font-bold">{totalProjects}</span>+ Projects
 					completed
 				</p>
 			</li>

@@ -11,7 +11,7 @@ export default () => (
 				Tiredness of my body never limits my tireless, curious mind{" "}
 				<a
 					className="text-gray-400"
-					href="https://www.linkedin.com/in/iamspdarsan">
+					href="https://www.linkedin.com/in/darsan-in">
 					- Darsan
 				</a>
 			</q>
