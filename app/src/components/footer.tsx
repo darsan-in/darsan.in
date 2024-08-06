@@ -17,7 +17,7 @@ export default () => {
 						<p className="leading-relaxed mt-2 text-xl font-semibold">
 							PRIYADARSAN S, <br />
 							<span className="font-normal text-lg">
-								Tech Enthusiast & Dream Chaser
+								Tech Enthusiast & Lifelong Learner
 							</span>
 						</p>
 					</div>

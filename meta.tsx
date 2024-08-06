@@ -9,15 +9,33 @@ export const name: string = `DARSAN`;
 
 export const ShortInto = (): React.ReactNode => {
 	return (
-		<>
-			Founder <span className="text-primary">@Cresteem</span>, Prodigy in
-			Software Engineering, Automations & Digital Marketing.
-		</>
+		<p className="leading-tight">
+			Founder{" "}
+			<a
+				className="text-primary"
+				href="http://cresteem.com/">
+				@Cresteem
+			</a>
+			, Innovative Engineer & Solution Architect
+		</p>
 	);
 };
 
-export const summary: string =
-	"With a passion for innovation and an entrepreneurial mindset, I excel in software engineering, automations, and digital marketing. Embracing Grace Hopper's philosophy, 'This is what we've always done' is the most dangerous phrase in the language. I believe in challenging the status quo to create impactful solutions. Known for my expertise in TypeScript, JavaScript, Python, and contributions to open-source projects, I continually expand my skill set to lead teams toward groundbreaking achievements.";
+export const summary = (
+	<>
+		Passionate about transforming ideas into impactful solutions, I blend
+		technical expertise with strategic insight to drive excellence in every
+		project. With a focus on simplicity and efficiency, I leverage agile
+		methodologies to enhance development, deployment, and scaling
+		processes. My commitment to continuous improvement and creativity
+		ensures that I deliver solutions that are both effective and
+		groundbreaking. Eager to contribute to visionary projects and
+		collaborate with forward-thinking teams,{" "}
+		<span className="font-medium">
+			I aim to make a meaningful difference in the tech world.
+		</span>
+	</>
+);
 
 export const navigation = [
 	{ title: "Works", path: "#works" },

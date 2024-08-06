@@ -9,7 +9,11 @@ export default () => (
 			}>
 			<q className="text-lg font-normal text-gray-500">
 				Tiredness of my body never limits my tireless, curious mind{" "}
-				<a className="text-gray-400">- Darsan</a>
+				<a
+					className="text-gray-400"
+					href="https://www.linkedin.com/in/iamspdarsan">
+					- Darsan
+				</a>
 			</q>
 		</div>
 	</div>

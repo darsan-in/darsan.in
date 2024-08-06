@@ -50,9 +50,10 @@ export default () => (
 			<div className="max-w-1xl md:mx-auto">
 				<h3 className="w-full text-gray-800 text-3xl font-semibold sm:text-4xl">
 					<span className="text-primary uppercase font-bold">
-						Experiences:
+						&lt;Experiences/&gt;
 					</span>{" "}
-					Discover My Previous Endeavors.
+					Expertise Forged Through Dedication, Not Just the Passage of
+					Time.
 				</h3>
 			</div>
 		</div>

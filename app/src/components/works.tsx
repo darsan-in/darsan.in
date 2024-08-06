@@ -17,22 +17,36 @@ export default function Works({
 		<>
 			<div className="max-w-screen-xl mx-auto md:text-center md:px-8 mt-12 pt-20">
 				<div className="max-w-xl md:mx-auto">
-					<h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-						<span className="text-primary uppercase font-bold">
-							Projects:
+					<h3 className="text-gray-800 text-3xl font-bold sm:text-4xl">
+						<span className="text-primary uppercase">
+							&lt;Projects/&gt;
 						</span>{" "}
-						Crafting Digital Solutions with Precision and Innovation
+						That Reflect My Passion and Expertise.
 					</h3>
-					<p className="mt-3 text-gray-600">
-						Discover my extensive portfolio showcasing proficiency in
-						software engineering, automation, and digital marketing.
-						Projects like CareerBot automate job applications, while
-						Chatrix innovates IoT solutions. Notably, Hawk JS, Richie JS,
-						and Minomax enhance SEO strategies. With expertise in
-						TypeScript, Python, React.js, and more, these projects
-						exemplify my commitment to delivering impactful solutions
-						across diverse domains.
-					</p>
+					<div className="mt-3 text-gray-600 leading-loose text-center">
+						<p className="mb-1.5">
+							Discover a curated selection of projects that showcase my
+							dedication to crafting innovative and effective solutions. My
+							portfolio spans various fields, including advanced search
+							engines, web performance optimization, and workflow
+							automation, each designed to address real-world challenges
+							with precision and creativity.
+						</p>
+
+						<p className="mb-1.5">
+							These projects reflect a commitment to blending technical
+							skill with a deep understanding of user needs, ensuring that
+							each solution is not only functional but also impactful.
+							Whether you're seeking to enhance business operations or
+							develop next-generation tools, my work demonstrates a blend
+							of practical expertise and visionary thinking.
+						</p>
+
+						<p>
+							Explore these projects to see how I bring ideas to life and
+							drive progress in technology and business.
+						</p>
+					</div>
 				</div>
 			</div>
 			<Tabs.Root
