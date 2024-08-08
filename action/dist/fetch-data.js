@@ -283,7 +283,7 @@ async function getTotalContributions(userName) {
     return totalContributions;
 }
 async function main() {
-    const userName = "iamspdarsan";
+    const userName = "darsan-in";
     let ungroupedMeta = [];
     try {
         ungroupedMeta = await getReposMeta(userName);

@@ -93,10 +93,10 @@ export default function HomePage() {
 									</div>
 								</div>
 
-								<div className="flex-none mt-6 md:mt-0 md:max-w-xl">
+								<div className="flex-none mt-2 md:mt-0 md:max-w-xl">
 									<img
 										src="pp-t.webp"
-										className=" md:rounded-tl-[108px] w-85"
+										className="w-85 rounded-lg"
 										alt="Profile picture of PRIYADARSAN S / darsan-in"
 									/>
 								</div>

@@ -16,10 +16,85 @@ const experiences = [
 		),
 		company_name: "Cresteem",
 		job_title: "Founder & Software Engineer",
-		job_description:
-			"As the founder and software engineer at Cresteem, I initiated the development of open-source projects like Hawk JS, Richie JS, and Minomax, specializing in web development and SEO. Our vision is to enhance web development and digital marketing efficiency through our automated tools. These projects, released on npm and GitHub, highlight my expertise in managing the entire software lifecycle from development to production. With a solid grasp of software licensing and operational strategies as a company founder, I successfully led a dedicated team of three members.",
+		job_description: (
+			<div>
+				<p className="mb-3">
+					My journey in software development is anchored in a commitment to
+					innovation and excellence. As the founder and lead engineer at
+					Cresteem, I spearheaded the creation of cutting-edge projects
+					aimed at enhancing web development, search engine optimization,
+					and productivity. My leadership and technical skills were pivotal
+					in mentoring a team to develop impactful web solutions, such as
+					landing pages, blogging platforms, and web crawlers, while also
+					imparting valuable knowledge in SEO and continuous integration
+					through GitHub Actions.
+				</p>
+
+				<p className="mb-3">
+					Facing the challenges of a startup environment, I embraced
+					automation and rapidly expanded my portfolio, single-handedly
+					developing over 10 projects. Notable among these are{" "}
+					<a
+						href="https://hawkjs.cresteem.com"
+						className="font-medium">
+						Hawk JS
+					</a>
+					,{" "}
+					<a
+						href="https://richiejs.cresteem.com/"
+						className="font-medium">
+						Richie JS
+					</a>
+					,{" "}
+					<a
+						href="https://minomax.cresteem.com/"
+						className="font-medium">
+						Minomax
+					</a>
+					,{" "}
+					<a
+						href="https://bonse.cresteem.com/"
+						className="font-medium">
+						BONSE
+					</a>
+					,{" "}
+					<a
+						href="https://github.com/darsan-in/Div.js#readme"
+						className="font-medium">
+						Div.js
+					</a>
+					, and{" "}
+					<a
+						href="https://fastimage.darsan.in/"
+						className="font-medium">
+						Fastimage & API
+					</a>
+					—tools specifically designed to optimize web development and
+					search engine processes. My approach encompasses the entire
+					software lifecycle, from initial development and rigorous testing
+					to seamless deployment and continuous maintenance, all executed
+					with efficiency and precision through agile methodologies.
+				</p>
+
+				<p className="mb-3">
+					Driven by a visionary goal, I am working on creating a fully
+					autonomous digital robot capable of executing complex web
+					development tasks based solely on user requirements. This
+					ambitious project ties together my extensive experience and
+					diverse skill set in full-stack development, SEO, productivity
+					enhancement, and continuous integration.
+				</p>
+
+				<p>
+					With a proven track record of delivering high-impact solutions, I
+					am eager to bring my expertise to a leading technology company or
+					to collaborate with entrepreneurs seeking innovative, automated
+					solutions.
+				</p>
+			</div>
+		),
 		job_type: "Full-time",
-		location: "IN, TN, Nagapattinam",
+		location: "Remote",
 		path: "https://cresteem.com",
 		duration: experienceDuration("01-01-2023"),
 	},
@@ -33,12 +108,22 @@ const experiences = [
 		),
 		company_name: "Bluekode Solutions",
 		job_title: "Full Stack Developer",
-		job_description:
-			"During my internship at Bluekode Solutions, I spearheaded a dynamic team in crafting an innovative Online Billing Management System. Leveraging Django, JavaScript, and MySQL, we streamlined processes and enhanced user interaction, ensuring seamless integration and optimal performance. This experience fortified my leadership and technical skills, preparing me to drive impactful solutions in future endeavors.",
+		job_description: (
+			<p>
+				During my month-long internship at BlueKode Technology, I led a
+				team of three in developing an Online Billing Management System for
+				enterprises. Utilizing Python and Django, along with JavaScript and
+				MySQL, we created a robust solution that streamlined billing
+				processes and improved user experience. This role honed my
+				leadership abilities and technical skills, laying a strong
+				foundation for delivering innovative solutions in my future
+				projects.
+			</p>
+		),
 		job_type: "Intern",
 		location: "IN, TN, Coimbatore",
 		path: "https://www.bluekode.com",
-		duration: "2 Months",
+		duration: "1 Month",
 	},
 ];
 
@@ -57,7 +142,7 @@ export default () => (
 				</h3>
 			</div>
 		</div>
-		<div className="max-w-screen-lg mx-auto md:px-8">
+		<div className="max-w-screen-md mx-auto md:px-8">
 			<ul className="mt-12 space-y-3">
 				{experiences.map((item, idx) => (
 					<li
