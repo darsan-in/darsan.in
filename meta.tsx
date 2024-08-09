@@ -1,8 +1,8 @@
 export const metainfo = {
 	title:
-		"The Multifaceted Talent of Priyadarsan S: Founder, Coder, Problem-Solver | @darsan-in",
+		"Darsan: Engineering Excellence in Web Development and SEO | Best Freelancer at your service | @darsan-in",
 	description:
-		"Discover why Priyadarsan, a founder, engineer, and digital innovator, could be your company's next valuable asset. Explore their journey, skills, and impact.",
+		"Discover the resume of Darsan S., a tech enthusiast with a diverse skill set. Offering expertise in full-stack development, SEO, and automation, Darsan is eager to drive innovation.",
 };
 
 export const name: string = `DARSAN`;
