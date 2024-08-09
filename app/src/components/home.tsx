@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Achievments from "./achievments";
 import Education from "./education";
 import Experience from "./experience";
+import Featured from "./featured";
 import Loading from "./loading";
 import NotLimited from "./not-limited";
 import Quote from "./quote";
@@ -141,6 +142,7 @@ export default function HomePage() {
 
 						<Education />
 
+						<Featured />
 						<Quote />
 					</main>
 				</>
