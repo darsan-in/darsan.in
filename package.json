@@ -1,61 +1,82 @@
 {
-	"name": "kinact",
-	"displayName": "Kinact",
-	"version": "0.0.1a",
-	"description": "Personal portfolio website with track records of your projects published on GitHub.",
-	"main": "./dist/kinact.js",
-	"exports": {
-		"import": "./dist/kinact.js",
-		"require": "./dist/kinact.js",
-		"types": "./dist/types/kinact.d.ts"
-	},
-	"files": [
-		"dist"
-	],
-	"directories": {
-		"lib": "./dist/lib"
-	},
-	"preferGlobal": true,
-	"bin": {
-		"kinact": "./dist/bin/cli.js"
-	},
-	"repository": "https://github.com/darsan-in/kinact",
-	"bugs": {
-		"url": "https://github.com/darsan-in/kinact/issues"
-	},
-	"author": "DARSAN <darsan@cresteem.com>",
-	"maintainers": [
-		"DARSAN <darsan@cresteem.com>"
-	],
-	"license": "Apache-2.0",
-	"private": false,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"abuild": "tsc -p ./action"
-	},
-	"keywords": [],
-	"dependencies": {
-		"@radix-ui/react-tabs": "1.1.0",
-		"autoprefixer": "^10.4.19",
-		"next": "14.2.4",
-		"postcss": "^8.4.39",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
-		"react-icons": "^5.2.1",
-		"sass": "^1.77.6",
-		"tailwindcss": "^3.4.4"
-	},
-	"devDependencies": {
-		"@octokit/rest": "^21.0.1",
-		"@octokit/types": "^13.5.0",
-		"@types/node": "^20.14.8",
-		"@types/react": "^18.3.3",
-		"cheerio": "^1.0.0-rc.12",
-		"lodash": "^4.17.21",
-		"rimraf": "5.0.5",
-		"ts-node": "10.9.2",
-		"typescript": "5.4.5"
-	}
+  "name": "kinact",
+  "displayName": "Kinact",
+  "version": "0.0.1a",
+  "description": "Kinact is a dynamic portfolio web app designed for software engineers / Web developers who actively use GitHub for their projects. It automatically aggregates real-time data from your GitHub account, showcasing your projects, skills, and achievements in a compelling and optimized format. Perfect for attracting recruiters, entrepreneurs, or freelance clients, Kinact updates itself as you work, eliminating the need for manual updates.",
+  "main": "./dist/kinact.js",
+  "exports": {
+    "import": "./dist/kinact.js",
+    "require": "./dist/kinact.js",
+    "types": "./dist/types/kinact.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "./dist/lib"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "kinact": "./dist/bin/cli.js"
+  },
+  "repository": "https://github.com/darsan-in/kinact",
+  "bugs": {
+    "url": "https://github.com/darsan-in/kinact/issues"
+  },
+  "author": "DARSAN <darsan@cresteem.com>",
+  "maintainers": [
+    "DARSAN <darsan@cresteem.com>"
+  ],
+  "license": "Apache-2.0",
+  "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "abuild": "tsc -p ./action"
+  },
+  "keywords": [
+    "github portfolio",
+    "real-time update",
+    "software engineer portfolio",
+    "web developer showcase",
+    "github data integration",
+    "project insights",
+    "zero cost hosting",
+    "search engine optimization",
+    "automatic updates",
+    "freelance portfolio",
+    "developer branding",
+    "recruiter attraction",
+    "entrepreneur networking",
+    "github actions",
+    "work experience",
+    "achievements display",
+    "dynamic portfolio",
+    "real-time github data",
+    "github pages deployment"
+  ],
+  "dependencies": {
+    "@radix-ui/react-tabs": "1.1.0",
+    "autoprefixer": "^10.4.19",
+    "next": "14.2.4",
+    "postcss": "^8.4.39",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "sass": "^1.77.6",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@octokit/rest": "^21.0.1",
+    "@octokit/types": "^13.5.0",
+    "@types/node": "^20.14.8",
+    "@types/react": "^18.3.3",
+    "cheerio": "^1.0.0-rc.12",
+    "lodash": "^4.17.21",
+    "rimraf": "5.0.5",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.5"
+  },
+  "homepage": "https://darsan.in"
 }
