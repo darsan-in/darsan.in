@@ -186,7 +186,7 @@ For any questions, please reach out via hello@darsan.in or [LinkedIn](https://ww
 
 ## Credits 🙏🏻
 
-Thanks to @cresteem/hawk-js for making Kinact even more powerful. This package has dramatically simplified the process of submitting sitemaps automatically to Google, Bing, Yandex and all available search engines, ensuring Kinact is indexed across all platforms. It's an invaluable tool for anyone looking to enhance their website's search engine visibility. If you're looking to boost your site's indexing capabilities, @cresteem/hawk-js is a must-have!
+Thanks to [@cresteem/hawk-js](https://github.com/cresteem/Hawk-JS) for making Kinact even more powerful. This package has dramatically simplified the process of submitting sitemaps automatically to Google, Bing, Yandex and all available search engines, ensuring Kinact is indexed across all platforms. It's an invaluable tool for anyone looking to enhance their website's search engine visibility. If you're looking to boost your site's indexing capabilities, [@cresteem/hawk-js](https://hawkjs.cresteem.com/) is a must-have!
 
 ---
 
