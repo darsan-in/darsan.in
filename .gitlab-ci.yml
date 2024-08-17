@@ -8,17 +8,11 @@ cache:
     - node_modules/
     - .next/cache
     
-# Functions that should be executed before the build script is run
-before_script:
-  - npm install
-
-build:
-  stage: build
-  script:
-    - npx next build
-
 pages:
   stage: deploy
+  before_script:
+  - npm install
+  - npx next build
   script:
     - mv kinact-package/* public
   artifacts:
