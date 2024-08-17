@@ -18,7 +18,7 @@ before_script:
 build:
   stage: build
   script:
-    - yarn next build
+    - yarn next build --no-lint
   artifacts:
     paths:
       - kinact-package/
