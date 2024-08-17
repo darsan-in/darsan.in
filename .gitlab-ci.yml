@@ -1,9 +1,6 @@
 # The Docker image that will be used to build your app
-image: node:20
+image: node:lts
 
-variables:
-  NODE_ENV: production
-  NEXT_PUBLIC_BASE_PATH: "/"
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -13,12 +10,12 @@ cache:
     
 # Functions that should be executed before the build script is run
 before_script:
-  - yarn install
+  - npm install
 
 build:
   stage: build
   script:
-    - yarn next build --no-lint
+    - npx next build
   artifacts:
     paths:
       - kinact-package/
