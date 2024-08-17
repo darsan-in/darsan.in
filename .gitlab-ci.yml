@@ -1,0 +1,45 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  NODE_ENV: production
+  NEXT_PUBLIC_BASE_PATH: "/"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .next/cache
+
+before_script:
+  - node -v
+  - npm -v
+  - yarn -v
+
+# Build Job
+build:
+  stage: build
+  image: node:20
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - .next/
+      - public/
+      - out/
+    expire_in: 1 week
+
+# Deploy Job
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r out/. .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
