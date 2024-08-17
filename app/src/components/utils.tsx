@@ -16,9 +16,7 @@ export function getRandomColor(): string {
 }
 
 export async function fetchGHMeta(
-	user: string,
-	reponame: string,
-	expiryInHours: number = 24,
+	expiryInHours: number = 168,
 ): Promise<localMetaStructure> {
 	const localMeta: localMetaStructure =
 		getItemWithExpiration(localMetaKey);
@@ -27,7 +25,7 @@ export async function fetchGHMeta(
 		return localMeta;
 	} else {
 		const response = await fetch(
-			`https://raw.githubusercontent.com/${user}/${reponame}/main/ghmeta.json`,
+			`https://gitlab.com/darsan.in/Kinact/-/raw/main/ghmeta.json`,
 		);
 
 		const localMetaWithoutAllCat: localMetaStructure =

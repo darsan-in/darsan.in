@@ -1,6 +1,6 @@
 "use client";
 
-import { ShortInto, communication, summary } from "meta";
+import { ShortInto, summary } from "meta";
 import { useEffect, useState } from "react";
 import Achievments from "./achievments";
 import Education from "./education";
@@ -27,8 +27,6 @@ export default function HomePage() {
 			const expiryInHours = 3;
 
 			const localMeta: localMetaStructure = await fetchGHMeta(
-				communication.github,
-				"Kinact",
 				expiryInHours,
 			);
 
