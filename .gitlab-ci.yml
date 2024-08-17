@@ -14,7 +14,7 @@ pages:
   - npm install
   - npx next build
   script:
-    - mv kinact-package/* public
+    - mv -f kinact-package/* public
   artifacts:
     paths:
       - public
