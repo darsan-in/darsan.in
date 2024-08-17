@@ -1,16 +1,37 @@
 # The Docker image that will be used to build your app
 image: node:20
+
+variables:
+  NODE_ENV: production
+  NEXT_PUBLIC_BASE_PATH: "/"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .next/cache
+    
 # Functions that should be executed before the build script is run
 before_script:
   - yarn install
-pages:
+
+build:
+  stage: build
   script:
     - yarn build
   artifacts:
     paths:
-      # The folder that contains the files to be exposed at the Page URL
-      - kinact-package
-  rules:
-    # This ensures that only pushes to the default branch will trigger
-    # a pages deploy
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      - kinact-package/
+    expire_in: 1 week
+
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r kinact-package/. .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
