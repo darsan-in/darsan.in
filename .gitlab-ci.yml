@@ -1,45 +1,16 @@
-stages:
-  - build
-  - deploy
-
-variables:
-  NODE_ENV: production
-  NEXT_PUBLIC_BASE_PATH: "/"
-
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
-    - .next/cache
-
+# The Docker image that will be used to build your app
+image: node:20
+# Functions that should be executed before the build script is run
 before_script:
-  - node -v
-  - npm -v
-  - yarn -v
-
-# Build Job
-build:
-  stage: build
-  image: node:20
+  - yarn install
+pages:
   script:
-    - yarn install
     - yarn build
   artifacts:
     paths:
-      - .next/
-      - public/
-      - out/
-    expire_in: 1 week
-
-# Deploy Job
-pages:
-  stage: deploy
-  script:
-    - mkdir .public
-    - cp -r out/. .public
-    - mv .public public
-  artifacts:
-    paths:
+      # The folder that contains the files to be exposed at the Page URL
       - public
-  only:
-    - main
+  rules:
+    # This ensures that only pushes to the default branch will trigger
+    # a pages deploy
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
