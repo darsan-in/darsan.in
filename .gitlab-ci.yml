@@ -16,17 +16,11 @@ build:
   stage: build
   script:
     - npx next build
-  artifacts:
-    paths:
-      - kinact-package/
-    expire_in: 1 week
 
 pages:
   stage: deploy
   script:
-    - mkdir .public
-    - cp -r kinact-package/. .public
-    - mv .public public
+    - mv kinact-package/* public
   artifacts:
     paths:
       - public
