@@ -24,7 +24,7 @@ export default function HomePage() {
 	useEffect(() => {
 		/*  */
 		const getSetMeta = async () => {
-			const expiryInHours = 3;
+			const expiryInHours = 168;
 
 			const localMeta: localMetaStructure = await fetchGHMeta(
 				expiryInHours,

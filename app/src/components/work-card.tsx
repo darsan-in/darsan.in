@@ -1,11 +1,11 @@
 import { GithubRepoMeta } from "action/ds";
-import { FaGithub } from "react-icons/fa6";
 import { GoGoal, GoIssueOpened } from "react-icons/go";
 import { RxDownload, RxExternalLink, RxUpdate } from "react-icons/rx";
 import LevelBars from "./levelBar";
 
 import { useEffect } from "react";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
+import { RiGitlabFill } from "react-icons/ri";
 import style from "../styles/style.module.scss";
 import Topics from "./topics";
 export default ({ projects }: { projects: GithubRepoMeta[] }) => {
@@ -35,10 +35,10 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 									<a
 										href={project.htmlUrl + "#readme"}
 										target="_blank"
-										className="text-black text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white"
-										aria-label={"Visit github repo of " + project.name}
-										title={"Visit github repo of " + project.name}>
-										<FaGithub
+										className="text-[#faa226] text-sm rounded-lg p-1 duration-150 hover:bg-black hover:text-white bg-white"
+										aria-label={"Visit gitlab repo of " + project.name}
+										title={"Visit gitlab repo of " + project.name}>
+										<RiGitlabFill
 											size={20}
 											className="fill-current"
 										/>

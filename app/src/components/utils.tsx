@@ -24,14 +24,7 @@ export async function fetchGHMeta(
 	if (localMeta) {
 		return localMeta;
 	} else {
-		const response = await fetch(
-			`https://cors-anywhere.herokuapp.com/https://gitlab.com/darsan.in/Kinact/-/raw/main/ghmeta.json`,
-			{
-				headers: {
-					"X-Requested-With": "XMLHttpRequest",
-				},
-			},
-		);
+		const response = await fetch(`/ghmeta.json`);
 
 		const localMetaWithoutAllCat: localMetaStructure =
 			await response.json();

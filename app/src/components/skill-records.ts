@@ -13,6 +13,7 @@ import { DiDart } from "react-icons/di";
 import { FaGulp, FaLinux, FaNode } from "react-icons/fa";
 import { FaAws, FaFreebsd, FaGitAlt, FaJenkins } from "react-icons/fa6";
 import { GiDolphin, GiEyeTarget } from "react-icons/gi";
+
 import {
 	IoLogoCss3,
 	IoLogoElectron,
@@ -24,6 +25,7 @@ import { MdScatterPlot } from "react-icons/md";
 import {
 	RiFirebaseFill,
 	RiFlutterFill,
+	RiGitlabFill,
 	RiJavaFill,
 	RiJavascriptFill,
 	RiNextjsFill,
@@ -116,6 +118,7 @@ const skillRecords: Record<
 
 	"DevOps and CI/CD": [
 		{ text: "Github & CI", icon: IoLogoGithub, color: "#414141" },
+		{ text: "Gitlab & CI", icon: RiGitlabFill, color: "#faa226" },
 		{ text: "Git", icon: FaGitAlt, color: "#FF6868" },
 		{ text: "Jenkins", icon: FaJenkins, color: "#071952" },
 		{ text: "WebPack", icon: SiWebpack, color: "#2192FF" },
