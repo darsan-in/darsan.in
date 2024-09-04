@@ -23,7 +23,9 @@ const imageRecord: { imageLink: string; alt: string }[] = [
 
 export default function Featured() {
 	return (
-		<section className="pt-15 md:pt-[13%] lg:pt-[7%] mt-10 flex-col items-center justify-center text-center">
+		<section
+			className="pt-15 md:pt-[13%] lg:pt-[7%] mt-10 flex-col items-center justify-center text-center"
+			data-aos="zoom-out-up">
 			<h1 className="flex-col md:inline-block text-3xl sm:text-4xl md:text-6xl font-bold text-primary pb-10 md:mb-10 uppercase space-y-4 w-[50%] md:w-auto m-auto">
 				<span className="sm:bg-primary/[10%] sm:p-5 sm:px-10 rounded-lg block md:inline-block">
 					📸 Featured
@@ -34,7 +36,9 @@ export default function Featured() {
 			</h1>
 
 			<div className="flex-col space-y-4 lg:space-y-0 gap-y-5 lg:grid lg:grid-cols-2 lg:grid-rows-3 lg:gap-4 w-[100%] lg:h-[1000px]">
-				<div className="row-span-2 col-span-1 col-start-1">
+				<div
+					className="row-span-2 col-span-1 col-start-1"
+					data-aos="fade-right">
 					<img
 						className="object-cover h-[100%] w-[100%]"
 						src={imageRecord[0].imageLink}
@@ -42,7 +46,9 @@ export default function Featured() {
 					/>
 				</div>
 
-				<div className="row-span-1 col-start-2 row-start-1">
+				<div
+					className="row-span-1 col-start-2 row-start-1"
+					data-aos="fade-left">
 					<img
 						className="object-cover h-[100%] w-[100%]"
 						src={imageRecord[1].imageLink}
@@ -50,7 +56,9 @@ export default function Featured() {
 					/>
 				</div>
 
-				<div className="row-span-1 col-start-2 row-start-2">
+				<div
+					className="row-span-1 col-start-2 row-start-2"
+					data-aos="fade-right">
 					<img
 						className="object-cover h-[100%] w-[100%]"
 						src={imageRecord[3].imageLink}
@@ -58,14 +66,18 @@ export default function Featured() {
 					/>
 				</div>
 
-				<div className="col-start-1 row-span-1">
+				<div
+					className="col-start-1 row-span-1"
+					data-aos="fade-left">
 					<img
 						className="object-cover h-[100%] w-[100%]"
 						src={imageRecord[4].imageLink}
 						alt={imageRecord[4].alt}
 					/>
 				</div>
-				<div className="col-start-2 row-span-1">
+				<div
+					className="col-start-2 row-span-1"
+					data-aos="fade-right">
 					<img
 						className="object-cover h-[100%] w-[100%]"
 						src={imageRecord[2].imageLink}

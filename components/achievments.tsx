@@ -24,7 +24,8 @@ export default function Achievements() {
 	return (
 		<section
 			className="py-14"
-			id="achievments">
+			id="achievments"
+			data-aos="zoom-out-up">
 			<div className="max-w-screen-xl mx-auto px-4 text-center text-gray-600 md:px-8">
 				<div className="max-w-2xl mx-auto">
 					<h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
@@ -41,7 +42,8 @@ export default function Achievements() {
 						{achievments.map((item, idx) => (
 							<li
 								key={idx}
-								className="space-y-3">
+								className="space-y-3"
+								data-aos="zoom-in">
 								<div className="w-12 h-12 mx-auto bg-primary/[15%] text-primary rounded-full flex items-center justify-center">
 									{item.icon}
 								</div>

@@ -1,6 +1,8 @@
 export default function Quote() {
 	return (
-		<section className="py-20 border-t mt-20">
+		<section
+			className="py-20 border-t mt-20"
+			data-aos="zoom-out-up">
 			<div className="max-w-screen-xl mx-auto px-4 md:px-8">
 				<div className="max-w-3xl mx-auto">
 					<h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl mb-4">

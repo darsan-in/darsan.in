@@ -165,6 +165,7 @@ export default function Experience() {
 	return (
 		<section
 			className="py-20"
+			data-aos="fade-up"
 			id="experience">
 			<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
 				<div className="md:mx-auto">
@@ -182,6 +183,8 @@ export default function Experience() {
 					{experiences.map((item, idx) => (
 						<li
 							key={idx}
+							data-aos="zoom-out-up"
+							data-aos-delay="700"
 							className={
 								"px-[10%] py-[6%] duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200 " +
 								style.expCard

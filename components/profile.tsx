@@ -1,6 +1,9 @@
 export default function Profile() {
 	return (
-		<div className="flex-none px-1 sm:px-0 py-1 my-4 sm:my-7 md:mt-0 md:max-w-xl order-1">
+		<div
+			className="flex-none px-1 sm:px-0 py-1 my-4 sm:my-7 md:mt-0 md:max-w-xl order-1"
+			data-aos="fade-right"
+			data-aos-duration="1600">
 			<img
 				id="pp"
 				src="pp.webp"

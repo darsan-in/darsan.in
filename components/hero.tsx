@@ -10,7 +10,10 @@ export default function Hero({
 }) {
 	return (
 		<div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 items-center xl:items-start xl:justify-between overflow-hidden flex flex-col xl:flex-row md:px-8">
-			<div className="flex-col space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl xl:mb-20 xl:pb-12 mt-5 sm:mt-0 order-2">
+			<div
+				className="flex-col space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl xl:mb-20 xl:pb-12 mt-5 sm:mt-0 order-2"
+				data-aos="fade-up"
+				data-aos-duration="1400">
 				<h1 className="text-primary font-medium">
 					<ShortMessage
 						totalProjects={localMeta.totalProjects}

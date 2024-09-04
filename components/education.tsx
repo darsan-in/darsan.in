@@ -56,7 +56,9 @@ export default function Education() {
 	];
 
 	return (
-		<div className="leading-relaxed mx-4 md:mx-8 pb-10 mt-20 md:pt-10">
+		<div
+			className="leading-relaxed mx-4 md:mx-8 pb-10 mt-20 md:pt-10"
+			data-aos="zoom-out-up">
 			<div className="text-center space-y-3">
 				<h1 className="block text-4xl font-bold text-primary">
 					Educational Background
@@ -72,6 +74,7 @@ export default function Education() {
 				<div className="grid gap-4 py-8 lg:grid-cols-2">
 					{degrees.map((item, idx) => (
 						<div
+							data-aos="zoom-out-up"
 							className="space-y-3 mt-6 px-10 py-0 lg:py-10"
 							key={idx}>
 							<p className="text-gray-800 text-xl font-bold text-primary flex gap-x-4 items-center">

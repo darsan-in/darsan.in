@@ -15,7 +15,10 @@ export default function Works({
 
 	return (
 		<>
-			<div className="max-w-screen-xl mx-auto md:text-center md:px-8 sm:mt-12 sm:pt-20 pt-[10%] px-5">
+			<div
+				data-aos="zoom-out-up"
+				data-aos-delay="900"
+				className="max-w-screen-xl mx-auto md:text-center md:px-8 sm:mt-12 sm:pt-20 pt-[10%] px-5">
 				<div className="max-w-xl md:mx-auto">
 					<h3 className="text-gray-800 text-3xl font-bold sm:text-4xl">
 						<span className="text-primary uppercase">
@@ -91,14 +94,16 @@ export default function Works({
 				</div>
 				{/* mobile area ended */}
 
-				{tabs.map((language, idx) => (
-					<Tabs.Content
-						key={idx}
-						className="py-6"
-						value={language}>
-						<WorkCard projects={projectsMeta[language]} />
-					</Tabs.Content>
-				))}
+				{tabs.map((language, idx) => {
+					return (
+						<Tabs.Content
+							key={idx}
+							className="py-6"
+							value={language}>
+							<WorkCard projects={projectsMeta[language]} />
+						</Tabs.Content>
+					);
+				})}
 			</Tabs.Root>
 		</>
 	);

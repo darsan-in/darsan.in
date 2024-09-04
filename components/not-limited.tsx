@@ -1,6 +1,8 @@
 export default function NotLimited() {
 	return (
-		<div className="py-7">
+		<div
+			className="py-7"
+			data-aos="zoom-out-up">
 			<p className="text-center text-2xl text-primary font-semibold mb-2">
 				And I am not limited to them! I am always open to learning.
 			</p>
