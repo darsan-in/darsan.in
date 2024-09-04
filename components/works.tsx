@@ -37,7 +37,7 @@ export default function Works({
 							These projects reflect a commitment to blending technical
 							skill with a deep understanding of user needs, ensuring that
 							each solution is not only functional but also impactful.
-							Whether you're seeking to enhance business operations or
+							Whether you&apos;re seeking to enhance business operations or
 							develop next-generation tools, my work demonstrates a blend
 							of practical expertise and visionary thinking.
 						</p>

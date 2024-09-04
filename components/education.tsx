@@ -1,6 +1,6 @@
 import { RiCodeSSlashLine, RiRobot2Line } from "react-icons/ri";
 
-export default () => {
+export default function Education() {
 	const degrees = [
 		{
 			title: (
@@ -85,4 +85,4 @@ export default () => {
 			</div>
 		</div>
 	);
-};
+}

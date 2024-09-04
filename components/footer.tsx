@@ -5,7 +5,7 @@ import { IoLogoWhatsapp } from "react-icons/io5";
 import { RiNpmjsFill } from "react-icons/ri";
 import Huggingface from "./icons/huggingface";
 
-export default () => {
+export default function Footer() {
 	return (
 		<footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 border-t">
 			<div className="gap-6 justify-between md:flex">
@@ -105,4 +105,4 @@ export default () => {
 			</div>
 		</footer>
 	);
-};
+}

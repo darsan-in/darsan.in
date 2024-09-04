@@ -1,4 +1,4 @@
-export default () => {
+export default function Quote() {
 	return (
 		<section className="py-20 border-t mt-20">
 			<div className="max-w-screen-xl mx-auto px-4 md:px-8">
@@ -37,4 +37,4 @@ export default () => {
 			</div>
 		</section>
 	);
-};
+}

@@ -32,7 +32,7 @@ const experiences = [
 				</li>
 				<li>
 					Expertise in SEO and continuous integration using GitHub Actions,
-					enhancing the team's efficiency and project success.
+					enhancing the team&apos;s efficiency and project success.
 				</li>
 				<li>
 					Embraced automation to overcome startup challenges,
@@ -156,80 +156,82 @@ const experiences = [
 		),
 		job_type: "Intern",
 		location: "IN, TN, Coimbatore",
-		path: "https://www.bluekode.com",
+		path: "https://bluekode.com",
 		duration: "1 Month",
 	},
 ];
 
-export default () => (
-	<section
-		className="py-20"
-		id="experience">
-		<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
-			<div className="md:mx-auto">
-				<h3 className="lg:w-[75%] text-gray-800 text-3xl font-semibold sm:text-4xl mx-auto">
-					<span className="text-primary uppercase font-bold">
-						&lt;Experiences/&gt;
-					</span>{" "}
-					Expertise Forged Through Dedication, Not Just the Passage of
-					Time.
-				</h3>
+export default function Experience() {
+	return (
+		<section
+			className="py-20"
+			id="experience">
+			<div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
+				<div className="md:mx-auto">
+					<h3 className="lg:w-[75%] text-gray-800 text-3xl font-semibold sm:text-4xl mx-auto">
+						<span className="text-primary uppercase font-bold">
+							&lt;Experiences/&gt;
+						</span>{" "}
+						Expertise Forged Through Dedication, Not Just the Passage of
+						Time.
+					</h3>
+				</div>
 			</div>
-		</div>
-		<div className="max-w-screen-md mx-auto md:px-8">
-			<ul className="mt-12 space-y-3">
-				{experiences.map((item, idx) => (
-					<li
-						key={idx}
-						className={
-							"px-[10%] py-[6%] duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200 " +
-							style.expCard
-						}>
-						<a
-							href={item.path}
-							target="_blank"
-							className="space-y-3">
-							<div className="flex items-center gap-x-3">
-								<div className="bg-white w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
-									<div className="w-12">{item.company_icon}</div>
+			<div className="max-w-screen-md mx-auto md:px-8">
+				<ul className="mt-12 space-y-3">
+					{experiences.map((item, idx) => (
+						<li
+							key={idx}
+							className={
+								"px-[10%] py-[6%] duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200 " +
+								style.expCard
+							}>
+							<a
+								href={item.path}
+								target="_blank"
+								className="space-y-3">
+								<div className="flex items-center gap-x-3">
+									<div className="bg-white w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
+										<div className="w-12">{item.company_icon}</div>
+									</div>
+									<div>
+										<p className="flex text-sm text-primary font-medium items-center gap-x-2">
+											{item.company_name} <BiLinkExternal />
+										</p>
+										<h3 className="text-base text-gray-800 font-semibold mt-1">
+											{item.job_title}
+										</h3>
+									</div>
 								</div>
-								<div>
-									<p className="flex text-sm text-primary font-medium items-center gap-x-2">
-										{item.company_name} <BiLinkExternal />
-									</p>
-									<h3 className="text-base text-gray-800 font-semibold mt-1">
-										{item.job_title}
-									</h3>
+								<div className="text-gray-600 sm:text-sm">
+									{item.job_description}
 								</div>
-							</div>
-							<div className="text-gray-600 sm:text-sm">
-								{item.job_description}
-							</div>
-							<div
-								className={
-									"text-sm text-gray-600 flex items-center gap-6 px-4 " +
-									style.expItems
-								}>
-								<span className="flex items-center gap-2">
-									<BsSuitcaseLg className="w-4 h-4 text-gray-500" />
-									{item.job_type}
-								</span>
-								<span className="flex items-center gap-2">
-									<GrLocation className="w-4 h-4 text-gray-500" />
+								<div
+									className={
+										"text-sm text-gray-600 flex items-center gap-6 px-4 " +
+										style.expItems
+									}>
+									<span className="flex items-center gap-2">
+										<BsSuitcaseLg className="w-4 h-4 text-gray-500" />
+										{item.job_type}
+									</span>
+									<span className="flex items-center gap-2">
+										<GrLocation className="w-4 h-4 text-gray-500" />
 
-									{item.location}
-								</span>
+										{item.location}
+									</span>
 
-								<span className="flex items-center gap-2">
-									<RxCalendar className="w-4 h-4 text-gray-500" />
+									<span className="flex items-center gap-2">
+										<RxCalendar className="w-4 h-4 text-gray-500" />
 
-									{item.duration}
-								</span>
-							</div>
-						</a>
-					</li>
-				))}
-			</ul>
-		</div>
-	</section>
-);
+										{item.duration}
+									</span>
+								</div>
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+	);
+}

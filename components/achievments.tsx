@@ -2,7 +2,7 @@ import { FaRegStar } from "react-icons/fa";
 import { GoTrophy } from "react-icons/go";
 import { LiaMedalSolid } from "react-icons/lia";
 
-export default () => {
+export default function Achievements() {
 	const achievments = [
 		{
 			icon: <GoTrophy size={24} />,
@@ -56,4 +56,4 @@ export default () => {
 			</div>
 		</section>
 	);
-};
+}

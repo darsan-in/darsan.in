@@ -8,7 +8,11 @@ import { HiOutlineCodeBracket } from "react-icons/hi2";
 import { RiGitlabFill } from "react-icons/ri";
 import style from "../styles/style.module.scss";
 import Topics from "./topics";
-export default ({ projects }: { projects: GithubRepoMeta[] }) => {
+export default function Work({
+	projects,
+}: {
+	projects: GithubRepoMeta[];
+}) {
 	useEffect(() => {
 		const cards = document.querySelectorAll(`.${style.workCard}`);
 		cards.forEach((card) => {
@@ -159,4 +163,4 @@ export default ({ projects }: { projects: GithubRepoMeta[] }) => {
 			</div>
 		</section>
 	);
-};
+}

@@ -1,4 +1,4 @@
-export default ({ className, color, size }: any): any => {
+export default function Office({ className, color, size }: any): any {
 	return (
 		<svg
 			className={className}
@@ -32,4 +32,4 @@ export default ({ className, color, size }: any): any => {
 			</g>
 		</svg>
 	);
-};
+}

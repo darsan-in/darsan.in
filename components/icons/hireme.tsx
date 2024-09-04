@@ -2,7 +2,7 @@
 
 import { IoIosRocket } from "react-icons/io";
 
-export default () => {
+export default function HireMe() {
 	return (
 		<a
 			href="https://calendar.app.google/eYXb2TUHy4k3S8oX8"
@@ -14,4 +14,4 @@ export default () => {
 			<div className="absolute inline-flex items-center justify-center w-3 h-3 text-xs font-bold text-white bg-red-500 rounded-full top-1 end-1 dark:border-gray-900 animate-ping"></div>
 		</a>
 	);
-};
+}

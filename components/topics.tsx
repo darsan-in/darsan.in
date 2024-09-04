@@ -1,4 +1,4 @@
-export default ({ topics }: { topics: string[] }) => {
+export default function Topic({ topics }: { topics: string[] }) {
 	return (
 		<div className="px-4 pt-2 pb-10">
 			{topics.map((topic: string, idx: number) => (
@@ -12,4 +12,4 @@ export default ({ topics }: { topics: string[] }) => {
 			))}
 		</div>
 	);
-};
+}

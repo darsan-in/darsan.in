@@ -1,7 +1,7 @@
 import { name, navigation } from "meta";
 import style from "../styles/style.module.scss";
 
-export default () => {
+export default function HeaderNav() {
 	return (
 		<section className="text-gray-500 bg-white max-w-screen-xl mx-auto sm:px-6 sm:py-7">
 			<div className="flex justify-between md:flex">
@@ -33,4 +33,4 @@ export default () => {
 			</div>
 		</section>
 	);
-};
+}

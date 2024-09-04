@@ -1,6 +1,6 @@
 import style from "../styles/loading.module.scss";
 
-export default ({ className }: { className?: string }) => {
+export default function Loading({ className }: { className?: string }) {
 	return (
 		<svg
 			className={style.container + " text-primary " + className}
@@ -26,4 +26,4 @@ export default ({ className }: { className?: string }) => {
 			/>
 		</svg>
 	);
-};
+}
