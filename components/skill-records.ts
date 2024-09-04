@@ -58,7 +58,7 @@ import {
 	SiWindowsterminal,
 	SiWireshark,
 } from "react-icons/si";
-import Office from "../icons/office";
+import Office from "./icons/office";
 
 const skillRecords: Record<
 	string,

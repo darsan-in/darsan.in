@@ -9,7 +9,7 @@ export default () => {
 					<div className="max-w-3xl">
 						<p
 							className={
-								"mt-2 text-7xl sm:text-8xl font-bold text-primary transition-all duration-[3000ms] ease-in-out hover:bg-white tracking-widest text-primary	" +
+								"mt-2 text-7xl sm:text-8xl font-bold text-primary transition-all duration-[3000ms] ease-in-out hover:bg-white tracking-widest text-primary text-center mx-auto lg:pl-[3ch] xl:pl-0 " +
 								style.name
 							}>
 							{name}
@@ -18,7 +18,7 @@ export default () => {
 				</div>
 				<nav
 					className={
-						"flex-1 items-center gap-x-6 justify-center sm:flex md:space-y-0 md:mt-0 " +
+						"flex-1 items-center gap-x-6 justify-center hidden xl:flex md:space-y-0 md:mt-0 " +
 						style.navs
 					}>
 					{navigation.map((item, idx) => (

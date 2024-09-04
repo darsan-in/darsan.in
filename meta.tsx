@@ -45,6 +45,7 @@ export const navigation = [
 
 export const communication = {
 	github: "darsan-in",
+	gitlab: "darsan.in",
 	linkedin: "darsan-in",
 	mail: "hello@darsan.in",
 	phone: "+91-6381866191",

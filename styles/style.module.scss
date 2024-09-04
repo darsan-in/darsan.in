@@ -71,14 +71,6 @@ body:has(.skillIcon:hover) {
 }
 /* layout ended */
 
-/* Experience card */
-@media screen and (max-width: 780px) {
-	.expCard {
-		border: none;
-	}
-}
-/* Experience card ended*/
-
 @media screen and (max-width: 1200px) {
 	.navs a {
 		font-size: 1rem;

@@ -15,7 +15,7 @@ export default function Works({
 
 	return (
 		<>
-			<div className="max-w-screen-xl mx-auto md:text-center md:px-8 mt-12 pt-20">
+			<div className="max-w-screen-xl mx-auto md:text-center md:px-8 sm:mt-12 sm:pt-20 pt-[10%] px-5">
 				<div className="max-w-xl md:mx-auto">
 					<h3 className="text-gray-800 text-3xl font-bold sm:text-4xl">
 						<span className="text-primary uppercase">
@@ -23,7 +23,7 @@ export default function Works({
 						</span>{" "}
 						That Reflect My Passion and Expertise.
 					</h3>
-					<div className="mt-3 text-gray-600 leading-loose text-center">
+					<div className="mt-3 text-gray-600 leading-loose text-start sm:text-center">
 						<p className="mb-1.5">
 							Discover a curated selection of projects that showcase my
 							dedication to crafting innovative and effective solutions. My

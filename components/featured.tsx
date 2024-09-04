@@ -22,8 +22,8 @@ const imageRecord: { imageLink: string; alt: string }[] = [
 ];
 
 export default () => (
-	<section className="pt-15 mt-10 flex-col items-center justify-center text-center">
-		<h1 className="flex-col md:inline-block text-3xl sm:text-4xl md:text-6xl font-bold text-primary pb-10 mb-10 uppercase space-y-4 w-[50%] md:w-auto m-auto">
+	<section className="pt-15 md:pt-[13%] lg:pt-[7%] mt-10 flex-col items-center justify-center text-center">
+		<h1 className="flex-col md:inline-block text-3xl sm:text-4xl md:text-6xl font-bold text-primary pb-10 md:mb-10 uppercase space-y-4 w-[50%] md:w-auto m-auto">
 			<span className="sm:bg-primary/[10%] sm:p-5 sm:px-10 rounded-lg block md:inline-block">
 				📸 Featured
 			</span>{" "}

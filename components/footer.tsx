@@ -1,9 +1,9 @@
 import { communication } from "meta";
 import { FaLinkedin } from "react-icons/fa";
-import { FaGithub, FaYoutube } from "react-icons/fa6";
+import { FaGithub, FaGitlab, FaYoutube } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { RiNpmjsFill } from "react-icons/ri";
-import Huggingface from "../icons/huggingface";
+import Huggingface from "./icons/huggingface";
 
 export default () => {
 	return (
@@ -37,6 +37,16 @@ export default () => {
 								aria-label="Visit my github page"
 								title="Visit my github page">
 								<FaGithub className="svg-icon w-6 h-6 text-black" />
+							</a>
+						</li>
+
+						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
+							<a
+								href={"https://gitlab.com/" + communication.gitlab}
+								target="_blank"
+								aria-label="Visit my gitlab page"
+								title="Visit my gitlab page">
+								<FaGitlab className="svg-icon w-5 h-5 text-orange-500" />
 							</a>
 						</li>
 

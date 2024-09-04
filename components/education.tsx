@@ -56,7 +56,7 @@ export default () => {
 	];
 
 	return (
-		<div className="leading-relaxed mx-4 md:mx-8 pb-10 mt-20 pt-10">
+		<div className="leading-relaxed mx-4 md:mx-8 pb-10 mt-20 md:pt-10">
 			<div className="text-center space-y-3">
 				<h1 className="block text-4xl font-bold text-primary">
 					Educational Background
@@ -69,7 +69,7 @@ export default () => {
 			<div
 				className="relative bg-white rounded-md mt-10 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl sm:mx-auto"
 				style={{ boxShadow: "0px 7px 20px 7px #F1F1F1" }}>
-				<div className="grid gap-4 py-8 md:grid-cols-2">
+				<div className="grid gap-4 py-8 lg:grid-cols-2">
 					{degrees.map((item, idx) => (
 						<div
 							className="space-y-3 mt-6 px-10 py-0 lg:py-10"
@@ -81,7 +81,7 @@ export default () => {
 						</div>
 					))}
 				</div>
-				<span className="w-0.5 h-full bg-gray-200 m-auto absolute top-0 left-0 right-0 hidden md:block"></span>
+				<span className="w-0.5 h-full bg-gray-200 m-auto absolute top-0 left-0 right-0 hidden lg:block"></span>
 			</div>
 		</div>
 	);

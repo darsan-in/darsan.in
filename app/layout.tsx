@@ -1,11 +1,12 @@
 import { communication, metainfo } from "meta";
+import { FaGitlab } from "react-icons/fa6";
 import { HiDocumentArrowDown } from "react-icons/hi2";
 import { IoCallSharp, IoMail } from "react-icons/io5";
-import { RiGithubFill, RiLinkedinFill } from "react-icons/ri";
-import Footer from "./src/components/footer";
-import Hireme from "./src/icons/hireme";
-import "./src/styles/globals.scss";
-import style from "./src/styles/style.module.scss";
+import { RiLinkedinFill } from "react-icons/ri";
+import Footer from "../components/footer";
+import Hireme from "../components/icons/hireme";
+import "../styles/globals.scss";
+import style from "../styles/style.module.scss";
 
 export const metadata = metainfo;
 
@@ -160,14 +161,14 @@ export default function RootLayout({
 							}>
 							<a
 								target="_blank"
-								href={`https://github.com/${communication.github}`}
+								href={`https://gitlab.com/${communication.gitlab}`}
 								className="flex gap-x-2"
-								aria-label="Visit github page"
-								title="Visit github page">
-								<div className={iconBgClasses + " bg-black"}>
-									<RiGithubFill size={bannerIconSize} />
+								aria-label="Visit gitlab page"
+								title="Visit gitlab page">
+								<div className={iconBgClasses + " bg-orange-500"}>
+									<FaGitlab size={bannerIconSize} />
 								</div>
-								<p className="py-2">@{communication.github}</p>
+								<p className="py-2">@{communication.gitlab}</p>
 							</a>
 
 							<a
