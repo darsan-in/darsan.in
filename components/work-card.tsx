@@ -27,10 +27,10 @@ export default function Work({
 					{projects.map((project, idx) => {
 						return (
 							<li
-								className={"border rounded-lg " + style.workCard}
+								className={"wcard border rounded-lg " + style.workCard}
 								key={idx}
 								data-aos="flip-down">
-								<div className="flex items-start justify-between p-6 sm:p-4 rounded-t-lg bg-primary/[20%]">
+								<div className="flex items-start justify-between p-6 sm:p-4 rounded-t-lg bg-primary/[20%] wdesc">
 									<div className="space-y-2">
 										<h4 className="text-black font-bold text-xl">
 											{project.name.toUpperCase()}

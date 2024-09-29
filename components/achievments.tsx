@@ -44,9 +44,9 @@ export default function Achievements() {
 								key={idx}
 								className="space-y-3"
 								data-aos="zoom-in">
-								<div className="w-12 h-12 mx-auto bg-primary/[15%] text-primary rounded-full flex items-center justify-center">
+								<figure className="w-12 h-12 mx-auto bg-primary/[15%] text-primary rounded-full flex items-center justify-center">
 									{item.icon}
-								</div>
+								</figure>
 								<h4 className="text-lg text-gray-800 font-semibold">
 									{item.title}
 								</h4>

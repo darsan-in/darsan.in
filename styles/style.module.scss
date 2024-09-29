@@ -57,6 +57,9 @@ body:has(.skillIcon:hover) {
 		height: 0.4rem;
 		font-size: 0.7rem;
 	}
+	.innerContainer ~ a > span {
+		margin: 0 auto;
+	}
 	.innerContainer ~ a > svg {
 		display: none;
 	}

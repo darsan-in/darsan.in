@@ -1,13 +1,13 @@
+import DarkMode from "components/darkmode";
 import { communication, metainfo } from "meta";
 import { FaGitlab } from "react-icons/fa6";
 import { HiDocumentArrowDown } from "react-icons/hi2";
-import { IoCallSharp, IoMail } from "react-icons/io5";
+import { IoMail } from "react-icons/io5";
 import { RiLinkedinFill } from "react-icons/ri";
 import Footer from "../components/footer";
-import Hireme from "../components/icons/hireme";
+import MeetMe from "../components/icons/meetme";
 import "../styles/globals.scss";
 import style from "../styles/style.module.scss";
-
 export const metadata = metainfo;
 
 export default function RootLayout({
@@ -165,9 +165,9 @@ export default function RootLayout({
 								className="flex gap-x-2"
 								aria-label="Visit gitlab page"
 								title="Visit gitlab page">
-								<div className={iconBgClasses + " bg-orange-500"}>
+								<button className={iconBgClasses + " bg-orange-500"}>
 									<FaGitlab size={bannerIconSize} />
-								</div>
+								</button>
 								<p className="py-2">@{communication.gitlab}</p>
 							</a>
 
@@ -177,9 +177,9 @@ export default function RootLayout({
 								className="flex gap-x-2"
 								aria-label="Visit linkedin page"
 								title="Visit linkedin page">
-								<div className={iconBgClasses + " bg-blue-600"}>
+								<button className={iconBgClasses + " bg-blue-600"}>
 									<RiLinkedinFill size={bannerIconSize} />
-								</div>
+								</button>
 								<p className="py-2">@{communication.linkedin}</p>
 							</a>
 
@@ -189,13 +189,13 @@ export default function RootLayout({
 								className="flex gap-x-2"
 								aria-label="Mail me"
 								title="Mail me">
-								<div className={iconBgClasses + " bg-green-600"}>
+								<button className={iconBgClasses + " bg-green-600"}>
 									<IoMail size={bannerIconSize} />
-								</div>
+								</button>
 								<p className="py-2">{communication.mail}</p>
 							</a>
 
-							<a
+							{/* <a
 								target="_blank"
 								href={`tel:${communication.phone}`}
 								className="flex gap-x-2"
@@ -205,7 +205,7 @@ export default function RootLayout({
 									<IoCallSharp size={bannerIconSize} />
 								</div>
 								<p className="py-2">{communication.phone}</p>
-							</a>
+							</a> */}
 
 							<a
 								target="_blank"
@@ -213,14 +213,18 @@ export default function RootLayout({
 								className="flex gap-x-2"
 								aria-label="Download my resume"
 								title="Download my resume">
-								<div className={iconBgClasses + " bg-yellow-600"}>
+								<button className={iconBgClasses + " bg-yellow-600"}>
 									<HiDocumentArrowDown size={bannerIconSize} />
-								</div>
+								</button>
 								<p className="py-2">Resume</p>
 							</a>
-						</div>
 
-						<Hireme />
+							<DarkMode
+								className={"flex gap-x-2 " + iconBgClasses}
+								size={bannerIconSize}
+							/>
+						</div>
+						<MeetMe />
 					</div>
 				</header>
 				{children}

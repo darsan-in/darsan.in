@@ -45,13 +45,7 @@ export default function LevelBars({
 											backgroundColor: barColours[idx],
 											width: "6%",
 										}}></div>
-									<p
-										className="text-xs text-gray-600 text-center"
-										style={{
-											color: "black",
-										}}>
-										&lt; 5%
-									</p>
+									<p className="text-xs text-black text-center">&lt; 5%</p>
 								</>
 							)}
 						</div>

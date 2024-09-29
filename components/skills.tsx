@@ -42,9 +42,7 @@ export default function Skills({ iconSize }: { iconSize: number }) {
 											size={iconSize}
 											color={skill.color}
 										/>
-										<p
-											className="text-center mx-2"
-											style={{ color: "black" }}>
+										<p className="text-center mx-2 text-black">
 											{skill.text}
 										</p>
 									</div>

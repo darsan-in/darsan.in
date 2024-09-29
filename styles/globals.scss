@@ -43,3 +43,43 @@ main {
 		opacity: 1;
 	}
 }
+
+/* dark mode */
+body.dark {
+	@apply bg-gray-900 text-white;
+
+	:is(div, section, footer):not(.wdesc, .wdesc > div, .edutitle) {
+		@apply bg-gray-900 text-white;
+	}
+
+	.text-black {
+		@apply text-white;
+	}
+
+	[class*="text-gray"] {
+		@apply text-gray-100;
+	}
+
+	* {
+		@apply border-gray-700;
+	}
+
+	#educard {
+		@apply shadow-none border;
+	}
+
+	.edutitle > p:nth-child(1) {
+		@apply text-primary;
+	}
+
+	.wdesc a:nth-child(2) {
+		color: black;
+		@apply hover:text-white;
+	}
+
+	.wtrigger {
+		@apply data-[state=active]:bg-primary hover:bg-primary;
+	}
+}
+
+/*  */

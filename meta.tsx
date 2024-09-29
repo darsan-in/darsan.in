@@ -10,29 +10,37 @@ export const name: string = `DARSAN`;
 export const ShortInto = (): React.ReactNode => {
 	return (
 		<p className="leading-tight">
-			Founder{" "}
+			Founder of{" "}
 			<a
 				className="text-primary"
-				href="http://cresteem.com/">
-				@Cresteem
+				target="_blank"
+				href="https://cresteem.com/">
+				Cresteem
 			</a>
-			, Innovative Engineer & Solution Architect
+			<span className="text-primary"> & </span>
+			<a
+				className="text-primary"
+				target="_blank"
+				href="https://effectivepc.in/">
+				Effective PC
+			</a>
+			, Full Stack Engineer, DevOps and Cloud Specialist, SEO Expert, Tech
+			Consultant
 		</p>
 	);
 };
 
 export const summary = (
 	<>
-		Passionate about transforming ideas into impactful solutions, I blend
-		technical expertise with strategic insight to drive excellence in every
-		project. With a focus on simplicity and efficiency, I leverage agile
-		methodologies to enhance development, deployment, and scaling
-		processes. My commitment to continuous improvement and creativity
-		ensures that I deliver solutions that are both effective and
-		groundbreaking. Eager to contribute to visionary projects and
-		collaborate with forward-thinking teams,{" "}
-		<span className="font-medium">
-			I aim to make a meaningful difference in the tech world.
+		I turn ideas into impactful solutions by combining technical expertise
+		with strategic insight. Using agile methodologies, I streamline
+		development and leverage cloud technologies for efficient deployment
+		and scaling. My DevOps practices ensure seamless integration, while my
+		full-stack skills provide comprehensive solutions. Committed to
+		continuous improvement and innovation,{" "}
+		<span className="text-primary">
+			I aim to make a meaningful impact in the tech world through
+			collaboration on visionary projects.
 		</span>
 	</>
 );

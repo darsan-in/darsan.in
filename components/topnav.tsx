@@ -11,7 +11,7 @@ export default function HeaderNav() {
 					<div className="max-w-3xl">
 						<p
 							className={
-								"mt-2 text-7xl sm:text-8xl font-bold text-primary transition-all duration-[3000ms] ease-in-out hover:bg-white tracking-widest text-primary text-center mx-auto lg:pl-[3ch] xl:pl-0 " +
+								"mt-2 text-7xl sm:text-8xl font-bold text-primary transition-all duration-[3000ms] ease-in-out tracking-widest text-primary text-center mx-auto lg:pl-[3ch] xl:pl-0 " +
 								style.name
 							}>
 							{name}

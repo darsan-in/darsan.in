@@ -186,7 +186,7 @@ export default function Experience() {
 							data-aos="zoom-out-up"
 							data-aos-delay="700"
 							className={
-								"px-[10%] py-[6%] duration-150 hover:rounded-xl rounded-xl hover:shadow-xl border border-gray-200 " +
+								"px-[10%] py-[6%] duration-150 hover:rounded-xl rounded-xl md:hover:shadow-xl md:border border-gray-200 " +
 								style.expCard
 							}>
 							<a

@@ -45,6 +45,7 @@ import {
 	SiGooglecloud,
 	SiGooglesearchconsole,
 	SiJest,
+	SiJira,
 	SiKeystone,
 	SiNextra,
 	SiNumpy,
@@ -157,7 +158,7 @@ const skillRecords: Record<
 		{ text: "CMD", icon: SiWindowsterminal, color: "#414141" },
 		{ text: "MS Office", icon: Office, color: "#FC6B3F" },
 	],
-
+	"Project Management": [{ text: "Jira", icon: SiJira, color: "#004fc6" }],
 	"Digital Marketing": [
 		{ text: "SEO", icon: SiGooglesearchconsole, color: "#7459DC" },
 	],

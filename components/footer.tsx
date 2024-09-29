@@ -1,7 +1,6 @@
 import { communication } from "meta";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub, FaGitlab, FaYoutube } from "react-icons/fa6";
-import { IoLogoWhatsapp } from "react-icons/io5";
 import { RiNpmjsFill } from "react-icons/ri";
 import Huggingface from "./icons/huggingface";
 
@@ -82,15 +81,6 @@ export default function Footer() {
 							</a>
 						</li>
 
-						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
-							<a
-								href="https://wa.me/+916381866191"
-								target="_blank"
-								aria-label="Chat me on Whatsapp"
-								title="Chat me on Whatsapp">
-								<IoLogoWhatsapp className="svg-icon w-7 h-7 text-green-600" />
-							</a>
-						</li>
 						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
 							<a
 								href={"https://www.youtube.com/@" + communication.youtube}

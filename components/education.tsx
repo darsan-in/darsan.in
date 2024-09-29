@@ -69,13 +69,13 @@ export default function Education() {
 				</p>
 			</div>
 			<div
-				className="relative bg-white rounded-md mt-10 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl sm:mx-auto"
-				style={{ boxShadow: "0px 7px 20px 7px #F1F1F1" }}>
+				id="educard"
+				className="relative bg-white rounded-md mt-10 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl sm:mx-auto shadow-educard">
 				<div className="grid gap-4 py-8 lg:grid-cols-2">
 					{degrees.map((item, idx) => (
 						<div
 							data-aos="zoom-out-up"
-							className="space-y-3 mt-6 px-10 py-0 lg:py-10"
+							className="space-y-3 mt-6 px-10 py-0 lg:py-10 edutitle"
 							key={idx}>
 							<p className="text-gray-800 text-xl font-bold text-primary flex gap-x-4 items-center">
 								{item.title}
@@ -84,7 +84,7 @@ export default function Education() {
 						</div>
 					))}
 				</div>
-				<span className="w-0.5 h-full bg-gray-200 m-auto absolute top-0 left-0 right-0 hidden lg:block"></span>
+				<span className="w-0.5 h-full bg-gray-200 dark:bg-gray-700 m-auto absolute top-0 left-0 right-0 hidden lg:block"></span>
 			</div>
 		</div>
 	);
