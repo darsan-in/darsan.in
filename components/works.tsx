@@ -28,26 +28,14 @@ export default function Works({
 					</h3>
 					<div className="mt-3 text-gray-600 leading-loose text-start sm:text-center">
 						<p className="mb-1.5">
-							Discover a curated selection of projects that showcase my
-							dedication to crafting innovative and effective solutions. My
-							portfolio spans various fields, including advanced search
-							engines, web performance optimization, and workflow
-							automation, each designed to address real-world challenges
-							with precision and creativity.
-						</p>
-
-						<p className="mb-1.5">
-							These projects reflect a commitment to blending technical
-							skill with a deep understanding of user needs, ensuring that
-							each solution is not only functional but also impactful.
-							Whether you&apos;re seeking to enhance business operations or
-							develop next-generation tools, my work demonstrates a blend
-							of practical expertise and visionary thinking.
-						</p>
-
-						<p>
-							Explore these projects to see how I bring ideas to life and
-							drive progress in technology and business.
+							Explore a selection of innovative projects that solve
+							real-world challenges, from search engines to web
+							optimization and automation. Each reflects my technical
+							expertise and user-focused approach, blending functionality
+							with creativity to deliver impactful solutions. Whether
+							improving business operations or developing cutting-edge
+							tools, my work demonstrates a commitment to driving progress
+							and innovation in technology.
 						</p>
 					</div>
 				</div>

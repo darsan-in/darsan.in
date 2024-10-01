@@ -9,7 +9,7 @@ export const name: string = `DARSAN`;
 
 export const ShortInto = (): React.ReactNode => {
 	return (
-		<p className="leading-tight">
+		<p className="leading-tight text-center md:text-start">
 			Founder of{" "}
 			<a
 				className="text-primary"
