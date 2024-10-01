@@ -152,8 +152,8 @@ export default function RootLayout({
 					content={metadata.description}
 				/>
 			</head>
-			<body>
-				<header className="h-15 rounded-b-lg border border-indigo-100 flex sm:block">
+			<body className="bg-white">
+				<header className="h-15 rounded-b-lg border-b border-gray-200 flex sm:block">
 					<div className="max-w-screen-xl mx-auto px-4 py-3 items-center justify-between text-white sm:flex md:px-8 flex flex-wrap w-[60%] sm:w-[90%] mb-3 sm:mb-0">
 						<div
 							className={

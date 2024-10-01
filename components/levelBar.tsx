@@ -13,7 +13,9 @@ export default function LevelBars({
 				<div
 					className="mb-4 flex justify-around"
 					key={idx}>
-					<p className="text-sm font-semibold min-w-[24%]">{language}:</p>
+					<p className="text-sm font-semibold min-w-[24%] max-w-[24%]">
+						{language}:
+					</p>
 					<div className="flex bg-stroke dark:bg-dark-3 relative h-4 w-[60%] rounded-2xl">
 						<div
 							className="border w-full rounded-2xl"

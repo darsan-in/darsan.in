@@ -70,7 +70,7 @@ export default function Education() {
 			</div>
 			<div
 				id="educard"
-				className="relative bg-white rounded-md mt-10 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl sm:mx-auto shadow-educard">
+				className="relative rounded-md mt-10 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl sm:mx-auto shadow-educard">
 				<div className="grid gap-4 py-8 lg:grid-cols-2">
 					{degrees.map((item, idx) => (
 						<div

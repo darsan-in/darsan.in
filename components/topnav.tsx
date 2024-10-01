@@ -4,7 +4,7 @@ import style from "../styles/style.module.scss";
 export default function HeaderNav() {
 	return (
 		<section
-			className="text-gray-500 bg-white max-w-screen-xl mx-auto sm:px-6 sm:py-7"
+			className="text-gray-500 max-w-screen-xl mx-auto sm:px-6 sm:py-7"
 			data-aos="fade-left">
 			<div className="flex justify-between md:flex">
 				<div className="flex-1">

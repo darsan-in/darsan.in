@@ -6,7 +6,7 @@ import Huggingface from "./icons/huggingface";
 
 export default function Footer() {
 	return (
-		<footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 border-t">
+		<footer className="text-gray-500 px-4 py-5 max-w-screen-xl mx-auto md:px-8 border-t">
 			<div className="gap-6 justify-between md:flex">
 				<div className="flex-1">
 					<div className="max-w-xs">

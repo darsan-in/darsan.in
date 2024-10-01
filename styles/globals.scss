@@ -48,10 +48,6 @@ main {
 body.dark {
 	@apply bg-gray-900 text-white;
 
-	:is(div, section, footer):not(.wdesc, .wdesc > div, .edutitle) {
-		@apply bg-gray-900 text-white;
-	}
-
 	.text-black {
 		@apply text-white;
 	}

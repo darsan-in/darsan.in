@@ -3,9 +3,58 @@ import { BsSuitcaseLg } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { RxCalendar } from "react-icons/rx";
 import style from "../styles/style.module.scss";
-import { experienceDuration } from "./utils";
 
-const experiences = [
+const experiences: {
+	company_icon: any;
+	company_name: string;
+	job_title: string;
+	job_description: any;
+	job_type: string;
+	location: string;
+	path: string;
+	duration: string;
+}[] = [
+	{
+		company_icon: (
+			<img
+				className="rounded-full"
+				src="/icon/epc.jpg"
+				alt=""
+			/>
+		),
+		company_name: "Effective PC",
+		job_title: "Founder & Chief PC Architect",
+		job_description: (
+			<ul className="list-disc leading-loose">
+				<li>
+					Delivering high-performance, tailor-made PCs for gamers and
+					businesses.
+				</li>
+				<li>
+					Focused on optimizing systems to maximize both performance and
+					cost-efficiency, ensuring top value for every customer.
+				</li>
+				<li>
+					Personally involved in all aspects of the business, from
+					consulting to hardware selection, ensuring high-quality and
+					satisfaction.
+				</li>
+				<li>
+					Expertise in matching people’s unique requirements with the best
+					hardware and software solutions, building PCs from the ground up.
+				</li>
+				<li>
+					<span className="font-medium">Mission-driven:</span> Helping
+					people save costs and achieve the best PC performance without
+					compromise.
+				</li>
+			</ul>
+		),
+		job_type: "Full-time",
+		location: "IN, TN, Nagapattinam",
+		path: "https://effectivepc.in",
+		duration: "01 Sep 2024 - Current",
+	},
 	{
 		company_icon: (
 			<img
@@ -111,7 +160,7 @@ const experiences = [
 		job_type: "Full-time",
 		location: "Remote",
 		path: "https://cresteem.com",
-		duration: experienceDuration("01-01-2023"),
+		duration: `01 Jan 2023 - Current`,
 	},
 	{
 		company_icon: (
@@ -157,7 +206,7 @@ const experiences = [
 		job_type: "Intern",
 		location: "IN, TN, Coimbatore",
 		path: "https://bluekode.com",
-		duration: "1 Month",
+		duration: "01 Jul 2022 - 01 Aug 2022 (1 Month)",
 	},
 ];
 
@@ -194,7 +243,7 @@ export default function Experience() {
 								target="_blank"
 								className="space-y-3">
 								<div className="flex items-center gap-x-3">
-									<div className="bg-white w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
+									<div className="w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
 										<div className="w-12">{item.company_icon}</div>
 									</div>
 									<div>

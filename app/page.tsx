@@ -13,9 +13,6 @@ export default function Root() {
 
 	useEffect(() => {
 		AOS.init({ mirror: true, duration: 1000, delay: 200 });
-		if (Boolean(localStorage.getItem("dark"))) {
-			document.body.classList.add("dark");
-		}
 
 		scrollHandler();
 
