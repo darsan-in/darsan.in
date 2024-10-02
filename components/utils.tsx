@@ -101,7 +101,7 @@ export interface localMetaStructure {
 	projects: Record<string, GithubRepoMeta[]>;
 	totalProjects: number;
 	totalCommits: number;
-	overallDownloadCounts: number;
+	overallDownloadCounts: number | string;
 }
 
 export function experienceDuration(dateString: string) {
@@ -123,4 +123,34 @@ export function experienceDuration(dateString: string) {
 	return `${years} ${years > 1 ? "Years" : "Year"} & ${remMonths} ${
 		remMonths > 1 ? "Months" : "Month"
 	}`;
+}
+
+export function liveNPMDownloads(): Promise<string> {
+	return new Promise((resolve, reject) => {
+		fetch("https://img.shields.io/npm-stat/dy/darsan.in")
+			.then((response) => {
+				if (response.body) {
+					return response.text();
+				} else {
+					throw new Error(
+						"Readable stream is not available: at liveNPMDownloads()",
+					);
+				}
+			})
+			.then((data) => {
+				const downloadsCountRaw = new DOMParser()
+					.parseFromString(data, "image/svg+xml")
+					.querySelector("title")?.innerHTML;
+
+				const result = downloadsCountRaw?.slice(
+					downloadsCountRaw.indexOf(": ") + 2,
+					downloadsCountRaw.indexOf("/"),
+				);
+
+				resolve(result ?? "3.7k");
+			})
+			.catch((error) => {
+				reject("Error decoding stream: " + error);
+			});
+	});
 }

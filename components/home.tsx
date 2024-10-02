@@ -11,7 +11,11 @@ import NotLimited from "./not-limited";
 import Quote from "./quote";
 import Skills from "./skills";
 import Topnav from "./topnav";
-import { fetchGHMeta, localMetaStructure } from "./utils";
+import {
+	fetchGHMeta,
+	liveNPMDownloads,
+	localMetaStructure,
+} from "./utils";
 import Works from "./works";
 
 export default function HomePage() {
@@ -22,13 +26,18 @@ export default function HomePage() {
 	useEffect(() => {
 		/*  */
 		const getSetMeta = async () => {
-			const expiryInHours = 168;
+			const expiryInHours = 30;
 
 			const localMeta: localMetaStructure = await fetchGHMeta(
 				expiryInHours,
 			);
 
-			setLocalMeta(localMeta);
+			const npmDownloads = await liveNPMDownloads();
+
+			setLocalMeta({
+				...localMeta,
+				overallDownloadCounts: npmDownloads.toUpperCase(),
+			});
 		};
 
 		getSetMeta().catch((err) => {
