@@ -7,7 +7,7 @@ export const ShortMessage = ({
 }: {
 	totalProjects: number;
 	totalCommits: number;
-	overallDownloadCounts: number;
+	overallDownloadCounts: number | string;
 }) => {
 	return (
 		<ul
