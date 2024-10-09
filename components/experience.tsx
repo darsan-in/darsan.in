@@ -238,23 +238,24 @@ export default function Experience() {
 								"px-[10%] py-[6%] duration-150 hover:rounded-xl rounded-xl md:hover:shadow-xl md:border border-gray-200 " +
 								style.expCard
 							}>
-							<a
-								href={item.path}
-								target="_blank"
-								className="space-y-3">
-								<div className="flex items-center gap-x-3">
-									<div className="w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
-										<div className="w-12">{item.company_icon}</div>
+							<div className="space-y-3">
+								<a
+									href={item.path}
+									target="_blank">
+									<div className="flex items-center gap-x-3">
+										<div className="w-14 h-14 border border-gray-100 rounded-full flex items-center justify-center">
+											<div className="w-12">{item.company_icon}</div>
+										</div>
+										<div>
+											<p className="flex text-sm text-primary font-medium items-center gap-x-2">
+												{item.company_name} <BiLinkExternal />
+											</p>
+											<h3 className="text-base text-gray-800 font-semibold mt-1">
+												{item.job_title}
+											</h3>
+										</div>
 									</div>
-									<div>
-										<p className="flex text-sm text-primary font-medium items-center gap-x-2">
-											{item.company_name} <BiLinkExternal />
-										</p>
-										<h3 className="text-base text-gray-800 font-semibold mt-1">
-											{item.job_title}
-										</h3>
-									</div>
-								</div>
+								</a>
 								<div className="text-gray-600 sm:text-sm">
 									{item.job_description}
 								</div>
@@ -279,7 +280,7 @@ export default function Experience() {
 										{item.duration}
 									</span>
 								</div>
-							</a>
+							</div>
 						</li>
 					))}
 				</ul>

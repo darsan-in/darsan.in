@@ -60,6 +60,7 @@ export const communication = {
 	npmjs: "darsan.in",
 	youtube: "darsan-in",
 	huggingface: "darsan",
+	instagram: "darsan.in",
 };
 
 export const localMetaKey: string = "worksmeta";

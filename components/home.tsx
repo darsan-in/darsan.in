@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Achievments from "./achievments";
 import Education from "./education";
 import Experience from "./experience";
+import EyeLoader from "./eye-loader";
 import Featured from "./featured";
 import Hero from "./hero";
-import Loading from "./loading";
 import NotLimited from "./not-limited";
 import Quote from "./quote";
 import Skills from "./skills";
@@ -47,9 +47,9 @@ export default function HomePage() {
 
 	return (
 		<>
-			{!localMeta.projects ? (
-				<div className="flex w-full h-full justify-center mt-20 pb-[50%]">
-					<Loading className="animate-pulse" />
+			{!localMeta?.projects ? (
+				<div className="flex w-[100vw] h-[100vh] justify-center relative">
+					<EyeLoader className="animate-pulse -top-[25%] sm:-top-[22%] md:-top-[17%] lg:-top-[5%] -left-10" />
 				</div>
 			) : (
 				<>

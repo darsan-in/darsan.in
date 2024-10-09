@@ -1,6 +1,11 @@
 import { communication } from "meta";
 import { FaLinkedin } from "react-icons/fa";
-import { FaGithub, FaGitlab, FaYoutube } from "react-icons/fa6";
+import {
+	FaGithub,
+	FaGitlab,
+	FaInstagram,
+	FaYoutube,
+} from "react-icons/fa6";
 import { RiNpmjsFill } from "react-icons/ri";
 import Huggingface from "./icons/huggingface";
 
@@ -88,6 +93,18 @@ export default function Footer() {
 								aria-label="Visit my youtube channel"
 								title="Visit my youtube channel">
 								<FaYoutube className="svg-icon w-7 h-7 text-red-600" />
+							</a>
+						</li>
+
+						<li className="w-10 h-10 border rounded-full flex items-center justify-center">
+							<a
+								href={
+									"https://www.instagram.com/" + communication.instagram
+								}
+								target="_blank"
+								aria-label="Visit my Instagram"
+								title="Visit my Instagram">
+								<FaInstagram className="svg-icon w-7 h-7 text-pink-600" />
 							</a>
 						</li>
 					</ul>
