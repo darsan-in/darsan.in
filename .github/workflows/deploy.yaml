@@ -1,0 +1,47 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger only on pushes to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts'
+          cache: 'npm'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build Next.js project
+      - name: Build Next.js app
+        run: npx next build
+
+      # Step 5: Clean up old public folder HTML and subdirectories
+      - name: Clean up public folder
+        run: |
+          find public -mindepth 1 -maxdepth 1 -type d | xargs rm -rf || true
+          find public -type f -name "*.html" | xargs rm -rf || true
+
+      # Step 6: Move build output to public folder
+      - name: Move build artifacts
+        run: mv -f kinact-package/* public
+
+      # Step 7: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
